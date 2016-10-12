@@ -1,88 +1,88 @@
 .Home{
 
-    .Header_wrapper{
-        background-color : @color_1;
+  .Header_wrapper{
+    background-color : @color_1;
 
-        .Header{
-            width : 960px;
-            margin : auto;
+    .Header{
+      width : 960px;
+      margin : auto;
 
-            .Title{
-                display : inline-block;
-                color : #FFF;
-                font-weight : 400;
-                margin : 10px 0px;
-            }
+      .Title{
+        display : inline-block;
+        color : #FFF;
+        margin : 10px 0px;
+      }
 
-            .Header_actions{
-                display : inline-block;
-                vertical-align : top;
-                float : right;
-                height : 100%;
+      .Header_actions{
+        display : inline-block;
+        vertical-align : top;
+        float : right;
+        height : 100%;
 
-                .Search_bar{
-                    height : 100%;
+        .Search_bar{
+          height : 100%;
 
-                    .Search_input{
-                        height: 36px;
-                        margin-top: 13px;
-                        border: none;
-                        width: 250px;
-                        background-color: transparent;
-                        border-bottom: 1px solid #FFF;
-                        color: #FFF;
-                        outline: none;
-                        font-size: 20px;
-                        font-family : 'Open Sans';
-                    }
+          .Search_input{
+            position: relative;
+            left: 40px;
+            height: 36px;
+            margin-top: 13px;
+            border: none;
+            width: 250px;
+            background-color: transparent;
+            border-bottom: 1px solid #FFF;
+            color: #FFF;
+            outline: none;
+            font-size: 20px;
+            padding-right: 40px;
+            .openSans;
+          }
 
-                    .Search_button{
-                        background-color: transparent;
-                        border: none;
-                        color: #FFF;
-                        font-size: 23px;
-                        border-bottom: 1px solid #FFF;
-                        padding-bottom: 8px;
-                        padding-right: 13px;
-                    }
-                }
-            }
+          .Search_button{
+            background-color: transparent;
+            border: none;
+            color: #FFF;
+            font-size: 23px;
+            padding-bottom: 8px;
+            padding-right: 13px;
+          }
         }
+      }
     }
+  }
 
-    .Navbar_wrapper{
-        background-color : @color_3;
+  .Navbar_wrapper{
+    background-color : @color_3;
 
-        .Navbar{
-            width : 960px;
-            margin : 0px auto;
-            list-style : none;
-            padding : 0px;
+    .Navbar{
+      width : 960px;
+      margin : 0px auto;
+      list-style : none;
+      padding : 0px;
 
-            .Navbar_item{
-                display : inline-block;
-                vertical-align : middle;
-                padding : 15px 12px;
-                height : 100%;
-                margin-right : 20px;
-                .clickable;
+      .Navbar_item{
+        display : inline-block;
+        vertical-align : middle;
+        padding : 15px 12px;
+        height : 100%;
+        margin-right : 20px;
+        .clickable;
 
-                &:hover{
-                    background-color : darken(@color_3, 10%);
-                }
-
-                a{
-                    color : #FFF;
-                    text-decoration : none;
-                }
-            }
+        &:hover{
+          background-color : darken(@color_3, 10%);
         }
-    }
 
-    .Footer{
-
-        .Company_infos{
-
+        a{
+          color : #FFF;
+          text-decoration : none;
         }
+      }
     }
+  }
+
+  .Footer{
+
+    .Company_infos{
+    }
+  }
 }
