@@ -3,10 +3,10 @@
 ##Installation :
 
   Clone the project
-  `git clone git@github.com:Dev6-CKS/IPSSI-site-front.git`
+  `git clone git@github.com:arncet/ipssi-front.git`
 
   Open the folder
-  `cd IPSSI-site-front`
+  `cd ipssi-front`
 
   Install node modules:
   `npm install`

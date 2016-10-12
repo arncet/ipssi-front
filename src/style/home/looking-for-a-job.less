@@ -25,9 +25,11 @@
 
         .Triangle{
           border-color: transparent transparent transparent lighten(@color_3, 40%);
+          -webkit-transform: rotateX(150deg); /* Safari */
+          transform: rotateX(150deg);
         }
 
-        .Dates{
+        .Dates, .Content{
           border-color: lighten(@color_3, 40%);
         }
       }
@@ -42,7 +44,7 @@
         width: 0;
         height: 0;
         border-style: solid;
-        border-width: 50px 0 50px 50px;
+        border-width: 20px 0 20px 40px;
         border-color: transparent transparent transparent lighten(@color_3, 10%);
         margin-right: 30px;
         .transitions(all, 0.2s, ease);
@@ -50,13 +52,12 @@
 
       .Dates{
         width: 25%;
-        margin-right: 30px;
+        margin-right: 6px;
         padding-right: 5px;
         border-right: 3px solid lighten(@color_3, 10%);
         .transitions(all, 0.2s, ease);
 
         .Date_from_now{
-
         }
 
         .Date{
@@ -66,6 +67,9 @@
 
       .Content{
         width: calc(75% - 118px);
+        padding-left: 30px;
+        border-left: 3px solid lighten(@color_3, 10%);
+        .transitions(all, 0.2s, ease);
 
         .Link{
           font-size: 20px;

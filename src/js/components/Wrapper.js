@@ -1,8 +1,14 @@
-import React from 'react'
+import React, {cloneElement} from 'react'
 
-const Wrapper = ({ children }) => (
+//Components
+import Header from './Header'
+import Footer from './Footer'
+
+const Wrapper = ({ children, ...props }) => (
   <div className="Wrapper">
-    { children }
+  	<Header {...props}/>
+    { cloneElement(children, props) }
+    <Footer/>
   </div>
 )
 
