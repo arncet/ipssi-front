@@ -79,6 +79,7 @@ class Header extends Component{
                 const current = selected 
                   ? selected === item.routeName
                   : inRoute(pathname, item.routeName)
+                console.log(selected)
                 return (
                   <NavItem 
                     key={`nav-item-${i}`} 
@@ -90,7 +91,7 @@ class Header extends Component{
               })}
             </ul>
           {
-            routeSelected ?
+            routeSelected && routeSelected.content ?
               <ul className="Navbar">
                 {routeSelected.content.map((item, i) => {
                   const current = selected 
