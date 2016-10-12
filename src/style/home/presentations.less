@@ -1,0 +1,61 @@
+.Presentations{
+  background-color: @color_1;
+  color: #FFF;
+  list-style: none;
+  padding: 30px 0px 0px 0px;
+  margin: 0px;
+
+  .Presentations_title{
+    margin: 0px 0px 0px 50px;
+    font-size: 40px;
+    .openSansLight;
+  }
+
+  .Presentation{
+    padding: 50px;
+
+    &:nth-child(2n){
+      background-color: @color_1;
+    }
+
+    &:nth-child(2n+1){
+      background-color: @color_3;
+    }
+
+    .Presentation_picture, .Presentation_texts{
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .Presentation_picture{
+      width: calc(60% - 200px);
+
+      &:nth-child(2n){
+        margin-left: 100px;
+      }
+
+      &:nth-child(2n+1){
+        margin-right: 100px;
+      }
+    }
+
+    .Presentation_texts{
+      width: 40%;
+      text-align: right;
+
+      .Presentation_title{
+        display: inline-block;
+        font-size: 28px;
+        margin: 0px 0px 10px 0px;
+        padding: 8px 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-right: 3px solid;
+        .openSansLight;
+      }
+
+      .button{
+        margin-top: 20px;
+      }
+    }
+  }
+}
