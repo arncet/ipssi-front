@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-moment.lang('fr', {
+moment.locale('fr', {
   months: 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
   monthsShort: 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
   weekdays: 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
@@ -44,7 +44,5 @@ moment.lang('fr', {
     doy: 4 // The week that contains Jan 4th is the first week of the year.
   }
 })
-
-moment.lang('fr')
 
 export default moment

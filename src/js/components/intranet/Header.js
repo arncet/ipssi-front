@@ -1,51 +1,49 @@
 import React, {Component} from 'react'
 import { kebabCase } from 'lodash'
-import {getPath, inRoute} from '../utils/routes'
+import {getPath, inRoute} from '../../utils/routes'
 
 const navBarItems = [
   {
-    name: "Accueil",
-    routeName: 'home'
+    name: "Actualité",
+    routeName: 'intranet-actualite'
   },
   {
-    name: "Le groupe",
-    routeName: 'le-groupe',
+    name: "Ressouces Humaines",
+    routeName: 'intranet-ressources-humaines',
     content: [
-      {name: 'Présentation', routeName: 'presentation'},
-      {name: 'Chiffres clés', routeName: 'chiffres-cles'},
-      {name: 'Notre expertise', routeName: 'notre-expertise'},
-      {name: 'La valeur du groupe', routeName: 'la-valeur-du-groupe'}
+      {name: 'CRA', routeName: 'intranet-cra'},
+      {name: 'Notes de frais', routeName: 'intranet-notes-de-frais'},
+      {name: 'Demandes de congés', routeName: 'intranet-demandes-de-conges'},
+      {name: 'CVthèque', routeName: 'intranet-cvtheqe'},
+      {name: 'Offres de poste', routeName: 'intranet-offres-de-poste'},
+      {name: 'Candidatures', routeName: 'intranet-candidatures'},
+      {name: 'Collaborateurs', routeName: 'intranet-collaborateurs'}
     ]
   },
   {
-    name: "L'activité",
-    routeName: 'l-activite',
+    name: "Boite à outils",
+    routeName: 'intranet-boite-a-outils',
     content: [
-      {name: 'Nos métiers', routeName: 'nos-metiers'},
-      {name: 'Nos secteurs d\'activités', routeName: 'nos-secteurs-d-activites'},
-      {name: 'Ils nous font confiance', routeName: 'ils-nous-font-confiance'},
+      {name: 'Certifications', routeName: 'intranet-certifications'},
+      {name: 'Documents de travail', routeName: 'intranet-documents-de-travail'}
     ]
   },
   {
-    name: "Nous rejoindre",
-    routeName: 'nous-rejoindre',
+    name: "Paramétrages",
+    routeName: 'intranet-parametrages',
     content: [
-      {name: 'Les postes à pourvoir', routeName: 'les-postes-a-pourvoir'},
-      {name: 'Postuler', routeName: 'postuler'}
+      {name: 'RH', routeName: 'intranet-rh'},
+      {name: 'CRM', routeName: 'intranet-crm'}
     ]
   },
   {
-    name: "Espace collaborateur",
-    routeName: 'espace-collaborateur'
+    name: "Administration",
+    routeName: 'intranet-administration',
+    content: [
+      {name: 'Gestion des utilisateurs', routeName: 'intranet-gestion-des-utilisateurs'},
+      {name: 'Application', routeName: 'intranet-application'}
+    ]
   },
-  {
-    name: "Contact",
-    routeName: 'contact'
-  },
-  {
-    name: "Mon ipssi",
-    routeName: 'connexion'
-  }
 ]
 
 class Header extends Component{
@@ -63,7 +61,7 @@ class Header extends Component{
       <div className="Header">
       	<header className="Header_wrapper">
           <div className="Header">
-            <h1 className="Title">IPSSI</h1>
+            <h1 className="Title">IPSSI - Intranet</h1>
             <div className="Header_actions">
               <div className="Search_bar">
                 <input type="text" className="input Search_input"/>

@@ -50,13 +50,12 @@
 }
 
 .Navbar_wrapper{
-  background-color : @color_3;
 
-  .Navbar{
-    width : 960px;
+  .Navbar, .Sub_navbar{
     margin : 0px auto;
     list-style : none;
-    padding : 0px;
+    padding : 0px calc((100% - 960px) / 2);
+    background-color: @color_3;
 
     .Navbar_item{
       display : inline-block;
@@ -78,6 +77,10 @@
         .boxSizing;
       }
     }
+  }
+
+  .Sub_navbar{
+    background-color: lighten(@color_3, 10%);
   }
 }
 

@@ -1,0 +1,184 @@
+.Gadgets_cards{
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+
+  .Gadget_item{
+    display: inline-block;
+    vertical-align: top;
+    width: calc(33.3% - (40px / 3));
+    margin: 0px 20px 20px 0px;
+
+    &:nth-child(3n){
+      margin-right: 0px;
+    }
+  }
+
+  .Gadget_card{
+    display: inline-block;
+    color: #FFF;
+    width: 100%;
+
+    &.Message_card{
+      background-color: #4281A4;
+
+      .Gadget_header{
+        border-color: lighten(#4281A4, 10%);
+      }
+
+      .Messages_cards_list{
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+
+        .Message_cards_item{
+          display: inline-block;
+          padding-left: 10px;
+          border-left: 5px solid darken(#4281A4, 10%);
+          margin-bottom: 10px;
+          width: 100%;
+          .boxSizing;
+
+          &:last-child{
+            margin-bottom: 0px;
+          }
+
+          .Message_title, .Message_author{
+            .dotDotDot;
+          }
+
+          .Message_author{
+            font-size: 13px;
+            .openSansBold;
+          }
+
+          .Message_title{
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    &.Calendar_card{
+      background-color: #399E5A;
+
+      .Gadget_header{
+        border-color: lighten(#399E5A, 10%);
+      }
+
+      .Calendars_cards_list{
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+
+        .Calendar_cards_item{
+          display: inline-block;
+          padding-left: 10px;
+          border-left: 5px solid darken(#399E5A, 10%);
+          margin-bottom: 10px;
+          width: 100%;
+          .boxSizing;
+
+          &:last-child{
+            margin-bottom: 0px;
+          }
+
+          .Calendar_title, .Calendar_date{
+            .dotDotDot;
+          }
+
+          .Calendar_date{
+            font-size: 13px;
+            .openSansBold;
+          }
+
+          .Calendar_title{
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    &.New_card{
+      background-color: #e8b935;
+
+      .Gadget_header{
+        border-color: lighten(#e8b935, 10%);
+      }
+
+      .News_cards_list{
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+
+        .New_cards_item{
+          display: inline-block;
+          padding-left: 10px;
+          border-left: 5px solid darken(#e8b935, 10%);
+          margin-bottom: 10px;
+          width: 100%;
+          .boxSizing;
+
+          &:last-child{
+            margin-bottom: 0px;
+          }
+
+          .New_title, .New_date{
+            .dotDotDot;
+          }
+
+          .New_date{
+            font-size: 13px;
+            .openSansBold;
+          }
+
+          .New_title{
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    .Gadget_header_content{
+      margin-top: 20px;
+
+      .Gadget_header_content_count, .Gadget_header_content_text{
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      .Gadget_header_content_count{
+        font-size: 40px;
+        margin-right: 5px;
+      }
+
+      .Gadget_header_content_text{
+        padding-top: 10px;
+      }
+    }
+
+    .Gadget_header{
+      padding: 15px 20px 2px 20px;
+      border-bottom: 8px solid;
+
+      .Gadget_title, .fa{
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .Gadget_title{
+        margin: 0px 0px 0px 10px;
+      }
+
+      .fa{
+        font-size: 26px;
+      }
+    }
+
+    .Gadget_body{
+      padding: 15px 20px;
+      overflow-y: scroll;
+      max-height: 150px;
+    }
+  }
+}
