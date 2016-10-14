@@ -19,40 +19,55 @@
   &:hover{
     background-color: rgba(0, 0, 0, 0.5);
   }
-}
 
-.button-blue{
-  .button-init;
-  border-color: @color_5;
-  background-color: @color_5;
-  color: #FFF;
-
-  &:hover{
-    border-color: darken(@color_5, 10%);
-    background-color: darken(@color_5, 10%);
+  &:disabled, &:disabled:hover{
+    border-color: #E5E5E5;
+    background-color: transparent;
+    color: #E5E5E5;
+    cursor: inherit;
   }
 }
 
 .button-red{
   .button-init;
-  border-color: @color_5;
-  background-color: @color_5;
-  color: #FFF;
+  border-color: @red;
+  color: @red;
 
   &:hover{
-    border-color: darken(@color_5, 10%);
-    background-color: darken(@color_5, 10%);
+    background-color: @red;
+    color: #FFF;
   }
 }
 
 .button-green{
   .button-init;
-  border-color: @color_5;
-  background-color: @color_5;
-  color: #FFF;
+  border-color: @green;
+  color: @green;
 
   &:hover{
-    border-color: darken(@color_5, 10%);
-    background-color: darken(@color_5, 10%);
+    background-color: @green;
+    color: #FFF;
+  }
+}
+
+.button-grey{
+  .button-init;
+  border-color: @grey;
+  color: @grey;
+
+  &:hover{
+    background-color: @grey;
+    color: #FFF;
+  }
+}
+
+.button-blue{
+  .button-init;
+  border-color: @color_5;
+  color: @color_5;
+
+  &:hover{
+    background-color: @color_5;
+    color: #FFF;
   }
 }
