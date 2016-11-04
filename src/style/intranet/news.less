@@ -3,6 +3,20 @@
 
   .News_topbar{
 
+    .News_topbar_left, .News_topbar_right{
+      display: inline-block;
+      vertical-align: top;
+      width: 50%;
+    }
+
+    .News_topbar_right{
+      text-align: right;
+
+      .label-and-input .button{
+        margin: 0px 0px 0px 10px;
+      }
+    }
+
     .label-and-input{
       margin-right: 20px;
 
@@ -66,9 +80,9 @@
         }
 
         .New_triangle{
-          position: absolute; 
+          position: absolute;
           right: 0px;
-          top: 75px; 
+          top: 75px;
           width: 0;
           height: 0;
           border-style: solid;

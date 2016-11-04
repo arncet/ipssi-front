@@ -9,7 +9,7 @@ const Presentation = ({ presentation, index }) => (
 
 const Picture = ({ presentation: { picture } }) => <img className="Presentation_picture" src={ picture }/>
 
-const PresentationTexts = ({ presentation: { title, subTitle, description } }) => (
+const PresentationTexts = ({ presentation: { title, description } }) => (
   <div className="Presentation_texts">
     <h3 className="Presentation_title">{ title }</h3>
     <div className="Presentation_description">{ description }</div>

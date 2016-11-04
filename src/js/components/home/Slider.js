@@ -49,7 +49,7 @@ class Slider extends Component{
           <div className="Slider_prev fa fa-chevron-left" onClick={() => this.prev()}/>
           <div className={`Slider_pause fa fa-${pause ? 'pause' : 'play'}`} onClick={() => this.setState({ pause: !pause })}/>
           <ul className="Slider">
-            {sliderItem.map((item, i) => this.displaySliderItem(item, i, currentId === item.id))}
+            {sliderItem.map(item => this.displaySliderItem(item))}
           </ul>
           <div className="Slider_next fa fa-chevron-right" onClick={() => this.next()}/>
         </div>
@@ -62,7 +62,7 @@ class Slider extends Component{
     )
   }
 
-  displaySliderItem (item, i, current) {
+  displaySliderItem (item) {
     const { id, title, description, src, link } = item
     return (
       <li

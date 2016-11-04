@@ -6,7 +6,7 @@ import Footer from './Footer'
 
 const Wrapper = ({ children, ...props }) => (
   <div className="Wrapper">
-  	<Header {...props}/>
+    <Header {...props}/>
     { cloneElement(children, props) }
     <Footer/>
   </div>

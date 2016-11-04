@@ -116,5 +116,5 @@ gulp.task('default', ['copyIndexHtml', 'watch'], () => {
   gulp.run('js')
   gulp.run('less')
   gulp.run('assets')
-  gulp.watch(srcAllJsPath).on('change', browserSync.reload)
+  //gulp.watch(srcAllJsPath).on('change', browserSync.reload)
 })

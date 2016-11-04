@@ -1,9 +1,8 @@
-import user from './user'
-import { fork, call } from 'redux-saga/effects'
-import { fetchUrl } from '../api/fetch'
+import google from './google'
+import { fork } from 'redux-saga/effects'
 
 function* root () {
-  yield fork(user)
+  yield fork(google)
 }
 
 export default root

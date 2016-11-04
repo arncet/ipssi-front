@@ -51,7 +51,7 @@ class Header extends Component{
     super(props)
     this.state = {routeSelected: null}
   }
-  
+
   render() {
     const {location: {pathname}} = this.props
     const {routeSelected} = this.state
@@ -59,7 +59,7 @@ class Header extends Component{
 
     return (
       <div className="Header">
-      	<header className="Header_wrapper">
+        <header className="Header_wrapper">
           <div className="Header">
             <h1 className="Title">IPSSI - Intranet</h1>
             <div className="Header_actions">
@@ -74,14 +74,14 @@ class Header extends Component{
           <ul className="Navbar">
             {
               navBarItems.map((item, i) => {
-                const current = routeSelected 
+                const current = routeSelected
                   ? routeSelected === item.routeName
                   : inRoute(pathname, item.routeName)
                 return (
-                  <NavItem 
-                    key={`nav-item-${i}`} 
-                    item={item} 
-                    current={current} 
+                  <NavItem
+                    key={`nav-item-${i}`}
+                    item={item}
+                    current={current}
                     onClick={routeName => this.setState({routeSelected: routeName})}
                   />
                 )
@@ -94,9 +94,9 @@ class Header extends Component{
                 {route.content.map((item, i) => {
                   const current = inRoute(pathname, item.routeName)
                   return (
-                    <NavItem 
-                      key={`nav-item-${i}`} 
-                      item={item} 
+                    <NavItem
+                      key={`nav-item-${i}`}
+                      item={item}
                       current={current}
                     />
                   )
@@ -118,9 +118,9 @@ class Header extends Component{
 }
 
 const NavItem = ({ item: { name, routeName, content }, current, onClick = () => {} }) => (
-  <li 
-    className={`Navbar_item${current ? ' Navbar_item_current' : ''}`} 
-    key={"navbar-item-"+kebabCase(name)} 
+  <li
+    className={`Navbar_item${current ? ' Navbar_item_current' : ''}`}
+    key={"navbar-item-"+kebabCase(name)}
     onClick={() => onClick(routeName)}
   >
     <a href={content ? null : getPath(routeName)}>{name}</a>
