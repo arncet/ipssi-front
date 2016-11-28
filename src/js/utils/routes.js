@@ -25,6 +25,12 @@ export const getPath = routeName => {
       return '#/nous-rejoindre/les-postes-a-pourvoir'
     case 'postuler':
       return '#/nous-rejoindre/postuler'
+    case 'intranet-messages':
+      return '#/intranet/messages'
+    case 'intranet-calendar':
+      return '#/intranet/calendrier'
+    case 'intranet-news': 
+      return '#/intranet/actualites'
     case 'home':
     default:
       return '#/'

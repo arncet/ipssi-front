@@ -12,7 +12,7 @@ const news = [
 ]
 
 const NewCard = () => (
-  <a className="Gadget_card New_card" href={getPath('home')}>
+  <a className="Gadget_card New_card" href={getPath('intranet-news')}>
     <div className='Gadget_header'>
       <i className='fa fa-newspaper-o'/>
       <h3 className='Gadget_title'>Actualités</h3>

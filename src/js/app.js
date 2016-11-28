@@ -21,6 +21,7 @@ const App = ({ history }) => (
         <IndexRoute component={HomeIntranet}/>
         <Route path='actualites' component={NewsIntranet}/>
         <Route path='messages' component={MessagesIntranet}/>
+        <Route path='calendrier' component={MessagesIntranet}/>
       </Route>
     </Route>
   </Router>

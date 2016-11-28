@@ -1,7 +1,7 @@
-.Intranet_news_page{
-  background-color: lighten(#e8b935, 35%);
+.Intranet_messages_page{
+  background-color: lighten(@messages-color, 35%);
 
-  .News_topbar{
+  .Messages_topbar{
 
     .label-and-input{
       margin-right: 20px;
@@ -17,11 +17,11 @@
     }
   }
 
-  .Intranet_news_body{
+  .Intranet_messages_body{
     display: table;
     position: relative;
 
-    .New_bullet_line{
+    .Message_bullet_line{
       position: absolute;
       width: 1px;
       background-color: #FFF;
@@ -30,30 +30,30 @@
       z-index: 1;
     }
 
-    .News, .New_preview{
+    .Messages, .Message_preview{
       display: table-cell;
       vertical-align: top;
     }
 
-    .News{
+    .Messages{
       list-style: none;
       padding: 0px;
       margin: 0px;
       width: 25%;
-      background-color: #e8b935;
+      background-color: @messages-color;
 
-      .New_item{
+      .Message_item{
         padding: 15px 20px 15px 10px;
         height: 170px;
         overflow: hidden;
         position: relative;
-        border-bottom: 1px solid darken(#e8b935, 10%);
+        border-bottom: 1px solid darken(@messages-color, 10%);
         .boxSizing;
 
-        &.New_item_current{
-          background-color: darken(#e8b935, 10%);
+        &.Message_item_current{
+          background-color: darken(@messages-color, 10%);
 
-          .New_bullet:after{
+          .Message_bullet:after{
             position: absolute;
             content: '';
             width: 12px;
@@ -65,7 +65,7 @@
           }
         }
 
-        .New_triangle{
+        .Message_triangle{
           position: absolute;
           right: 0px;
           top: 75px;
@@ -73,15 +73,15 @@
           height: 0;
           border-style: solid;
           border-width: 10px 10px 10px 0px;
-          border-color: transparent lighten(#e8b935, 30%) transparent transparent;
+          border-color: transparent lighten(@messages-color, 30%) transparent transparent;
         }
 
-        .New_bullet, .New{
+        .Message_bullet, .Message{
           display: inline-block;
           vertical-align: top;
         }
 
-        .New_bullet{
+        .Message_bullet{
           width: 10px;
           height: 10px;
           background-color: #FFF;
@@ -90,7 +90,7 @@
           position: relative;
         }
 
-        .New{
+        .Message{
           width: calc(100% - 25px);
           position: relative;
 
@@ -100,18 +100,18 @@
             right: 0px;
           }
 
-          .New_date{
+          .Message_date{
             font-size: 11px;
             text-transform: uppercase;
             color: #FFF;
             .openSansBold;
           }
 
-          .New_title{
+          .Message_title{
             margin-top: 10px;
           }
 
-          .New_description{
+          .Message_description{
             margin-top: 10px;
             font-size: 13px;
             max-height: 61px;
@@ -121,66 +121,66 @@
       }
     }
 
-    .New_preview{
-      background-color: lighten(#e8b935, 30%);
+    .Message_preview{
+      background-color: lighten(@messages-color, 30%);
       width: 75%;
       padding: 30px;
       .boxSizing;
 
-      .New_preview_header{
+      .Message_preview_header{
         display: table;
-        border-bottom: 3px solid #e8b935;
+        border-bottom: 3px solid @messages-color;
 
-        .New_author, .New_header{
+        .Message_author, .Message_header{
           display: table-cell;
           vertical-align: top;
           .boxSizing;
         }
 
-        .New_author{
+        .Message_author{
           width: 20%;
           text-align: center;
 
-          .New_author_picture{
+          .Message_author_picture{
             margin: 0px auto 5px auto;
             width: 70px;
             height: 70px;
             background-repeat: no-repeat;
             border-radius: 50%;
-            border: 3px solid #e8b935;
+            border: 3px solid @messages-color;
             background-size: cover;
           }
 
-          .New_author_name{
+          .Message_author_name{
             font-size: 26px;
           }
 
-          .New_author_post{
+          .Message_author_post{
             font-size: 13px;
           }
         }
 
-        .New_header{
+        .Message_header{
           width: 80%;
           padding: 0px 30px 30px 30px;
 
-          .New_title{
+          .Message_title{
             font-size: 30px;
             margin-bottom: 20px;
           }
 
-          .New_description{
+          .Message_description{
 
           }
 
-          .New_date{
+          .Message_date{
             margin-top: 20px;
             font-size: 13px;
           }
         }
       }
 
-      .New_preview_body{
+      .Message_preview_body{
         padding: 20px;
       }
     }

@@ -7,7 +7,7 @@ const events = [
 ]
 
 const CalendarCard = () => (
-  <a className="Gadget_card Calendar_card" href={getPath('home')}>
+  <a className="Gadget_card Calendar_card" href={getPath('intranet-calendar')}>
     <div className='Gadget_header'>
       <i className='fa fa-calendar-o'/>
       <h3 className='Gadget_title'>Agenda</h3>

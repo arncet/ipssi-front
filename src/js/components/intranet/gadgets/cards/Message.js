@@ -10,7 +10,7 @@ const messages = [
 ]
 
 const MessageCard = () => (
-  <a className="Gadget_card Message_card" href={getPath('home')}>
+  <a className="Gadget_card Message_card" href={getPath('intranet-messages')}>
     <div className='Gadget_header'>
       <i className='fa fa-envelope-o'/>
       <h3 className='Gadget_title'>Messagerie</h3>
