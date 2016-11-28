@@ -8,7 +8,8 @@ import Home from './components/home/Home'
 //Intranet
 import WrapperIntranet from './components/intranet/Wrapper'
 import HomeIntranet from './components/intranet/home/Home'
-import NewsIntranets from './components/intranet/news/News'
+import NewsIntranet from './components/intranet/news/News'
+import MessagesIntranet from './containers/intranet/Messages'
 
 const App = ({ history }) => (
   <Router history={history}>
@@ -18,7 +19,8 @@ const App = ({ history }) => (
       </Route>
       <Route path='intranet' component={WrapperIntranet}>
         <IndexRoute component={HomeIntranet}/>
-        <Route path='actualites' component={NewsIntranets}/>
+        <Route path='actualites' component={NewsIntranet}/>
+        <Route path='messages' component={MessagesIntranet}/>
       </Route>
     </Route>
   </Router>

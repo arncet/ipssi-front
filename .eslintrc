@@ -28,17 +28,8 @@
   },
 
   "globals": {
-    "llsMisc": true,
-    "ColorThief": true,
-    "it": true,
-    "io": true,
-    "describe": true,
     "React": true,
-    "Api": true,
-    "_": true,
-    "nw": true,
-    "browser": true,
-    "client": true
+    "gapi": true
   },
 
   "parser": "babel-eslint"
