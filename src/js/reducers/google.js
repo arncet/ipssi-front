@@ -1,9 +1,10 @@
 import { GOOGLE_AUTH, GOOGLE_AUTH_SUCCESS, GOOGLE_AUTH_FAILED,
- GOOGLE_LOAD_GMAIL_SUCCESS } from '../actions'
+ GOOGLE_LOAD_GMAIL_SUCCESS, GOOGLE_FETCH_EMAILS, 
+ GOOGLE_FETCH_EMAILS_SUCCESS, GOOGLE_FETCH_EMAILS_FAILED } from '../actions'
 
 const initialState = {
   auth: {authentified: false, status: ''},
-  gmail: {inbox: [], outbox: [], loaded: false},
+  gmail: {emails: [], labels: [], loaded: false, status: ''},
   contacts: {contacts: [], loaded: false},
   news: {news: [], loaded: false},
   agenda: {events: [], loaded: false},
@@ -42,6 +43,32 @@ export default function layer (state = initialState, {type, payload}) {
         gmail: {
           ...state.gmail,
           loaded: true
+        }
+      }
+    case GOOGLE_FETCH_EMAILS: 
+      return {
+        ...state,
+        gmail: {
+          ...state.gmail,
+          status: 'pending'
+        }
+      }
+    case GOOGLE_FETCH_EMAILS_SUCCESS: 
+      return {
+        ...state,
+        gmail: {
+          ...state,
+          emails: payload.emails,
+          labels: payload.labels,
+          status: ''
+        }
+      }
+    case GOOGLE_FETCH_EMAILS_FAILED: 
+      return {
+        ...state,
+        gmail: {
+          ...state,
+          status: 'error'
         }
       }
     default:

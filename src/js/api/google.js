@@ -43,3 +43,30 @@ export const googleAuthApi = () => {
 export const gmailLoadApi = () => {
   return new Promise(resolve => gapi.client.load('gmail', 'v1', resolve))
 }
+
+export const gmailFetchEmail = id => {
+  return new Promise(resolve => {
+    const request = gapi.client.gmail.users.messages.get({id, 'userId': 'me'}) 
+    request.execute(resp => resolve(resp))
+  })
+}
+
+export const gmailFetchEmailsApi = () => {
+  return new Promise((resolve, reject) => {
+    const request = gapi.client.gmail.users.messages.list({'userId': 'me'})
+    request.execute(resp => {
+      if (resp.messages) resolve(resp.messages)
+      else reject()
+    })
+  })
+}
+
+export const gmailFetchLabelsApi = () => {
+  return new Promise((resolve, reject) => {
+    const request = gapi.client.gmail.users.labels.list({'userId': 'me'})
+    request.execute(resp => {
+      if (resp.labels) resolve(resp.labels)
+      else reject()
+    })
+  })
+}

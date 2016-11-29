@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {GOOGLE_AUTH, GOOGLE_LOAD_GMAIL} from '../../actions'
 import {isAuthentified} from '../../selectors/google'
 
-class QueryBook extends Component {
+class QueryGoogleAuth extends Component {
   render () {
     return <noscript />
   }
@@ -57,4 +57,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(QueryBook)
+)(QueryGoogleAuth)

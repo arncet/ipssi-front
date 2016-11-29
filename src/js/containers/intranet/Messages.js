@@ -1,11 +1,14 @@
 import { connect } from 'react-redux'
 import {GOOGLE_SEND_EMAIL} from '../../actions'
+import {getGmailEmails} from '../../selectors/google'
 
 import CopyBodyStudent from '../../components/intranet/messages/Messages'
 
-const mapStateToProps = () => {
-
+const mapStateToProps = state => {
+  const messages = getGmailEmails(state)
+  
   return {
+    messages
   }
 }
 

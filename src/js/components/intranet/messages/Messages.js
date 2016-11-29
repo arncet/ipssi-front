@@ -1,64 +1,33 @@
 import React, {Component} from 'react'
 import QueryGoogleAuth from '../../../containers/queries/GoogleAuth'
+import QueryGmail from '../../../containers/queries/Gmail'
 import Loader from '../../Loader'
 import moment from '../../../utils/moment'
-import { capitalize, truncate } from 'lodash'
+import {getHeader} from '../../../utils/email'
+import {capitalize, truncate} from 'lodash'
 
 //Components
 import MessagesTopbar from './MessagesTopbar'
 import MessagePreview from './MessagePreview'
 
-const messages = [
-  {
-    id: 1,
-    title: 'Sed ut perspiciatis unde omnis iste', 
-    description: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque t enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure repreh"',
-    content: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"',
-    date: 1476370055409 
-  },
-  {
-    id: 2,
-    title: 'Sed ut perspiciatis unde omnis iste', 
-    description: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque t enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure repreh"',
-    content: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"',
-    date: 1476370055409 
-  },
-  {
-    id: 3,
-    title: 'Sed ut perspiciatis unde omnis iste', 
-    description: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque t enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure repreh"',
-    content: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"',
-    date: 1476370055409 
-  },
-  {
-    id: 4,
-    title: 'Sed ut perspiciatis unde omnis iste', 
-    description: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque t enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure repreh"',
-    content: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"',
-    date: 1476370055409 
-  },
-  {
-    id: 5,
-    title: 'Sed ut perspiciatis unde omnis iste', 
-    description: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque t enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure repreh"',
-    content: '"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"',
-    date: 1476370055409 
-  }
-]
-
 class Messages extends Component{
   constructor(props) {
     super(props)
-    const currentsId = messages.length ? [messages[0].id] : []
+    const currentsId = props.messages.length ? [props.messages[0].id] : []
     this.state = {currentsId}
   }
 
   render() {
     const {currentsId} = this.state
+    const {messages} = this.props
+    const currentMessages = currentsId.reduce((prev, id) => {
+      return [...prev, messages.find(message => message.id === id)]
+    }, [])
 
     return (
       <div className="Intranet_page Intranet_messages_page">
       	<QueryGoogleAuth/>
+      	<QueryGmail/>
         <div className='Intranet_page_header'>
           <h1 className='Intranet_page_title'>Emails : </h1>
           <MessagesTopbar/>
@@ -80,10 +49,17 @@ class Messages extends Component{
               })
             }
           </ul>
-          <MessagePreview/>
+          <MessagePreview messages={currentMessages}/>
         </div>
       </div>
     )
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.state.currentsId.length && nextProps.messages.length) {
+      const currentsId = [nextProps.messages[0].id]
+      this.setState({currentsId})
+    }
   }
 
   onClick(e, id) {
@@ -108,24 +84,25 @@ class Messages extends Component{
   }
 }
 
-const Message = ({message: {id, title, description, date}, current, onClick, toggle}) => (
-  <li className={`Message_item${current ? ' Message_item_current' : ''}`} onClick={(e) => onClick(e, id)}>
+const Message = ({message, current, onClick, toggle}) => {
+  return <li className={`Message_item${current ? ' Message_item_current' : ''}`} onClick={(e) => onClick(e, message.id)}>
     <div className='Message_bullet'/>
     {current ? <div className='Message_triangle'/> : null}
     <div className='Message'>
       <div className='checkbox'>
         <input type='checkbox' checked={current} readOnly/>
-        <label className='Message_checkbox_label' onClick={(e) => toggle(e, id)}/>
+        <label className='Message_checkbox_label' onClick={(e) => toggle(e, message.id)}/>
       </div>
       <div className='Message_date'>
-        <span>{capitalize(moment(date).fromNow())}, </span>
-        <span>{moment(date).format('LL')}</span>
+        <span>{capitalize(moment(getHeader(message.payload.headers, 'Date')).fromNow())}, </span>
+        <span>{moment(getHeader(message.payload.headers, 'Date')).format('LL')}</span>
       </div>
-      <div className='Message_title'>{title}</div>
-      <div className='Message_description'>{truncate(description, { length: 150, separator: ' ', omission: ' ...' })}</div>
+      <div className='Message_title'>{getHeader(message.payload.headers, 'Subject')}</div>
+      <div className='Message_author'>{getHeader(message.payload.headers, 'From')}</div>
+      <div className='Message_description' dangerouslySetInnerHTML={{__html: truncate(message.snippet, { length: 150, separator: ' ', omission: ' ...' })}}/>
     </div>
   </li>
-)
+}
 
 export default Messages
 
