@@ -4,7 +4,7 @@ export const getHeader = (headers, headerName) => {
 }
 
 export const getBody = message => {
-  const body = typeof message.parts === 'undefined' 
+  const body = typeof message.parts === 'undefined'
     ? message.body.data
     : getHTMLPart(message.parts)
   const encodedBody = body.replace(/-/g, '+').replace(/_/g, '/').replace(/\s/g, '')
@@ -12,13 +12,13 @@ export const getBody = message => {
 }
 
 export const getHTMLPart = allParts => {
-  console.log(allParts)
+  let result = ''
   allParts.forEach(part => {
     if(typeof part.parts === 'undefined') {
-      console.log(part.body.data)
-      return part.body.data
+      result = part.body.data
+    } else {
+      result = getHTMLPart(part.parts)
     }
-    else return getHTMLPart(part.parts)
   })
-  return ''
+  return result
 }

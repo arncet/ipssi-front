@@ -140,7 +140,7 @@
 
         .Message_author, .Message_header{
           display: inline-block;
-          vertical-align: top;
+          vertical-align: middle;
           .boxSizing;
         }
 
@@ -149,13 +149,13 @@
           text-align: center;
 
           .Message_author_picture{
-            margin: 0px auto 5px auto;
-            width: 70px;
-            height: 70px;
-            background-repeat: no-repeat;
-            border-radius: 50%;
+            display: inline-block;
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
             border: 3px solid @messages-color;
-            background-size: cover;
+            padding-top: 5px;
+            font-size: 50px;
           }
 
           .Message_author_name{

@@ -15,12 +15,11 @@ class MessagePreview extends Component{
   }
 }
 
-const Message = ({message}) => {
-  console.log(getBody(message.payload))
-  return <div className='Message_preview_item'>
+const Message = ({message}) => (
+  <div className='Message_preview_item'>
     <div className='Message_preview_header'>
       <div className='Message_author'>
-        <div className='Message_author_picture' style={{backgroundImage: `url('http://lorempixel.com/70/70/people')`}}/>
+        <div className='Message_author_picture'>{getHeader(message.payload.headers, 'From')[0]}</div>
         <div className='Message_author_name'>{getHeader(message.payload.headers, 'From')}</div>
       </div>
       <div className='Message_header'>
@@ -31,10 +30,8 @@ const Message = ({message}) => {
         </div>
       </div>
     </div>
-    <div className='Message_preview_body'>
-      {getBody(message.payload)}
-    </div>
+    <div className='Message_preview_body' dangerouslySetInnerHTML={{__html: getBody(message.payload)}}/>
   </div>
-}
+)
 
 export default MessagePreview
