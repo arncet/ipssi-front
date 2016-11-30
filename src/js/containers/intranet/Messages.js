@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import {GOOGLE_SEND_EMAIL} from '../../actions'
 import {getGmailEmails} from '../../selectors/google'
 
-import CopyBodyStudent from '../../components/intranet/messages/Messages'
+import Meesages from '../../components/intranet/messages/Messages'
 
 const mapStateToProps = state => {
   const messages = getGmailEmails(state)
@@ -16,4 +16,4 @@ const mapDispatchToProps = dispatch => ({
   sendMessage: () => dispatch({type: GOOGLE_SEND_EMAIL})
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CopyBodyStudent)
+export default connect(mapStateToProps, mapDispatchToProps)(Meesages)

@@ -10,6 +10,7 @@ import WrapperIntranet from './components/intranet/Wrapper'
 import HomeIntranet from './components/intranet/home/Home'
 import NewsIntranet from './components/intranet/news/News'
 import MessagesIntranet from './containers/intranet/Messages'
+import CalendarIntranet from './containers/intranet/Calendar'
 
 const App = ({ history }) => (
   <Router history={history}>
@@ -21,7 +22,7 @@ const App = ({ history }) => (
         <IndexRoute component={HomeIntranet}/>
         <Route path='actualites' component={NewsIntranet}/>
         <Route path='messages' component={MessagesIntranet}/>
-        <Route path='calendrier' component={MessagesIntranet}/>
+        <Route path='calendrier' component={CalendarIntranet}/>
       </Route>
     </Route>
   </Router>

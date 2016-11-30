@@ -30,7 +30,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchEmails: () => dispatch({type: GOOGLE_FETCH_EMAILS})
+  fetchEmails: () => dispatch({type: GOOGLE_FETCH_EMAILS}),
+  loadGmailApi: () => dispatch({type: GOOGLE_LOAD_GMAIL})
 })
 
 export default connect(

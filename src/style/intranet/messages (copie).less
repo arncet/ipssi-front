@@ -1,0 +1,92 @@
+.Intranet_calendar_page{
+  background-color: lighten(@calendar-color, 35%);
+
+  .Calendar_topbar{
+
+    .label-and-input{
+      margin-right: 20px;
+
+      .label{
+        display: block;
+      }
+
+      .button{
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .Intranet_calendar_body{
+
+    .Calendar_days_and_hours{
+      background-color: #FFF;
+
+      .Event{
+        position: absolute;
+        background-color: #8BBEB2;
+        opacity: 0.9;
+        text-align: center;
+      }
+
+      .Calendar_hours, .Calendar_days_wrapper{
+        display: inline-block;
+        vertical-align: top; 
+      }
+
+      .Calendar_hours{
+        width: 10%;
+        padding: 45px 0px 0px 0px;
+        margin: 0px;
+        list-style: none;
+        border-left: 5px solid darken(@calendar-color, 10%);
+        border-top: 5px solid darken(@calendar-color, 10%);
+        border-right: 2px solid darken(@calendar-color, 10%);
+        .boxSizing;
+
+        .Calendar_hour{
+          padding: 10px;
+          text-align: center;
+          color: darken(@calendar-color, 5%);
+          border-top: 1px solid;
+          height: 45px;
+          .boxSizing;
+        }
+      }
+
+      .Calendar_days_wrapper{
+        width: 90%;
+        margin:0px;
+        padding: 0px;
+        list-style: none;
+
+        .Day{
+          display: inline-block;
+          vertical-align: top;
+          width: calc(100% / 7);
+          border-right: 2px solid darken(@calendar-color, 10%);
+          border-top: 5px solid darken(@calendar-color, 10%);
+          border-bottom: 1px solid darken(@calendar-color, 10%);
+          text-align: center;
+          .boxSizing;
+
+          &:last-child{
+            border-right: none;
+          }
+
+          .Day_name{
+            height: 45px;
+            padding: 10px;
+            .boxSizing;
+          }
+
+          .Day_item{
+            height: 45px;
+            border-top: 1px solid darken(@calendar-color, 10%);
+            .boxSizing;
+          }
+        }
+      }
+    }
+  }
+}
