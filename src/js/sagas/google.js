@@ -3,9 +3,12 @@ import {takeEvery} from 'redux-saga'
 import {GOOGLE_SEND_EMAIL, GOOGLE_SEND_EMAIL_SUCCESS, GOOGLE_SEND_EMAIL_FAILED,
   GOOGLE_AUTH, GOOGLE_AUTH_SUCCESS, GOOGLE_AUTH_FAILED,
   GOOGLE_LOAD_GMAIL, GOOGLE_LOAD_GMAIL_SUCCESS, GOOGLE_LOAD_GMAIL_FAILED,
-  GOOGLE_FETCH_EMAILS, GOOGLE_FETCH_EMAILS_SUCCESS, GOOGLE_FETCH_EMAILS_FAILED} from '../actions'
+  GOOGLE_FETCH_EMAILS, GOOGLE_FETCH_EMAILS_SUCCESS, GOOGLE_FETCH_EMAILS_FAILED,
+  GOOGLE_FETCH_EVENTS, GOOGLE_FETCH_EVENTS_SUCCESS, GOOGLE_FETCH_EVENTS_FAILED,
+  GOOGLE_LOAD_CALENDAR, GOOGLE_LOAD_CALENDAR_SUCCESS, GOOGLE_LOAD_CALENDAR_FAILED} from '../actions'
 import {sendEmailApi, googleAuthApi, gmailLoadApi, 
-  gmailFetchLabelsApi, gmailFetchEmailsApi, gmailFetchEmail} from '../api/google'
+  gmailFetchLabelsApi, gmailFetchEmailsApi, gmailFetchEmail,
+  calendarFetchEventsApi, calendarLoadApi} from '../api/google'
 
 //Send email
 function* googleSendEmail () {
@@ -69,12 +72,44 @@ function* watchGmailFetchEmails () {
   yield* takeEvery(GOOGLE_FETCH_EMAILS, gmailFetchEmails)
 }
 
+//Calendar load
+function* calendarLoad () {
+  try {
+    yield call(calendarLoadApi)
+    yield put({type: GOOGLE_LOAD_CALENDAR_SUCCESS})
+  } catch(e) {
+    yield put({type: GOOGLE_LOAD_CALENDAR_FAILED})
+    console.error('ERROR GOOGLE LOAD', e)
+  }
+}
+
+function* watchGmailLoad () {
+  yield* takeEvery(GOOGLE_LOAD_CALENDAR, calendarLoad)
+}
+
+
+//Calendar fetch events
+function* calendarFetchEvents () {
+  try {
+    const events = yield call(calendarFetchEventsApi)
+    yield put({type: GOOGLE_FETCH_EVENTS_SUCCESS, payload: {events}})
+  } catch(e) {
+    yield put({type: GOOGLE_FETCH_EVENTS_FAILED})
+    console.error('ERROR GOOGLE FETCH EMAILS', e)
+  }
+}
+
+function* watchCalendarFetchEvents () {
+  yield* takeEvery(GOOGLE_FETCH_EVENTS, calendarFetchEvents)
+}
+
 function* flow () {
   yield [
     watchGoogleInit(),
     watchGoogleAuth(),
     watchGmailLoad(),
-    watchGmailFetchEmails()
+    watchGmailFetchEmails(),
+    watchCalendarFetchEvents()
   ]
 }
 

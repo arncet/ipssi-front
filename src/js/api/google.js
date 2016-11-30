@@ -70,3 +70,24 @@ export const gmailFetchLabelsApi = () => {
     })
   })
 }
+
+export const calendarLoadApi = () => {
+  return new Promise(resolve => gapi.client.load('calendar', 'v3', resolve))
+}
+
+export const calendarFetchEventsApi = () => {
+  return new Promise((resolve, reject) => {
+    const request = gapi.client.calendar.events.list({
+      'calendarId': 'primary',
+      'timeMin': (new Date()).toISOString(),
+      'showDeleted': false,
+      'singleEvents': true,
+      'maxResults': 10,
+      'orderBy': 'startTime'
+    })
+    request.execute(resp => {
+      if (resp.messages) resolve(resp.messages)
+      else reject()
+    })
+  })
+}
