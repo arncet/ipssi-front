@@ -1,5 +1,22 @@
 .Intranet_messages_page{
   background-color: lighten(@messages-color, 35%);
+  position: relative;
+
+  .Messages_pagination{
+    padding-bottom: 0px;
+    text-align: right;
+
+    .Page{
+      background-color: @messages-color;
+      color: #FFF;
+      margin: 0px 0px 0px 10px;
+      .clickable;
+
+      &:hover, &.Current_page{
+        background-color: darken(@messages-color, 20%);
+      }
+    }
+  }
 
   .Messages_topbar{
 
@@ -133,10 +150,16 @@
       padding: 30px;
       .boxSizing;
 
+      .Message_preview_item{
+        background-color: #FFF;
+        padding: 20px;
+      }
+
       .Message_preview_header{
         display: table;
         border-bottom: 3px solid @messages-color;
         padding-bottom: 20px;
+        width: 100%;
 
         .Message_author, .Message_header{
           display: inline-block;
@@ -192,4 +215,127 @@
       }
     }
   }
+
+  .Modal_message_compose{
+    height: 80%;
+    text-align: right;
+  }
+
+  .Message_compose{
+    height: 100%;
+
+    .Pre_input{
+      border-bottom: 1px solid #E5E5E5;
+      height: 40px;
+      text-align: left;
+      .openSans;
+
+      .Label, .input-text{
+        display: inline-block;
+        vertical-align: top;
+        height: 100%;
+        .boxSizing;
+      }
+
+      .Label{
+        width: calc(20% - 1px);
+        padding-top: 12px;
+        text-align: center;
+        background-color: rgba(0,0,0,0.1);
+        border-right: 6px solid rgba(0,0,0,0.2);
+      }
+
+      .input-text{
+        width: 80%;
+        border: none;
+        font-size: 13px;
+      }
+    }
+
+    .Message_compose_footer{
+      padding: 22px;
+
+      .error-message{
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+
+    .quill{
+      height: calc(100% - 160px);
+
+      .quill-toolbar{
+        border-bottom: 1px solid #E5E5E5;
+      }
+
+      .quill-toolbar, .ql-picker-label, .ql-size.ql-picker, .ql-align.ql-picker,
+      .ql-color.ql-picker.ql-color-picker, .ql-background.ql-picker.ql-color-picker{
+        background-color: #E1E1E1 !important;
+      }
+
+      .ql-snow.ql-toolbar .ql-picker.ql-expanded .ql-picker-label{
+        color: #FFF;
+      }
+
+      .quill-contents.ql-container.ql-snow{
+        height: calc(100% - 42px);
+        text-align: left;
+      }
+    }
+  }
 }
+
+.react-tagsinput {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  padding-left: 5px;
+  padding-top: 5px;
+  width: 80%;
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  height: 100%;
+}
+
+.react-tagsinput--focused {
+  border-color: #a5d24a;
+}
+
+.react-tagsinput-tag {
+  background-color: #cde69c;
+  border-radius: 2px;
+  border: 1px solid #a5d24a;
+  color: #638421;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding: 5px;
+}
+
+.react-tagsinput-remove {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.react-tagsinput-tag a::before {
+  content: " ×";
+}
+
+.react-tagsinput-input {
+  background: transparent;
+  border: 0;
+  color: #777;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 6px;
+  margin-top: 1px;
+  outline: none;
+  padding: 5px;
+  width: 80px;
+}
+

@@ -1,0 +1,128 @@
+.Modal_overlay{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  text-align: center;
+  top: 0px;
+  left: 0px;
+  .boxSizing;
+
+  .Modal{
+    display: inline-block;
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: calc(100vh - 50px);
+    overflow: scroll;
+    background-color: #FFF;
+    border-radius: 4px;
+  }
+}
+
+.Modal_error, .Modal_create, .Modal_edit, .Modal_delete{
+
+  .Modal_header, .Modal_body, .Modal_footer{
+    padding: 15px 20px;
+    color: #FFF;
+  }
+
+  .Modal_header, .Modal_body{
+    text-align: left;
+  }
+
+  .Modal_header{
+    font-size: 20px;
+    position: relative;
+
+    .fa-times{
+      position: absolute;
+      right: 10px;
+      top: 18px;
+      color: #FFF;
+      .clickable;
+    }
+  }
+
+  .Modal_body{
+    font-size: 12px;
+    padding: 25px 20px;
+  }
+
+  .Modal_footer{
+    text-align: right;
+    padding: 15px 20px;
+  }
+}
+
+.Modal_error{
+
+  .Modal_header, .Modal_body{
+    background-color: @red;
+  }
+
+  .Modal_header{
+    border-bottom: 1px solid darken(@red, 10%);
+  }
+}
+
+.Modal_create{
+
+  .Modal_body{
+    color: #000;
+  }
+
+  .Modal_header{
+    border-bottom: 3px solid darken(@green, 10%);
+    color: @green;
+  }
+
+  .Modal_footer {
+    border-top: 2px solid @green;
+
+    .button{
+      margin-left: 10px;
+    }
+  }
+}
+
+.Modal_edit{
+
+  .Modal_body{
+    color: #000;
+  }
+
+  .Modal_header{
+    border-bottom: 3px solid darken(@color_5, 10%);
+    color: @color_5;
+  }
+
+  .Modal_footer {
+    border-top: 2px solid @color_5;
+
+    .button{
+      margin-left: 10px;
+    }
+  }
+}
+
+.Modal_delete{
+
+  .Modal_body{
+    color: #000;
+  }
+
+  .Modal_header{
+    border-bottom: 3px solid darken(@red, 10%);
+    color: @red;
+  }
+
+  .Modal_footer {
+    border-top: 2px solid @red;
+
+    .button{
+      margin-left: 10px;
+    }
+  }
+}

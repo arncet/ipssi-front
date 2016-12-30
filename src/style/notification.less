@@ -1,0 +1,58 @@
+@-webkit-keyframes fadeInAnimation {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes fadeInAnimation {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes fadeInAnimation {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes fadeInAnimation {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.Notifications{
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  height: 100vh;
+}
+
+.Notification{
+  padding: 7px;
+  color: #FFF;
+  font-size: 14px;
+  z-index: 11;
+
+  -webkit-animation: fadeInAnimation 0.7s; /* Safari 4+ */
+  -moz-animation:    fadeInAnimation 0.7s; /* Fx 5+ */
+  -o-animation:      fadeInAnimation 0.7s; /* Opera 12+ */
+  animation:         fadeInAnimation 0.7s; /* IE 10+, Fx 29+ */
+
+  .fa-times, .Notification_message{
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .Notification_message{
+    width: calc(100% - 20px);
+  }
+
+  .fa-times{
+
+  }
+
+  &.Notification_success{
+    border-left: 5px solid darken(@green, 10%);
+    background-color: lighten(@green, 5%);
+  }
+
+  &.Notification_error{
+    border-left: 5px solid darken(@red, 10%);
+    background-color: lighten(@red, 5%);
+  }
+}

@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {GOOGLE_FETCH_EMAILS, GOOGLE_LOAD_GMAIL} from '../../actions'
+import {GOOGLE_FETCH_EVENTS, GOOGLE_LOAD_CALENDAR} from '../../actions'
 import {isAuthentified} from '../../selectors/auth'
-import {gmailApiIsLoaded} from '../../selectors/gmail'
+import {calendarApiIsLoaded} from '../../selectors/calendar'
 
-class QueryGmail extends Component {
+class QueryCalendar extends Component {
   render () {
     return <noscript/>
   }
@@ -19,28 +19,28 @@ class QueryGmail extends Component {
 
   request(props) {
     if (props.authentified) {
-      if (props.gmailLoaded) props.fetchEmails()
-      else props.loadGmailApi()
+      if (props.calendarLoaded) props.fetchEvents()
+      else props.loadCalendarApi()
     }
   }
 }
 
 const mapStateToProps = state => {
-  const gmailLoaded = gmailApiIsLoaded(state)
+  const calendarLoaded = calendarApiIsLoaded(state)
   const authentified = isAuthentified(state)
 
   return {
-    gmailLoaded,
+    calendarLoaded,
     authentified
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchEmails: () => dispatch({type: GOOGLE_FETCH_EMAILS}),
-  loadGmailApi: () => dispatch({type: GOOGLE_LOAD_GMAIL})
+  fetchEvents: () => dispatch({type: GOOGLE_FETCH_EVENTS}),
+  loadCalendarApi: () => dispatch({type: GOOGLE_LOAD_CALENDAR})
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(QueryGmail)
+)(QueryCalendar)

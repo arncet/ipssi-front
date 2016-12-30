@@ -1,31 +1,61 @@
 import {googleConfig} from '../config'
+import moment from '../utils/moment'
 
-export const sendEmailApi = () => {
+export const sendEmailApi = ({message, email, obj}) => {
   const headers = {
-    'To': 'arnaud.cetoute@hotmail.fr',
-    'Subject': 'Test Gmail API'
+    'To': email,
+    'Subject': obj
   }
-
-  const message = 'test gmail api :)'
 
   const headerInline = Object.keys(headers).reduce((prev, header) => {
     return `${prev}${header}: ${headers[header]}\r\n`
   }, '')
 
-  const email = headerInline + message
+  const fullMessage = headerInline + message
 
   const request = gapi.client.gmail.users.messages.send({
     'userId': 'me',
     'resource': {
-      'raw': window.btoa(email).replace(/\+/g, '-').replace(/\//g, '_')
+      'raw': window.btoa(`${fullMessage}:`).replace(/\+/g, '-').replace(/\//g, '_')
     }
   })
 
   return new Promise((resolve, reject) => request.execute(resp => {
-    if (resp.id) resolve(resp)
+    if (resp.labelIds && resp.labelIds[0] === 'SENT') resolve(resp)
     else reject(resp)
   }))
 }
+
+// export const sendEmailApi = ({message, email, obj, replyTo = '', messageId = ''}) => {
+//   const replyHeader = replyTo
+//     ? {'Reply-To': replyTo, 'In-Reply-To': messageId, 'References': messageId}
+//     : {}
+
+//   const headers = {
+//     'To': email,
+//     'Subject': obj,
+//     'Content-Type': 'text/html; charset=utf-8',
+//     ...replyHeader
+//   }
+
+//   const headerInline = Object.keys(headers).reduce((prev, header) => {
+//     return `${prev}${header}: ${headers[header]}\r\n`
+//   }, '')
+
+//   const fullMessage = headerInline + message
+
+//   const request = gapi.client.gmail.users.messages.send({
+//     'userId': 'me',
+//     'resource': {
+//       'raw': window.btoa(fullMessage).replace(/\+/g, '-').replace(/\//g, '_')
+//     }
+//   })
+
+//   return new Promise((resolve, reject) => request.execute(resp => {
+//     if (resp.labelIds && resp.labelIds[0] === "SENT") resolve(resp)
+//     else reject(resp)
+//   }))
+// }
 
 export const googleAuthApi = () => {
   return new Promise((resolve, reject) => {
@@ -46,7 +76,7 @@ export const gmailLoadApi = () => {
 
 export const gmailFetchEmail = id => {
   return new Promise(resolve => {
-    const request = gapi.client.gmail.users.messages.get({id, 'userId': 'me'}) 
+    const request = gapi.client.gmail.users.messages.get({id, 'userId': 'me'})
     request.execute(resp => resolve(resp))
   })
 }
@@ -76,17 +106,31 @@ export const calendarLoadApi = () => {
 }
 
 export const calendarFetchEventsApi = () => {
+  const firstDayOfWeek = new Date(Number(moment().startOf('week').format('x'))).toISOString()
   return new Promise((resolve, reject) => {
     const request = gapi.client.calendar.events.list({
       'calendarId': 'primary',
-      'timeMin': (new Date()).toISOString(),
+      'timeMin': firstDayOfWeek,
       'showDeleted': false,
       'singleEvents': true,
       'maxResults': 10,
       'orderBy': 'startTime'
     })
     request.execute(resp => {
-      if (resp.messages) resolve(resp.messages)
+      if (resp.items) resolve(resp.items)
+      else reject()
+    })
+  })
+}
+
+export const calendarCreateEventApi = event => {
+  return new Promise((resolve, reject) => {
+    const request = gapi.client.calendar.events.insert({
+      'calendarId': 'primary',
+      'resource': event
+    })
+    request.execute(resp => {
+      if (resp.id) resolve(resp.id)
       else reject()
     })
   })

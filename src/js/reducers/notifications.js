@@ -1,4 +1,4 @@
-import {GOOGLE_AUTH, GOOGLE_AUTH_SUCCESS, GOOGLE_AUTH_FAILED} from '../actions'
+import {NOTIFICATION_ADD, NOTIFICATION_CLOSE, NOTIFICATION_CLOSE_ALL} from '../actions'
 
 const initialState = {authentified: false, status: ''}
 

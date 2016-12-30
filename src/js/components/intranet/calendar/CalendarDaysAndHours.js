@@ -2,16 +2,7 @@ import React, {Component} from 'react'
 import {times, capitalize} from 'lodash'
 import moment from '../../../utils/moment'
 import {absolutePositionFromTop} from '../../../utils/dom'
-
-const events = [
-  {start: {date: 1480546800000, dateTime: 20}, end: {date: 1480546800000, dateTime: 22.5}, title: 'jeudi 20-22h30'},
-  {start: {date: 1480546800000, dateTime: 4}, end: {date: 1480633200000, dateTime: 4}, title: 'jeudi 4h - vendredi'},
-  {start: {date: 1480546800000, dateTime: 10}, end: {date: 1480546800000, dateTime: 13}, title: 'jeudi 10-13h'},
-  {start: {date: 1480546800000, dateTime: 12}, end: {date: 1480546800000, dateTime: 12}, title: 'jeudi 12h'},
-  {start: {date: 1480806000000, dateTime: 0}, end: {date: 1480806000000, dateTime: 0}, title: 'dimanche 00h'},
-  {start: {date: 1480806000000, dateTime: 23}, end: {date: 1480806000000, dateTime: 23}, title: 'dimanche 23h'},
-  {start: {date: 1480806000000, dateTime: 2}, end: {date: 1480806000000, dateTime: 2}, title: 'dimanche 2h'}
-]
+import ReactTooltip from 'react-tooltip'
 
 class CalendarDaysAndHours extends Component{
   constructor(props) {
@@ -33,16 +24,23 @@ class CalendarDaysAndHours extends Component{
   }
 
   componentDidMount() {
-    this.displayEvents()
-    window.addEventListener('resize', this.displayEvents.bind(this))
+    this.displayEvents(this.props)
+    window.addEventListener('resize', this.displayEvents.bind(this.props, this))
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(document.querySelector('.Calendar_days_wrapper')) this.displayEvents(nextProps)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.displayEvents.bind(this))
+    window.removeEventListener('resize', this.displayEvents)
   }
 
-  displayEvents() {
-    this.setState({eventElements: events.map((event, i) => <Event event={event} key={i}/>)})
+  displayEvents(props) {
+    setTimeout(() => {
+      this.setState({eventElements: props.events.map((event, i) => <Event event={event} onCurrentEventChange={props.onCurrentEventChange} key={i}/>)})
+      ReactTooltip.rebuild()
+    }, 100)
   }
 }
 
@@ -50,14 +48,62 @@ const getDaysOfWeek = firstDayOfWeek => {
   return times(7).map(index => moment(Number(firstDayOfWeek)).add(index, 'days').format('x'))
 }
 
-const Event = ({event: {start, end, title}}) => {
-  const element = document.querySelector(`.Day_item_${start.date}_${start.dateTime}`)
-  const {top, left} = absolutePositionFromTop(element)
-  const daysDiff = moment(end.date).diff(moment(start.date), 'days')
-  const width = (daysDiff + 1) * (element.offsetWidth + 1)
-  const height = ((end.dateTime - start.dateTime || 1) * 45) - 1
-  return <div className='Event' style={{top: top+1, left, width, height}}>{title}</div>
+const decomposeDate = date => {
+  const hoursAndMinutes = moment(date).format('HH:mm')
+  const [hour, minutes] = hoursAndMinutes.split(':')
+  let day = new Date(date).setHours(0)
+  day = new Date(day).setMinutes(0)
+  day = new Date(day).setSeconds(0)
+
+  return {
+    hours: Number(hour),
+    minutes: Number(minutes) / 60,
+    day
+  }
 }
+
+const Event = ({event, onCurrentEventChange}) => {
+  const {start, end, summary} = event
+  const DAY_HEIGHT = 45
+  const {hours: startHours, day: startDay, minutes: startMinutes} = decomposeDate(start.dateTime, summary)
+  const {hours: endHours, day: endDay, minutes: endMinutes} = decomposeDate(end.dateTime, summary)
+  const element = document.querySelector(`.Day_item_${startDay}_${startHours}`)
+  const {top, left} = absolutePositionFromTop(element)
+  const offsetTopMinutes = startMinutes * DAY_HEIGHT
+  const daysDiff = moment(endDay).diff(moment(startDay), 'days')
+  const width = (daysDiff + 1) * (element.offsetWidth + 1)
+  const height = (((endHours + endMinutes) - (startHours + startMinutes) || 1) * DAY_HEIGHT) - 1
+
+  return (
+    <div
+      className='Event'
+      style={{top: top+offsetTopMinutes+1, left, width, height}}
+      dangerouslySetInnerHTML={{__html: summary || '<i>Sans titre</i>'}}
+      data-tip={eventTooltipString({event})}
+      data-html={true}
+      data-iscapture={true}
+      onClick={() => onCurrentEventChange(event)}
+    />
+  )
+}
+
+const eventTooltipString = ({event: {summary = 'Sans titre', start, end, location, description}}) => (
+  `<div class='Event_tooltip'>
+    <div class='Event_tooltip_summary'>${summary}</div>
+    <div class='Event_tooltip_date'>
+      <i>
+        ${moment(start.dateTime).format('LL') === moment(end.dateTime).format('LL')
+          ? `${moment(start.dateTime).format('LL')} ${moment(start.dateTime).format('LT')} - ${moment(end.dateTime).format('LT')}`
+          : `${moment(start.dateTime).format('LLL')} <br/> ${moment(end.dateTime).format('LLL')}`
+        }
+      </i>
+    </div>
+    ${description ? `<div class='Event_tooltip_description'>${description}</div>` : ''}
+    ${location ? `<div class='Event_tooltip_location'>${location}</div>` : ''}
+    <br/>
+    <i class='Event_tooltip_more_detail'>Cliquez pour plus de detail</i>
+  </div>`
+)
 
 const Days = ({daysOfWeek}) => (
   <ul className='Calendar_days_wrapper'>

@@ -1,55 +1,73 @@
 import React, {Component} from 'react'
-import QueryGoogleAuth from '../../../containers/queries/GoogleAuth'
-import QueryGmail from '../../../containers/queries/Gmail'
-import Loader from '../../Loader'
 import moment from '../../../utils/moment'
 import {getHeader} from '../../../utils/email'
-import {capitalize, truncate} from 'lodash'
+import capitalize from 'lodash/capitalize'
+import truncate from 'lodash/truncate'
 
 //Components
+import Loader from '../../Loader'
+import Pagination from '../../Pagination'
 import MessagesTopbar from './MessagesTopbar'
 import MessagePreview from './MessagePreview'
+import MessageCompose from '../../../containers/intranet/MessageCompose'
+
+//Queries
+import QueryGoogleAuth from '../../../containers/queries/GoogleAuth'
+import QueryGmail from '../../../containers/queries/Gmail'
 
 class Messages extends Component{
   constructor(props) {
     super(props)
     const currentsId = props.messages.length ? [props.messages[0].id] : []
-    this.state = {currentsId}
+    this.state = {currentsId, page: 0, nbPages: Math.ceil(props.messages.length % 8)}
   }
 
   render() {
-    const {currentsId} = this.state
-    const {messages} = this.props
+    const {currentsId, page, nbPages} = this.state
+    const {messages, isLoading, openComposeMessageModal} = this.props
+    const displayedMessages = messages.slice(page * 8, page * 8 + 8)
     const currentMessages = currentsId.reduce((prev, id) => {
       return [...prev, messages.find(message => message.id === id)]
     }, [])
 
     return (
-      <div className="Intranet_page Intranet_messages_page">
-      	<QueryGoogleAuth/>
-      	<QueryGmail/>
+      <div className='Intranet_page Intranet_messages_page'>
+        <QueryGoogleAuth/>
+        <QueryGmail/>
+        {isLoading ? <Loader message='Chargement de vos emails ...'/> : null}
+        <MessageCompose/>
         <div className='Intranet_page_header'>
           <h1 className='Intranet_page_title'>Emails : </h1>
-          <MessagesTopbar/>
+          <MessagesTopbar openComposeMessageModal={openComposeMessageModal}/>
+          <Pagination
+            customClasse='Messages_pagination'
+            onChange={pageClicked => this.setState({page: pageClicked})}
+            page={page}
+            nbPages={nbPages}
+          />
         </div>
         <div className='Intranet_body Intranet_messages_body'>
-          <div className='Message_bullet_line' style={{height: `${(messages.length - 1) * 170}px`}}/>
-          <ul className='Messages'>
-            {
-              messages.map((thisMessage, i) => {
-                return (
-                  <Message 
-                    message={thisMessage} 
-                    key={i} 
-                    current={currentsId.includes(thisMessage.id)} 
-                    onClick={(e, id) => this.onClick(e, id)}
-                    toggle={(e, id) => this.toggleCurrentId(e, id)}
-                  />
-                )
-              })
-            }
-          </ul>
-          <MessagePreview messages={currentMessages}/>
+          <div className='Message_bullet_line' style={{height: `${(displayedMessages.length - 1) * 170}px`}}/>
+          {
+            messages.length
+              ? <ul className='Messages'>
+                  {
+                    displayedMessages.map((thisMessage, i) => {
+                      return (
+                        <Message
+                          message={thisMessage}
+                          key={i}
+                          current={currentsId.includes(thisMessage.id)}
+                          onClick={(e, id) => this.onClick(e, id)}
+                          toggle={(e, id) => this.toggleCurrentId(e, id)}
+                        />
+                      )
+                    })
+                  }
+                </ul>
+              : null
+          }
+          {currentMessages.length ? <MessagePreview messages={currentMessages}/> : null}
         </div>
       </div>
     )
@@ -58,7 +76,9 @@ class Messages extends Component{
   componentWillReceiveProps(nextProps) {
     if (!this.state.currentsId.length && nextProps.messages.length) {
       const currentsId = [nextProps.messages[0].id]
-      this.setState({currentsId})
+      const nbPages = Math.ceil(nextProps.messages.length % 8)
+      const page = page && this.state.page < nbPages ? nbPages : this.state.page
+      this.setState({currentsId, nbPages, page})
     }
   }
 

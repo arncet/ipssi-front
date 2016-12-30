@@ -13,7 +13,7 @@ import { handleErrors } from './gulp-handle-errors'
 const srcPath = './src'
 
 const srcStylePath = srcPath + '/style'
-const srcStyleExternPath = srcPath + '/style-extern/*'
+const srcExtraStylePath = srcPath + '/extra-style/*'
 const srcJsPath = srcPath + '/js'
 const srcIndexPath = srcPath + '/index.html'
 const srcAssetsPath = srcPath + '/assets'
@@ -30,6 +30,7 @@ const srcFontsPath = srcAssetsPath + '/fonts/**/*'
 const distPath = './dist'
 
 const distStylePath = distPath + '/style'
+const distExtraStylePath = distPath + '/extra-style'
 const distJSPath = distPath + '/js'
 const distIndexPath = distPath + '/index.html'
 const distAssetsPath = distPath + '/assets'
@@ -112,7 +113,12 @@ gulp.task('copyIndexHtml', () => {
     .pipe(gulp.dest(distPath))
 })
 
-gulp.task('default', ['copyIndexHtml', 'watch'], () => {
+gulp.task('copyExternalCSS', () => {
+  gulp.src(srcExtraStylePath)
+    .pipe(gulp.dest(distExtraStylePath))
+})
+
+gulp.task('default', ['copyIndexHtml', 'copyExternalCSS', 'watch'], () => {
   gulp.run('js')
   gulp.run('less')
   gulp.run('assets')

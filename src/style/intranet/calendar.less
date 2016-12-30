@@ -1,0 +1,222 @@
+.Intranet_calendar_page{
+  background-color: lighten(@calendar-color, 35%);
+  //position: relative;
+
+  .Calendar_topbar{
+
+    .label-and-input{
+      margin-right: 20px;
+
+      .label{
+        display: block;
+      }
+
+      .button{
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .Intranet_calendar_body{
+    padding: 30px;
+
+    .Calendar_days_and_hours{
+      background-color: #FFF;
+      border: 5px solid darken(@calendar-color, 10%);
+      overflow: hidden;
+
+      .Event{
+        position: absolute;
+        background-color: #8BBEB2;
+        opacity: 0.9;
+        text-align: center;
+        padding: 5px;
+        .boxSizing;
+      }
+
+      .Calendar_hours, .Calendar_days_wrapper{
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      .Calendar_hours{
+        width: 10%;
+        padding: 45px 0px 0px 0px;
+        margin: 0px;
+        list-style: none;
+        border-right: 2px solid darken(@calendar-color, 10%);
+        .boxSizing;
+
+        .Calendar_hour{
+          padding: 10px;
+          text-align: center;
+          color: darken(@calendar-color, 5%);
+          border-top: 1px solid;
+          height: 45px;
+          .boxSizing;
+        }
+      }
+
+      .Calendar_days_wrapper{
+        width: 90%;
+        margin:0px;
+        padding: 0px;
+        list-style: none;
+
+        .Day{
+          display: inline-block;
+          vertical-align: top;
+          width: calc(100% / 7);
+          border-right: 2px solid darken(@calendar-color, 10%);
+          border-bottom: 1px solid darken(@calendar-color, 10%);
+          text-align: center;
+          .boxSizing;
+
+          &:last-child{
+            border-right: none;
+          }
+
+          .Day_name{
+            height: 45px;
+            padding: 10px;
+            .boxSizing;
+          }
+
+          .Day_item{
+            height: 45px;
+            border-top: 1px solid darken(@calendar-color, 10%);
+            position: relative;
+            .boxSizing;
+
+            &:after{
+              content: "";
+              position: absolute;
+              top: 22.5px;
+              border-top: 1px dotted #E5E5E5;
+              width: 100%;
+              left: 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .Calendar_modal{
+    width: 40%;
+
+    .error-message{
+      margin-bottom: 10px;
+    }
+
+    .Modal_section{
+      display: inline-block;
+      vertical-align: top;
+      width: calc(50% - 20px);
+      .boxSizing;
+
+      &:first-child{
+        padding-right: 20px;
+      }
+
+      &:last-child{
+        padding-left: 20px;
+      }
+
+      .Label_date{
+        padding: 2px 2px 2px 5px;
+        background-color: rgba(0, 0, 0, 0.1);
+        margin-bottom: 3px;
+      }
+
+      .End_date_checkbox{
+        margin-left: 25px;
+
+        label:before{
+          background-color: #FFF;
+        }
+      }
+    }
+
+    .label-and-input{
+      display: block;
+      margin-bottom: 15px;
+
+      .input-text, .textarea{
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        .boxSizing;
+      }
+
+      .textarea{
+        display: block;
+      }
+    }
+  }
+}
+
+.Calendar_event_preview{
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid green;
+  border-left: 10px solid green;
+
+  .Event_tooltip{
+
+    .Event_tooltip_summary{
+
+      .Event_tooltip_summary_text, .Event_tooltip_color{
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .Event_tooltip_summary_text{
+        font-size: 30px;
+      }
+
+      .Event_tooltip_color{
+        width: 15px;
+        height: 15px;
+        background-color: rgb(70, 214, 219);
+        margin-right: 10px;
+      }
+    }
+
+    .Event_tooltip_link{
+      display: inline-block;
+      color: green;
+      text-decoration: none;
+      margin-top: 10px;
+
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+
+    .Event_tooltip_date{
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.__react_component_tooltip{
+
+  .Event_tooltip{
+
+    .Event_tooltip_summary{
+      font-size: 16px;
+    }
+
+    .Event_tooltip_date{
+      font-size: 11px;
+    }
+
+    .Event_tooltip_more_detail{
+      font-size: 9px;
+    }
+  }
+}
+

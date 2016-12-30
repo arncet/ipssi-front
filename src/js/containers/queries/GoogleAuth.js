@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {GOOGLE_AUTH, GOOGLE_LOAD_GMAIL} from '../../actions'
-import {isAuthentified} from '../../selectors/google'
+import {GOOGLE_AUTH} from '../../actions'
+import {isAuthentified} from '../../selectors/auth'
 
 class QueryGoogleAuth extends Component {
   render () {
@@ -23,8 +23,6 @@ class QueryGoogleAuth extends Component {
       else {
         window.addEventListener('load', addGoogleAPiScript.bind(this, props.auth))
       }
-    } else {
-      props.loadGmailApi()
     }
   }
 
@@ -50,8 +48,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  auth: () => dispatch({type: GOOGLE_AUTH}),
-  loadGmailApi: () => dispatch({type: GOOGLE_LOAD_GMAIL})
+  auth: () => dispatch({type: GOOGLE_AUTH})
 })
 
 export default connect(

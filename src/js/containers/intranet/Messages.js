@@ -1,19 +1,22 @@
 import { connect } from 'react-redux'
-import {GOOGLE_SEND_EMAIL} from '../../actions'
-import {getGmailEmails} from '../../selectors/google'
+import {GOOGLE_OPEN_COMPOSE_EMAIL_MODAL} from '../../actions'
+import {gmailApiIsLoaded} from '../../selectors/auth'
+import {getGmailEmails, getGmailStatus} from '../../selectors/gmail'
 
 import Meesages from '../../components/intranet/messages/Messages'
 
 const mapStateToProps = state => {
   const messages = getGmailEmails(state)
-  
+  const isLoading = false//!gmailApiIsLoaded(state) || getGmailStatus(state) === 'pending'
+
   return {
-    messages
+    messages,
+    isLoading
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  sendMessage: () => dispatch({type: GOOGLE_SEND_EMAIL})
+  openComposeMessageModal: () => dispatch({type: GOOGLE_OPEN_COMPOSE_EMAIL_MODAL})
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Meesages)
