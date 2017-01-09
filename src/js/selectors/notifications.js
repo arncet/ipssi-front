@@ -1,1 +1,1 @@
-export const getNotifications = state => state.notifications
+export const getNotifications = state => Object.values(state.notifications.notifications)

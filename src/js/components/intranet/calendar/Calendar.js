@@ -20,7 +20,7 @@ class Calendar extends Component{
       setCurrentEvent, openCreateModal, closeCreateModal, openEditModal,
       closeEditModal, openDeleteModal, closeDeleteModal, createModalIsOpen,
       editModalIsOpen, deleteModalIsOpen, createEvent, editEvent, deleteEvent,
-      creationStatus, editionStatus, deletionStatus} = this.props
+      creationStatus, editionStatus, deletionStatus, stashEvent} = this.props
 
     return (
       <div className="Intranet_page Intranet_calendar_page">
@@ -28,21 +28,21 @@ class Calendar extends Component{
         <QueryCalendar/>
         {isLoading ? <Loader message='Chargement de votre agenda ...'/> : null}
         <ModalError overWindow={false} display={error} close={cleanCLaendarerror}/>
-        <CreateModal display={createModalIsOpen} close={closeCreateModal} createEvent={createEvent} creationStatus={creationStatus}/>
-        <EditModal display={editModalIsOpen} close={closeEditModal} editEvent={editEvent} editionStatus={editionStatus}/>
-        <DeleteModal display={deleteModalIsOpen} close={closeDeleteModal} deleteEvent={deleteEvent} deletionStatus={deletionStatus}/>
+        {createModalIsOpen ? <CreateModal close={closeCreateModal} createEvent={createEvent} creationStatus={creationStatus} event={stashEvent}/> : null}
+        {editModalIsOpen ? <EditModal close={closeEditModal} editEvent={editEvent} editionStatus={editionStatus} event={currentEvent}/> : null}
+        {deleteModalIsOpen ? <DeleteModal close={closeDeleteModal} deleteEvent={deleteEvent} deletionStatus={deletionStatus} event={currentEvent}/> : null}
         <div className='Intranet_page_header'>
           <h1 className='Intranet_page_title'>Agenda : </h1>
           <CalendarTopbar
             openCreateModal={openCreateModal}
             openEditModal={openEditModal}
             openDeleteModal={openDeleteModal}
-            eventSelected={!!currentEvent}
+            currentEvent={currentEvent}
           />
           {currentEvent ? <CalendarEventPreview currentEvent={currentEvent}/> : null}
         </div>
         <div className='Intranet_body Intranet_calendar_body'>
-          <CalendarDaysAndHours events={events} onCurrentEventChange={setCurrentEvent}/>
+          <CalendarDaysAndHours events={events} onCurrentEventChange={setCurrentEvent} openCreateModal={openCreateModal} openEditModal={openEditModal}/>
         </div>
       </div>
     )

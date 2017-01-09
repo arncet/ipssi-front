@@ -8,9 +8,9 @@ import {GOOGLE_LOAD_CALENDAR, GOOGLE_LOAD_CALENDAR_SUCCESS, GOOGLE_LOAD_CALENDAR
  GOOGLE_CALENDAR_EDIT_EVENT, GOOGLE_CALENDAR_EDIT_EVENT_SUCCESS, GOOGLE_CALENDAR_EDIT_EVENT_FAILED,
  GOOGLE_CALENDAR_DELETE_EVENT, GOOGLE_CALENDAR_DELETE_EVENT_SUCCESS, GOOGLE_CALENDAR_DELETE_EVENT_FAILED} from '../actions'
 
-const initialState = {events: [], loaded: false, currentEvent: null, deleteModalIsOpen: false, editModalIsOpen: false, createModalIsOpen: false, creationStatus: '', editionStatus: '', deletionStatus: ''}
+const initialState = {events: {}, loaded: false, currentEvent: null, stashEvent: null, deleteModalIsOpen: false, editModalIsOpen: false, createModalIsOpen: false, creationStatus: '', editionStatus: '', deletionStatus: ''}
 
-export default function layer (state = initialState, {type, payload}) {
+export default function calendar (state = initialState, {type, payload}) {
   switch (type) {
     case GOOGLE_LOAD_CALENDAR:
       return {
@@ -36,7 +36,9 @@ export default function layer (state = initialState, {type, payload}) {
     case GOOGLE_FETCH_EVENTS_SUCCESS:
       return {
         ...state,
-        events: payload.events,
+        events: payload.events.reduce((prev, event) => {
+          return {...prev, [event.id]: event}
+        }, {}),
         status: ''
       }
     case GOOGLE_FETCH_EVENTS_FAILED:
@@ -54,15 +56,19 @@ export default function layer (state = initialState, {type, payload}) {
         ...state,
         currentEvent: payload.currentEvent
       }
-    case GOOGLE_CALENDAR_OPEN_CREATE_MODAL:
+    case GOOGLE_CALENDAR_OPEN_CREATE_MODAL: {
+      const stashEvent = payload.date ? {start: {dateTime: payload.date}} : null
       return {
         ...state,
-        createModalIsOpen: true
+        createModalIsOpen: true,
+        stashEvent
       }
+    }
     case GOOGLE_CALENDAR_CLOSE_CREATE_MODAL:
       return {
         ...state,
-        createModalIsOpen: false
+        createModalIsOpen: false,
+        stashEvent: null
       }
     case GOOGLE_CALENDAR_OPEN_EDIT_MODAL:
       return {
@@ -92,6 +98,10 @@ export default function layer (state = initialState, {type, payload}) {
     case GOOGLE_CALENDAR_CREATE_EVENT_SUCCESS:
       return {
         ...state,
+        events: {
+          ...state.events,
+          [payload.event.id]: payload.event
+        },
         creationStatus: 'success'
       }
     case GOOGLE_CALENDAR_CREATE_EVENT_FAILED:
@@ -107,7 +117,13 @@ export default function layer (state = initialState, {type, payload}) {
     case GOOGLE_CALENDAR_EDIT_EVENT_SUCCESS:
       return {
         ...state,
-        editionStatus: 'success'
+        editionStatus: 'success',
+        editModalIsOpen: false,
+        currentEvent: payload.event,
+        events: {
+          ...state.events,
+          [payload.event.id]: payload.event
+        }
       }
     case GOOGLE_CALENDAR_EDIT_EVENT_FAILED:
       return {
@@ -122,7 +138,12 @@ export default function layer (state = initialState, {type, payload}) {
     case GOOGLE_CALENDAR_DELETE_EVENT_SUCCESS:
       return {
         ...state,
-        deletionStatus: 'success'
+        deletionStatus: 'success',
+        deleteModalIsOpen: false,
+        events: Object.values(state.events).reduce((prev, event) => {
+          return event.id === payload.eventId ? prev : {...prev, [event.id]: event}
+        }, {}),
+        currentEvent: null
       }
     case GOOGLE_CALENDAR_DELETE_EVENT_FAILED:
       return {

@@ -7,7 +7,7 @@ import {GOOGLE_CLEAR_CALENDAR_ERROR, GOOGLE_CALENDAR_SET_CURRENT_EVENT,
 import {getAuthStatus} from '../../selectors/auth'
 import {getCalendarEvents, getCalendarStatus, getCurrentEvent,
  getCreateModalIsOpen, getEditModalIsOpen, getDeleteModalIsOpen,
- getCreationStatus, getEditionStatus, getDeletionStatus} from '../../selectors/calendar'
+ getCreationStatus, getEditionStatus, getDeletionStatus, getStashEvent} from '../../selectors/calendar'
 
 import Calendar from '../../components/intranet/calendar/Calendar'
 
@@ -22,6 +22,7 @@ const mapStateToProps = state => {
   const creationStatus = getCreationStatus(state)
   const editionStatus = getEditionStatus(state)
   const deletionStatus = getDeletionStatus(state)
+  const stashEvent = getStashEvent(state)
 
   return {
     events,
@@ -33,18 +34,19 @@ const mapStateToProps = state => {
     deleteModalIsOpen,
     creationStatus,
     editionStatus,
-    deletionStatus
+    deletionStatus,
+    stashEvent
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   cleanCLaendarerror: () => dispatch({type: GOOGLE_CLEAR_CALENDAR_ERROR}),
   setCurrentEvent: currentEvent => dispatch({type: GOOGLE_CALENDAR_SET_CURRENT_EVENT, payload: {currentEvent}}),
-  openCreateModal: () => dispatch({type: GOOGLE_CALENDAR_OPEN_CREATE_MODAL}),
+  openCreateModal: date => dispatch({type: GOOGLE_CALENDAR_OPEN_CREATE_MODAL, payload: {date}}),
   closeCreateModal: () => dispatch({type: GOOGLE_CALENDAR_CLOSE_CREATE_MODAL}),
-  openEditModal: () => dispatch({type: GOOGLE_CALENDAR_OPEN_EDIT_MODAL}),
+  openEditModal: eventId => dispatch({type: GOOGLE_CALENDAR_OPEN_EDIT_MODAL, payload: {eventId}}),
   closeEditModal: () => dispatch({type: GOOGLE_CALENDAR_CLOSE_EDIT_MODAL}),
-  openDeleteModal: () => dispatch({type: GOOGLE_CALENDAR_OPEN_DELETE_MODAL}),
+  openDeleteModal: eventId => dispatch({type: GOOGLE_CALENDAR_OPEN_DELETE_MODAL, payload: {eventId}}),
   closeDeleteModal: () => dispatch({type: GOOGLE_CALENDAR_CLOSE_DELETE_MODAL}),
   createEvent: event => dispatch({type: GOOGLE_CALENDAR_CREATE_EVENT, payload: {event}}),
   editEvent: event => dispatch({type: GOOGLE_CALENDAR_EDIT_EVENT, payload: {event}}),

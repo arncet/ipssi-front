@@ -15,18 +15,38 @@
   100% { opacity: 1; }
 }
 
-.Notifications{
-  position: fixed;
-  right: 0px;
-  top: 0px;
-  height: 100vh;
+.Notifications_wrapper{
+
+  .Notifications_close_all{
+    position: fixed;
+    right: 0px;
+    z-index: 11;
+    padding: 7px;
+    color: #FFF;
+    font-size: 11px;
+    background-color: lighten(@color_1, 5%);
+    .clickable;
+
+    -webkit-animation: fadeInAnimation 0.7s; /* Safari 4+ */
+    -moz-animation:    fadeInAnimation 0.7s; /* Fx 5+ */
+    -o-animation:      fadeInAnimation 0.7s; /* Opera 12+ */
+    animation:         fadeInAnimation 0.7s; /* IE 10+, Fx 29+ */
+
+    .fa-times{
+      margin-right: 5px;
+    }
+  }
 }
 
 .Notification{
+  position: fixed;
+  right: 0px;
+  z-index: 11;
   padding: 7px;
   color: #FFF;
   font-size: 14px;
-  z-index: 11;
+  border-left: 5px solid darken(@color_5, 10%);
+  background-color: lighten(@color_5, 5%);
 
   -webkit-animation: fadeInAnimation 0.7s; /* Safari 4+ */
   -moz-animation:    fadeInAnimation 0.7s; /* Fx 5+ */
@@ -36,14 +56,15 @@
   .fa-times, .Notification_message{
     display: inline-block;
     vertical-align: top;
+    .clickable;
   }
 
   .Notification_message{
-    width: calc(100% - 20px);
+    margin-left: 4px;
   }
 
   .fa-times{
-
+    font-size: 13px;
   }
 
   &.Notification_success{

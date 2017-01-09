@@ -7,18 +7,19 @@ class CreateModal extends Component{
   constructor(props) {
     super(props)
 
-    this.state = {
-      startDate: new Date().toISOString(),
-      endDate: new Date().toISOString()
-    }
+    const startDate = this.props.event
+      ? new Date(Number(this.props.event.start.dateTime)).toISOString()
+      : new Date().toISOString()
+
+    this.state = {startDate, endDate: startDate}
   }
 
   render() {
-    const {overWindow, close, display, creationStatus} = this.props
+    const {overWindow, close, creationStatus} = this.props
     const {startDate, endDate} = this.state
 
     return (
-      <Modal overWindow={overWindow} onClickOverlay={close} display={display} className='Calendar_modal'>
+      <Modal overWindow={overWindow} onClickOverlay={close} display={true} className='Calendar_modal'>
         <div className='Modal_create'>
           <div className='Modal_header'>
             Créer un evenement
@@ -27,7 +28,7 @@ class CreateModal extends Component{
           <div className='Modal_body'>
             <div className='Modal_section'>
               <div className='label-and-input'>
-                <label htmlFor='create-event-tilte' className='label'>Titre*</label>
+                <label htmlFor='create-event-tilte' className='label'>Titre</label>
                 <input type='text' id='create-event-tilte' className='input-text input-text-black Create_event_title'/>
               </div>
               <div className='label-and-input'>
@@ -45,22 +46,14 @@ class CreateModal extends Component{
                 <label className='label'>Jour</label>
                 <Kronos
                   date={startDate}
-                  onChangeDateTime={date => {
-                    if (moment(date).isAfter(endDate)) {
-                      this.setState({startDate: date, endDate: date})
-                    }
-                    else this.setState({startDate: date})
-                  }}
+                  onChangeDateTime={date => this.onChangeStartDateTime(date)}
                 />
               </div>
               <div className='label-and-input'>
                 <label className='label'>Heure</label>
                 <Kronos
                   time={startDate}
-                  onChangeDateTime={date => {
-                    if (moment(date).isAfter(endDate)) this.setState({startDate: date, endDate: date})
-                    else this.setState({startDate: date})
-                  }}
+                  onChangeDateTime={date => this.onChangeStartDateTime(date)}
                 />
               </div>
 
@@ -70,20 +63,14 @@ class CreateModal extends Component{
                   <label className='label'>Jour</label>
                   <Kronos
                     date={endDate}
-                    onChangeDateTime={date => {
-                      if (moment(date).isBefore(startDate)) this.setState({startDate: date, endDate: date})
-                      else this.setState({endDate: date})
-                    }}
+                    onChangeDateTime={date => this.onChangeEndDateTime(date)}
                   />
                 </div>
                 <div className='label-and-input'>
                   <label className='label'>Heure</label>
                   <Kronos
                     time={endDate}
-                    onChangeDateTime={date => {
-                      if (moment(date).isBefore(startDate)) this.setState({startDate: date, endDate: date})
-                      else this.setState({endDate: date})
-                    }}
+                    onChangeDateTime={date => this.onChangeEndDateTime(date)}
                   />
                 </div>
               </div>
@@ -98,6 +85,18 @@ class CreateModal extends Component{
         </div>
       </Modal>
     )
+  }
+
+  onChangeStartDateTime(date) {
+    const {endDate} = this.state
+    if (moment(date).isAfter(endDate)) this.setState({startDate: date, endDate: date})
+    else this.setState({startDate: date})
+  }
+
+  onChangeEndDateTime(date) {
+    const {startDate} = this.state
+    if (moment(date).isBefore(startDate)) this.setState({startDate: date, endDate: date})
+    else this.setState({endDate: date})
   }
 
   createEvent() {

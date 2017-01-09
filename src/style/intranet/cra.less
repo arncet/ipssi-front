@@ -1,0 +1,149 @@
+.Intranet_page_CRA{
+  padding: 10px 30px 30px 30px;
+
+  .Intranet_page_header{
+    margin-bottom: 10px;
+
+    .Intranet_page_title{
+      margin-bottom: 10px;
+    }
+
+    .button-green{
+      text-decoration: none;
+    }
+  }
+
+  .CRA_list{
+
+    .table-sorted{
+      width: 100%;
+    }
+
+    .CRA_actions{
+
+      .button{
+        margin-right: 10px;
+        text-decoration: none;
+
+        &:last-child{
+          margin-right: 0px;
+        }
+      }
+    }
+
+    .fa-check{
+      color: @green;
+    }
+
+    .fa-times{
+      color: @red;
+    }
+  }
+}
+
+.CRA_create{
+
+  .error-message{
+    margin: 10px 0px;
+  }
+
+  .Intranet_page_header{
+    margin-bottom: 20px;
+  }
+
+  .CRA_create_footer{
+  }
+
+  .quill{
+    border: 1px solid #E5E5E5;
+  }
+
+  .quill-label-wrapper{
+    margin-bottom: 10px;
+  }
+
+  .quill-label{
+    font-size: 13px;
+  }
+
+  .input-text{
+    width: 100%;
+    .boxSizing;
+  }
+
+  .CRA_nom_client, .CRA_projet, .CRA_start_date, .CRA_end_date{
+    width: calc(25% - 10px);
+  }
+
+  .CRA_nom_client, .CRA_projet, .CRA_start_date{
+    margin-right: calc(40px / 3);
+  }
+
+  .Responsable_client, .Responsable_client_fonction, .Responsable_client_contact,
+  .Responsable_entreprise, .Responsable_entreprise_fonction, .Responsable_entreprise_contact,
+  .Collaborateur_entreprise, .Collaborateur_entreprise_fonction, .Collaborateur_entreprise_contact{
+    width: calc(33% - 10px);
+  }
+
+  .Responsable_client, .Responsable_client_fonction,
+  .Responsable_entreprise, .Responsable_entreprise_fonction,
+  .Collaborateur_entreprise, .Collaborateur_entreprise_fonction{
+    margin-right: 20px;
+  }
+
+  .CRA_start_date, .CRA_end_date{
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .CRA_nb_accident_arret_hors_trajet, .CRA_nb_accident_sans_arret,
+  .CRA_nb_accident_trajet, .CRA_nb_presque_accident, .CRA_nb_jour_arret_maladie{
+    width: calc(20% - 10px);
+  }
+
+  .CRA_nb_accident_arret_hors_trajet, .CRA_nb_accident_sans_arret,
+  .CRA_nb_accident_trajet, .CRA_nb_presque_accident{
+    margin-right: calc(50px / 4);
+  }
+
+  .CRA_rapport_activite, .CRA_detail_conges_absence{
+    margin-bottom: 10px;
+  }
+
+  .CRA_nb_jour_presence{
+    width: 100%;
+  }
+
+  .CRA_satisfaction_consultant, .CRA_satisfaction_client{
+    display: inline-block;
+    vertical-align: top;
+    width: calc(50% - 10px);
+  }
+
+  .CRA_satisfaction_consultant{
+    margin-right: 20px;
+  }
+
+  .CRA_signature_consultant, .CRA_signature_consultant_lieu_date,
+  .CRA_signature_responsable_entreprise, .CRA_signature_responsable_entreprise_lieu_date,
+  .CRA_signature_responsable_client, .CRA_signature_responsable_client_lieu_date{
+    display: inline-block;
+    vertical-align: top;
+    width: calc(50% - 10px);
+  }
+
+  .CRA_signature_consultant,
+  .CRA_signature_responsable_entreprise,
+  .CRA_signature_responsable_client{
+    margin-right: 20px;
+  }
+
+  .CRA_section{
+    margin-bottom: 20px;
+    padding: 10px 20px 20px 20px;
+    border: 1px solid @color_5;
+    border-left: 10px solid @color_5;
+  }
+}

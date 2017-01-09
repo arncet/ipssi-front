@@ -1,4 +1,4 @@
-export const getPath = routeName => {
+export const getPath = (routeName, params) => {
   switch (routeName){
     case 'le-groupe':
     case 'l-activite':
@@ -29,8 +29,16 @@ export const getPath = routeName => {
       return '#/intranet/messages'
     case 'intranet-calendar':
       return '#/intranet/calendrier'
-    case 'intranet-news': 
+    case 'intranet-news':
       return '#/intranet/actualites'
+    case 'intranet-cra':
+      return '#/intranet/comptes-rendus-d-activites'
+    case 'intranet-cra-create':
+      return '#/intranet/comptes-rendus-d-activites/creer'
+    case 'intranet-cra-id':
+      return `#/intranet/comptes-rendus-d-activites/${params.id}`
+    case 'intranet-cra-id-edit':
+      return `#/intranet/comptes-rendus-d-activites/${params.id}/editer`
     case 'home':
     default:
       return '#/'

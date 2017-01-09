@@ -1,25 +1,28 @@
 import {NOTIFICATION_ADD, NOTIFICATION_CLOSE, NOTIFICATION_CLOSE_ALL} from '../actions'
 
-const initialState = {authentified: false, status: ''}
-
-export default function layer (state = initialState, {type}) {
+export default function notifications (state = {notifications: {}}, {type, payload}) {
   switch (type) {
-    case GOOGLE_AUTH:
+    case NOTIFICATION_ADD:
       return {
         ...state,
-        status: 'pending'
+        notifications:{
+          ...state.notifications,
+          [payload.notification.id]: payload.notification
+        }
       }
-    case GOOGLE_AUTH_SUCCESS:
+    case NOTIFICATION_CLOSE: {
+      const notifications = Object.values(state.notifications).reduce((prev, notification) => {
+        return notification.id === payload.notificationId ? {...prev} : {...prev, [notification.id]: notification}
+      }, {})
       return {
         ...state,
-        authentified: true,
-        status: ''
+        notifications
       }
-    case GOOGLE_AUTH_FAILED:
+    }
+    case NOTIFICATION_CLOSE_ALL:
       return {
         ...state,
-        authentified: false,
-        status: 'error'
+        notifications: {}
       }
     default:
       return state

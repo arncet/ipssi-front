@@ -13,11 +13,12 @@ class CalendarDaysAndHours extends Component{
 
   render() {
     const {daysOfWeek, eventElements} = this.state
+    const {openCreateModal} = this.props
 
     return (
       <div className='Calendar_days_and_hours'>
         <Hours/>
-        <Days daysOfWeek={daysOfWeek}/>
+        <Days daysOfWeek={daysOfWeek} openCreateModal={openCreateModal}/>
         {eventElements}
       </div>
     )
@@ -38,7 +39,8 @@ class CalendarDaysAndHours extends Component{
 
   displayEvents(props) {
     setTimeout(() => {
-      this.setState({eventElements: props.events.map((event, i) => <Event event={event} onCurrentEventChange={props.onCurrentEventChange} key={i}/>)})
+      const {events, onCurrentEventChange, openEditModal} = props
+      this.setState({eventElements: events.map((event, i) => <Event event={event} onCurrentEventChange={onCurrentEventChange} openEditModal={openEditModal} key={i}/>)})
       ReactTooltip.rebuild()
     }, 100)
   }
@@ -62,7 +64,7 @@ const decomposeDate = date => {
   }
 }
 
-const Event = ({event, onCurrentEventChange}) => {
+const Event = ({event, onCurrentEventChange, openEditModal}) => {
   const {start, end, summary} = event
   const DAY_HEIGHT = 45
   const {hours: startHours, day: startDay, minutes: startMinutes} = decomposeDate(start.dateTime, summary)
@@ -72,18 +74,20 @@ const Event = ({event, onCurrentEventChange}) => {
   const offsetTopMinutes = startMinutes * DAY_HEIGHT
   const daysDiff = moment(endDay).diff(moment(startDay), 'days')
   const width = (daysDiff + 1) * (element.offsetWidth + 1)
-  const height = (((endHours + endMinutes) - (startHours + startMinutes) || 1) * DAY_HEIGHT) - 1
+  const height = !daysDiff ? (((endHours + endMinutes) - (startHours + startMinutes) || 1) * DAY_HEIGHT) - 1 : DAY_HEIGHT
 
   return (
     <div
       className='Event'
       style={{top: top+offsetTopMinutes+1, left, width, height}}
-      dangerouslySetInnerHTML={{__html: summary || '<i>Sans titre</i>'}}
       data-tip={eventTooltipString({event})}
       data-html={true}
       data-iscapture={true}
       onClick={() => onCurrentEventChange(event)}
-    />
+      onDoubleClick={() => openEditModal(event.id)}
+    >
+      {summary || '(Sans titre)'}
+    </div>
   )
 }
 
@@ -105,16 +109,27 @@ const eventTooltipString = ({event: {summary = 'Sans titre', start, end, locatio
   </div>`
 )
 
-const Days = ({daysOfWeek}) => (
+const Days = ({daysOfWeek, openCreateModal}) => (
   <ul className='Calendar_days_wrapper'>
-    {daysOfWeek.map((day, i) => <Day day={day} key={i}/>)}
+    {daysOfWeek.map((day, i) => <Day day={day} key={i} openCreateModal={openCreateModal}/>)}
   </ul>
 )
 
-const Day = ({day}) => (
+const Day = ({day, openCreateModal}) => (
   <li className='Day'>
     <div className='Day_name'>{capitalize(moment(Number(day)).format('dddd D'))}</div>
-    {times(24).map(index => <div className={`Day_item Day_item_${day}_${index}`} key={index}/>)}
+    {
+      times(24).map(index => {
+        const date = moment(Number(day)).add(index, 'hours').format('x')
+        return (
+          <div
+            className={`Day_item Day_item_${day}_${index}`}
+            key={index}
+            onDoubleClick={() => openCreateModal(date)}
+          />
+        )
+      })
+    }
   </li>
 )
 

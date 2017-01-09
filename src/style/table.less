@@ -1,0 +1,31 @@
+.table-sorted{
+  border-collapse: collapse;
+
+  thead{
+    background-color: #C3CAD1;
+    color: #FFF;
+    font-size: 12px;
+    text-transform: uppercase;
+    .openSansBold;
+  }
+
+  tbody{
+    font-size: 14px;
+
+    tr{
+      &:nth-child(2n){
+        background-color: darken(#E5E5E5, 2%);
+      }
+    }
+  }
+
+  td, th{
+    padding: 10px;
+    text-align: left;
+  }
+
+  th{
+    padding: 14px 10px;
+    .clickable;
+  }
+}

@@ -130,7 +130,34 @@ export const calendarCreateEventApi = event => {
       'resource': event
     })
     request.execute(resp => {
+      if (resp.id) resolve(resp)
+      else reject()
+    })
+  })
+}
+
+export const calendarEditEventApi = event => {
+  return new Promise((resolve, reject) => {
+    const request = gapi.client.calendar.events.update({
+      'calendarId': 'primary',
+      'resource': event,
+      eventId: event.id
+    })
+    request.execute(resp => {
       if (resp.id) resolve(resp.id)
+      else reject()
+    })
+  })
+}
+
+export const calendarDeleteEventApi = eventId => {
+  return new Promise((resolve, reject) => {
+    const request = gapi.client.calendar.events.delete({
+      'calendarId': 'primary',
+      eventId: eventId
+    })
+    request.execute(resp => {
+      if (!resp.error) resolve()
       else reject()
     })
   })

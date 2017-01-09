@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import {NOTIFICATION_CLOSE, NOTIFICATION_CLOSE_ALL} from '../actions'
 import {getNotifications} from '../selectors/notifications'
 
-import Notifications from '../components/Notifications'
+import Notifications from '../components/notifications/Notifications'
 
 const mapStateToProps = state => {
   const notifications = getNotifications(state)
