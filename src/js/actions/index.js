@@ -57,15 +57,52 @@ export const NOTIFICATION_CLOSE_ALL = 'notification.close.all'
 export const CRA_LOAD = 'cra.load'
 export const CRA_LOAD_SUCCESS = 'cra.load.success'
 export const CRA_LOAD_FAILED = 'cra.load.failed'
+
 export const CRA_CREATE = 'cra.create'
 export const CRA_CREATE_SUCCESS = 'cra.create.success'
 export const CRA_CREATE_FAILED = 'cra.create.failed'
+
 export const CRA_EDIT = 'cra.edit'
 export const CRA_EDIT_SUCCESS = 'cra.edit.success'
 export const CRA_EDIT_FAILED = 'cra.edit.failed'
+
 export const CRA_DELETE_OPEN_MODAL = 'cra.delete.open.modal'
 export const CRA_DELETE_CLOSE_MODAL = 'cra.delete.close.modal'
 export const CRA_DELETE = 'cra.delete'
 export const CRA_DELETE_SUCCESS = 'cra.delete.success'
 export const CRA_DELETE_FAILED = 'cra.delete.failed'
+
 export const CRA_CLEAN_STATUS = 'cra.clean.status'
+
+export const CRA_VALID = 'cra.valid'
+export const CRA_VALID_SUCCESS = 'cra.valid.success'
+export const CRA_VALID_FAILED = 'cra.valid.failed'
+
+export const CRA_ASK_FOR_EDITION = 'cra.ask.for.edition'
+export const CRA_ASK_FOR_EDITION_SUCCESS = 'cra.ask.for.edition.success'
+export const CRA_ASK_FOR_EDITION_FAILED = 'cra.ask.for.edition.failed'
+
+//CONGES
+export const CONGES_LOAD = 'conges.load'
+export const CONGES_LOAD_SUCCESS = 'conges.load.success'
+export const CONGES_LOAD_FAILED = 'conges.load.failed'
+
+export const CONGES_CREATE = 'conges.create'
+export const CONGES_CREATE_SUCCESS = 'conges.create.success'
+export const CONGES_CREATE_FAILED = 'conges.create.failed'
+
+export const CONGES_EDIT = 'conges.edit'
+export const CONGES_EDIT_SUCCESS = 'conges.edit.success'
+export const CONGES_EDIT_FAILED = 'conges.edit.failed'
+
+export const CONGES_DELETE_OPEN_MODAL = 'conges.delete.open.modal'
+export const CONGES_DELETE_CLOSE_MODAL = 'conges.delete.close.modal'
+export const CONGES_DELETE = 'conges.delete'
+export const CONGES_DELETE_SUCCESS = 'conges.delete.success'
+export const CONGES_DELETE_FAILED = 'conges.delete.failed'
+
+export const CONGES_CLEAN_STATUS = 'conges.clean.status'
+
+export const CONGES_VALID = 'conges.valid'
+export const CONGES_VALID_SUCCESS = 'conges.valid.success'
+export const CONGES_VALID_FAILED = 'conges.valid.failed'

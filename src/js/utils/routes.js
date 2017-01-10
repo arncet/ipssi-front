@@ -39,6 +39,14 @@ export const getPath = (routeName, params) => {
       return `#/intranet/comptes-rendus-d-activites/${params.id}`
     case 'intranet-cra-id-edit':
       return `#/intranet/comptes-rendus-d-activites/${params.id}/editer`
+    case 'intranet-demandes-de-conges':
+      return '#/intranet/demandes-de-conges'
+    case 'intranet-demandes-de-conges-create':
+      return '#/intranet/demandes-de-conges/creer'
+    case 'intranet-demandes-de-conges-id':
+      return `#/intranet/demandes-de-conges/${params.id}`
+    case 'intranet-demandes-de-conges-id-edit':
+      return `#/intranet/demandes-de-conges/${params.id}/editer`
     case 'home':
     default:
       return '#/'

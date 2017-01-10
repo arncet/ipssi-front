@@ -18,3 +18,15 @@ export const deleteCRAApi = craId => {
   })
 }
 
+export const validCRAApi = (craId, userId) => {
+  return new Promise((resolve, reject) => {
+    resolve()
+  })
+}
+
+export const askForEditionCRAApi = (craId, comment) => {
+  return new Promise((resolve, reject) => {
+    resolve()
+  })
+}
+

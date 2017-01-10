@@ -7,13 +7,13 @@ class InputLabel extends Component {
   }
 
   render () {
-    const {label, className, type} = this.props
+    const {label, className, type, disabled} = this.props
     const {value} = this.state
 
     return (
       <div className={`label-and-input ${className}`}>
         <label className='label'>{label}</label>
-        <input type={type} className='input-text input-text-black Create_event_title' value={value} onChange={e => this.onChange(e.target.value)}/>
+        <input type={type} className='input-text input-text-black Create_event_title' value={value} onChange={e => this.onChange(e.target.value)} disabled={disabled}/>
       </div>
     )
   }
@@ -28,6 +28,7 @@ InputLabel.defaultProps = {
   label: '',
   className: '',
   type: 'text',
+  disabled: false
 }
 
 export default InputLabel

@@ -2,8 +2,10 @@ import {call, put, select} from 'redux-saga/effects'
 import {takeEvery} from 'redux-saga'
 import {CRA_CREATE, CRA_CREATE_SUCCESS, CRA_CREATE_FAILED,
  CRA_EDIT, CRA_EDIT_SUCCESS, CRA_EDIT_FAILED,
- CRA_DELETE, CRA_DELETE_SUCCESS, CRA_DELETE_FAILED} from '../actions'
-import {createCRAApi, editCRAApi, deleteCRAApi} from '../api/cra'
+ CRA_DELETE, CRA_DELETE_SUCCESS, CRA_DELETE_FAILED,
+ CRA_VALID, CRA_VALID_SUCCESS, CRA_VALID_FAILED,
+ CRA_ASK_FOR_EDITION, CRA_ASK_FOR_EDITION_SUCCESS, CRA_ASK_FOR_EDITION_FAILED} from '../actions'
+import {createCRAApi, editCRAApi, deleteCRAApi, validCRAApi, askForEditionCRAApi} from '../api/cra'
 import {getCRAIdToDelete} from '../selectors/cra'
 
 //Create
@@ -53,11 +55,43 @@ function* watchDeleteCRA () {
   yield* takeEvery(CRA_DELETE, deleteCRA)
 }
 
+//Valid
+function* validCRA ({payload: {craId}}) {
+  try {
+    yield call(validCRAApi, craId)
+    yield put({type: CRA_VALID_SUCCESS, payload: {craId}})
+  } catch(e) {
+    yield put({type: CRA_VALID_FAILED})
+    console.error('ERROR VALID CRA', e)
+  }
+}
+
+function* watchValidCRA () {
+  yield* takeEvery(CRA_VALID, validCRA)
+}
+
+//Ask for edition
+function* askForEditionCRA ({payload: {craId, comment}}) {
+  try {
+    yield call(askForEditionCRAApi, craId, comment)
+    yield put({type: CRA_ASK_FOR_EDITION_SUCCESS, payload: {craId}})
+  } catch(e) {
+    yield put({type: CRA_ASK_FOR_EDITION_FAILED})
+    console.error('ERROR ASK FOR EDITION CRA', e)
+  }
+}
+
+function* watchAskForEditionCRA () {
+  yield* takeEvery(CRA_ASK_FOR_EDITION, askForEditionCRA)
+}
+
 function* flow () {
   yield [
     watchCreateCRA(),
     watchEditCRA(),
-    watchDeleteCRA()
+    watchDeleteCRA(),
+    watchValidCRA(),
+    watchAskForEditionCRA()
   ]
 }
 

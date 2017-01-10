@@ -7,13 +7,13 @@ class SelectLabel extends Component {
   }
 
   render () {
-    const {label, className, options} = this.props
+    const {label, className, options, disabled} = this.props
     const {value} = this.state
 
     return (
       <div className={`quill-label-wrapper ${className}`}>
         <div className='quill-label'>{label}</div>
-        <select onChange={e => this.onChange(e.target.value)} defaultValue={value}>
+        <select onChange={e => this.onChange(e.target.value)} defaultValue={value} disabled={disabled}>
           {options.map((option, i) => <option value={option.value} key={i}>{option.content}</option>)}
         </select>
       </div>
@@ -30,7 +30,8 @@ SelectLabel.defaultProps = {
   label: '',
   className: '',
   options: [],
-  value: ''
+  value: '',
+  disabled: false
 }
 
 export default SelectLabel

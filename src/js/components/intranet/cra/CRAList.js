@@ -35,6 +35,12 @@ const actionColums = (openDeleteCRAModal, element) => (
   </div>
 )
 
-const CRAValid = element => <span className={`fa fa-${element.valid ? 'check' : 'times' }`}/>
+const CRAValid = element => {
+  let icon = 'fa fa-'
+  if (element.validationStatus === 'pending') icon += 'spinner'
+  else if (element.validationStatus === 'valid') icon += 'check'
+  else icon += 'times'
+  return <span className={icon}/>
+}
 
 export default CRAList

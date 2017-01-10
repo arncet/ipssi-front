@@ -1,26 +1,20 @@
 import { connect } from 'react-redux'
-import {CRA_DELETE_OPEN_MODAL, CRA_DELETE_CLOSE_MODAL, CRA_DELETE} from '../../../actions'
-import {getCRAs, getCRA, getCRAStatus, getCRAIdToDelete} from '../../../selectors/cra'
+import {CRA_VALID, CRA_ASK_FOR_EDITION} from '../../../actions'
+import {getCRA, getCRAValidationStatus, getCRAAskForEditionStatus} from '../../../selectors/cra'
 
-import CRA from '../../../components/intranet/cra/CRA'
+import CRAForm from '../../../components/intranet/cra/CRAForm'
 
-const mapStateToProps = state => {
-  const cras = getCRAs(state)
-  const isLoading = getCRAStatus(state) === 'pending'
-  const craIdToDelete = getCRAIdToDelete(state)
-  const craToDelete = craIdToDelete ? getCRA(state, craIdToDelete) : null
+const mapStateToProps = (state, {params: {id}}) => {
+  const cra = getCRA(state, id)
+  const validationStatus = getCRAValidationStatus(state)
+  const askForEditionStatus = getCRAAskForEditionStatus(state)
 
-  return {
-    cras,
-    isLoading,
-    craToDelete
-  }
+  return {cra, validationStatus, askForEditionStatus, inputsDisabled: true}
 }
 
 const mapDispatchToProps = dispatch => ({
-  deleteCRA: () => dispatch({type: CRA_DELETE}),
-  openDeleteCRAModal: craId => dispatch({type: CRA_DELETE_OPEN_MODAL, payload: {craId}}),
-  closeDeleteCRAModal: () => dispatch({type: CRA_DELETE_CLOSE_MODAL})
+  validCRA: craId => dispatch({type: CRA_VALID, payload: {craId}}),
+  askForEditionCRA: (craId, comment) => dispatch({type: CRA_ASK_FOR_EDITION, payload: {craId, comment}})
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CRA)
+export default connect(mapStateToProps, mapDispatchToProps)(CRAForm)

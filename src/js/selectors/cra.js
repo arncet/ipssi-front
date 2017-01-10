@@ -4,3 +4,5 @@ export const getCRA = (state, id) => state.cra.cras[id]
 export const getCRACreationStatus = state => state.cra.editStatus
 export const getCRAEditionStatus = state => state.cra.editionStatus
 export const getCRAIdToDelete = state => state.cra.craIdToDelete
+export const getCRAValidationStatus = state => state.cra.validStatus
+export const getCRAAskForEditionStatus = state => state.cra.askForEditionStatus
