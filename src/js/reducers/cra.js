@@ -85,7 +85,7 @@ const initialState = {
       responsableClientSignatureLieuDate: '10 decembre 2017, Lyon',
       responsableClientSignature: 'O. Serge',
       consultant: 'Bosip Serge',
-      validationStatus: 'askForEdition',
+      validationStatus: 'rejected',
       askForEditionComment: 'Demande de modification :)'
     },
     3: {

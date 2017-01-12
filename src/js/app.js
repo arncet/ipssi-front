@@ -23,6 +23,11 @@ import CongesCreate from './containers/intranet/conges/CongesCreate'
 import CongesEdit from './containers/intranet/conges/CongesEdit'
 import Conges from './containers/intranet/conges/Conges'
 
+import CVList from './containers/intranet/cv/CVList'
+import CVCreate from './containers/intranet/cv/CVCreate'
+import CVEdit from './containers/intranet/cv/CVEdit'
+import CV from './containers/intranet/cv/CV'
+
 const App = ({ history }) => (
   <Router history={history}>
     <Route path='/'>
@@ -34,14 +39,21 @@ const App = ({ history }) => (
         <Route path='actualites' component={NewsIntranet}/>
         <Route path='messages' component={MessagesIntranet}/>
         <Route path='calendrier' component={CalendarIntranet}/>
+
         <Route path='comptes-rendus-d-activites' component={CRAList}/>
         <Route path='comptes-rendus-d-activites/creer' component={CRACreate}/>
         <Route path='comptes-rendus-d-activites/:id' component={CRA}/>
         <Route path='comptes-rendus-d-activites/:id/editer' component={CRAEdit}/>
+
         <Route path='demandes-de-conges' component={CongesList}/>
         <Route path='demandes-de-conges/creer' component={CongesCreate}/>
         <Route path='demandes-de-conges/:id' component={Conges}/>
         <Route path='demandes-de-conges/:id/editer' component={CongesEdit}/>
+
+        <Route path='cvtheque' component={CVList}/>
+        <Route path='cvtheque/creer' component={CVCreate}/>
+        <Route path='cvtheque/:id' component={CV}/>
+        <Route path='cvtheque/:id/editer' component={CVEdit}/>
       </Route>
     </Route>
   </Router>

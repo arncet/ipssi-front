@@ -17,7 +17,7 @@ const navBarItems = [
       {name: 'CRA', routeName: 'intranet-cra'},
       {name: 'Notes de frais', routeName: 'intranet-notes-de-frais'},
       {name: 'Demandes de congés', routeName: 'intranet-demandes-de-conges'},
-      {name: 'CVthèque', routeName: 'intranet-cvtheqe'},
+      {name: 'CVthèque', routeName: 'intranet-cvtheque'},
       {name: 'Offres de poste', routeName: 'intranet-offres-de-poste'},
       {name: 'Candidatures', routeName: 'intranet-candidatures'},
       {name: 'Collaborateurs', routeName: 'intranet-collaborateurs'}

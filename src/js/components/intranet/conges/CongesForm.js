@@ -109,7 +109,7 @@ class CongesCreate extends Component {
 
     return (
       <div>
-        <QuillLabel label={'Expliquer la raison du refus.'} value={rejectedComment} onChange={text => this.setState({rejectedComment: text})} className='Conges_ask_for_edition'/>
+        <QuillLabel label={'Expliquer la raison du refus.'} value={rejectedComment} onChange={text => this.setState({conges: {...this.state.conges, rejectedComment: text}})} className='Conges_ask_for_edition'/>
         <button className='button button-red Reject_comment_conges_button' onClick={() => validConges(id, false, rejectedComment)}>Refuser</button>
         <button className='button button-green Valid_Conges_button' onClick={() => validConges(id, true)}>Accepter</button>
       </div>

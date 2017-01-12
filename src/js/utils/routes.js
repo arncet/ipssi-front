@@ -8,6 +8,7 @@ export const getPath = (routeName, params) => {
     case 'connexion':
     case 'profil':
       return `#/${routeName}`
+
     case 'presentation':
       return '#/le-groupe/presentation'
     case 'chiffres-cles':
@@ -32,6 +33,7 @@ export const getPath = (routeName, params) => {
       return '#/intranet/calendrier'
     case 'intranet-news':
       return '#/intranet/actualites'
+
     case 'intranet-cra':
       return '#/intranet/comptes-rendus-d-activites'
     case 'intranet-cra-create':
@@ -40,6 +42,7 @@ export const getPath = (routeName, params) => {
       return `#/intranet/comptes-rendus-d-activites/${params.id}`
     case 'intranet-cra-id-edit':
       return `#/intranet/comptes-rendus-d-activites/${params.id}/editer`
+
     case 'intranet-demandes-de-conges':
       return '#/intranet/demandes-de-conges'
     case 'intranet-demandes-de-conges-create':
@@ -48,6 +51,15 @@ export const getPath = (routeName, params) => {
       return `#/intranet/demandes-de-conges/${params.id}`
     case 'intranet-demandes-de-conges-id-edit':
       return `#/intranet/demandes-de-conges/${params.id}/editer`
+
+    case 'intranet-cvtheque':
+      return '#/intranet/cvtheque'
+    case 'intranet-cvtheque-create':
+      return '#/intranet/cvtheque/creer'
+    case 'intranet-cvtheque-id':
+      return `#/intranet/cvtheque/${params.id}`
+    case 'intranet-cvtheque-id-edit':
+      return `#/intranet/cvtheque/${params.id}/editer`
     case 'home':
     default:
       return '#/'
@@ -72,6 +84,9 @@ export const inRoute = (path, routeName) => {
     'les-postes-a-pourvoir': new RegExp('^\/nous-rejoindre/les-postes-a-pourvoir'),
     'postuler': new RegExp('^\/nous-rejoindre/postuler'),
     'profil': new RegExp('^\/profil'),
+    'intranet-cra': new RegExp('^\/intranet/comptes-rendus-d-activites'),
+    'intranet-demandes-de-conges': new RegExp('^\/intranet/demandes-de-conges'),
+    'intranet-cvtheque': new RegExp('^\/intranet/cvtheque'),
     'home': new RegExp('^\/$')
   }
 

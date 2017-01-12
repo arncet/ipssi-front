@@ -180,7 +180,7 @@ class CRAForm extends Component {
 
     return (
       <div>
-        <QuillLabel label={'Demander une modification'} value={askForEditionComment} onChange={text => this.setState({askForEditionComment: text})} className='CRA_ask_for_edition'/>
+        <QuillLabel label={'Demander une modification'} value={askForEditionComment} onChange={text => this.setState({cra: {...this.state.cra, askForEditionComment: text}})} className='CRA_ask_for_edition'/>
         <br/>
         <button className='button button-red Ask_for_edition_CRA_button' onClick={() => askForEditionCRA(id, askForEditionComment)}>Envoyer la demande de modification</button>
         <button className='button button-green Valid_CRA_button' onClick={() => validCRA(id)}>Valider</button>

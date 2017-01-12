@@ -136,6 +136,35 @@ export const USERS_INSCRIPTION_FAILED = 'users.inscription.failed'
 
 export const USERS_CLEAR_CONNEXION_STATUS = 'users.clear.connexion.status'
 
-//WRAPPER
+//AVATAR
 export const AVATAR_OPEN_CONNEXION_MODAL = 'wrapper.open.connexion.modal'
 export const AVATAR_CLOSE_CONNEXION_MODAL = 'wrapper.close.connexion.modal'
+
+//CV
+export const CV_LOAD = 'cv.load'
+export const CV_LOAD_SUCCESS = 'cv.load.success'
+export const CV_LOAD_FAILED = 'cv.load.failed'
+
+export const CV_CREATE = 'cv.create'
+export const CV_CREATE_SUCCESS = 'cv.create.success'
+export const CV_CREATE_FAILED = 'cv.create.failed'
+
+export const CV_EDIT = 'cv.edit'
+export const CV_EDIT_SUCCESS = 'cv.edit.success'
+export const CV_EDIT_FAILED = 'cv.edit.failed'
+
+export const CV_DELETE_OPEN_MODAL = 'cv.delete.open.modal'
+export const CV_DELETE_CLOSE_MODAL = 'cv.delete.close.modal'
+export const CV_DELETE = 'cv.delete'
+export const CV_DELETE_SUCCESS = 'cv.delete.success'
+export const CV_DELETE_FAILED = 'cv.delete.failed'
+
+export const CV_CLEAN_STATUS = 'cv.clean.status'
+
+export const CV_VALID = 'cv.valid'
+export const CV_VALID_SUCCESS = 'cv.valid.success'
+export const CV_VALID_FAILED = 'cv.valid.failed'
+
+export const CV_ASK_FOR_EDITION = 'cv.ask.for.edition'
+export const CV_ASK_FOR_EDITION_SUCCESS = 'cv.ask.for.edition.success'
+export const CV_ASK_FOR_EDITION_FAILED = 'cv.ask.for.edition.failed'
