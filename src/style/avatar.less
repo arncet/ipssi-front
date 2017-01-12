@@ -1,0 +1,64 @@
+.Modal.Connexion_modal_wrapper{
+  background-color: @color_3;
+}
+
+.Connexion_modal{
+  text-align: left;
+
+  .error-message{
+    margin-bottom: 15px;
+
+    p{
+      margin: 0px;
+    }
+  }
+
+  .label-and-input{
+
+    .label{
+      color: #FFF;
+      font-size: 15px;
+    }
+
+    .input-text{
+      border: none;
+      color: #FFF;
+      border-bottom: 1px solid;
+      border-radius: 0px;
+      background-color: transparent;
+      font-size: 16px;
+    }
+  }
+
+  .Modal_header{
+    position: relative;
+    padding: 20px;
+    background-color: @color_2;
+    color: #FFF;
+    font-size: 20px;
+
+    .fa-times{
+      position: absolute;
+      right: 20px;
+      .clickable;
+    }
+  }
+
+  .Modal_body{
+    padding: 30px 20px;
+
+    .Connexion_email_input{
+      margin-right: 35px;
+    }
+  }
+
+  .Modal_footer{
+    padding: 15px 20px;
+    text-align: right;
+    background-color: rgba(0, 0, 0, 0.1);
+
+    .button:first-child{
+      margin-right: 10px;
+    }
+  }
+}

@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import { kebabCase } from 'lodash'
 import {getPath, inRoute} from '../utils/routes'
 
+//Containers
+import Avatar from '../containers/Avatar'
+
 const navBarItems = [
   {
     name: "Accueil",
@@ -43,8 +46,7 @@ const navBarItems = [
     routeName: 'contact'
   },
   {
-    name: "Mon ipssi",
-    routeName: 'connexion'
+    name: "Mon ipssi"
   }
 ]
 
@@ -55,7 +57,7 @@ class Header extends Component{
   }
 
   render() {
-    const {location: {pathname}} = this.props
+    const {pathname} = this.props
     const {routeSelected} = this.state
     const route = routeSelected ? navBarItems.find(item => item.routeName === routeSelected) : null
 
@@ -69,6 +71,7 @@ class Header extends Component{
                 <input type="text" className="input Search_input"/>
                 <button className="Search_button padding"><i className="fa fa-search"/></button>
               </div>
+              <Avatar/>
             </div>
           </div>
         </header>
@@ -112,7 +115,7 @@ class Header extends Component{
   }
 
   componentDidMount() {
-    const {location: {pathname}} = this.props
+    const {pathname} = this.props
     const route = navBarItems.find(item => inRoute(pathname, item.routeName))
     const routeSelected = route ? route.routeName : null
     this.setState({routeSelected})

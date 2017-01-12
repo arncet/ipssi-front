@@ -4,7 +4,7 @@ import { Router, Route, IndexRoute } from 'react-router'
 //Components
 //Site
 import Wrapper from './components/Wrapper'
-import Home from './components/home/Home'
+import Home from './containers/Home'
 //Intranet
 import WrapperIntranet from './components/intranet/Wrapper'
 import HomeIntranet from './components/intranet/home/Home'

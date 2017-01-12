@@ -6,6 +6,7 @@ export const getPath = (routeName, params) => {
     case 'espace-collaborateur':
     case 'contact':
     case 'connexion':
+    case 'profil':
       return `#/${routeName}`
     case 'presentation':
       return '#/le-groupe/presentation'
@@ -70,6 +71,7 @@ export const inRoute = (path, routeName) => {
     'ils-nous-font-confiance': new RegExp('^\/l-activite/ils-nous-font-confiance'),
     'les-postes-a-pourvoir': new RegExp('^\/nous-rejoindre/les-postes-a-pourvoir'),
     'postuler': new RegExp('^\/nous-rejoindre/postuler'),
+    'profil': new RegExp('^\/profil'),
     'home': new RegExp('^\/$')
   }
 
@@ -77,3 +79,5 @@ export const inRoute = (path, routeName) => {
 
   return regexp ? regexp.test(path) : false
 }
+
+export const IMAGES_ROUTE = 'assets/images'

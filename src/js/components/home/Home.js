@@ -5,11 +5,11 @@ import Slider from './Slider'
 import Presentations from './Presentations'
 import LookingForAJob from './LookingForAJob'
 
-const Home = () => (
+const Home = ({slides, sections, jobs}) => (
   <div className="Home">
-    <Slider/>
-    <Presentations/>
-    <LookingForAJob/>
+    <Slider slides={slides}/>
+    <Presentations sections={sections}/>
+    <LookingForAJob jobs={jobs}/>
   </div>
 )
 

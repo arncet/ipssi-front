@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import { kebabCase } from 'lodash'
 import {getPath, inRoute} from '../../utils/routes'
 
+//Containers
+import Avatar from '../../containers/Avatar'
+
 const navBarItems = [
   {
     name: "Actualité",
@@ -67,6 +70,7 @@ class Header extends Component{
                 <input type="text" className="input Search_input"/>
                 <button className="Search_button padding"><i className="fa fa-search"/></button>
               </div>
+              <Avatar/>
             </div>
           </div>
         </header>

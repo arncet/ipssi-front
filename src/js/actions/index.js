@@ -106,3 +106,36 @@ export const CONGES_CLEAN_STATUS = 'conges.clean.status'
 export const CONGES_VALID = 'conges.valid'
 export const CONGES_VALID_SUCCESS = 'conges.valid.success'
 export const CONGES_VALID_FAILED = 'conges.valid.failed'
+
+//HOME
+export const HOME_FETCH_SLIDES = 'home.fetch.sildes'
+export const HOME_FETCH_SLIDES_SUCCESS = 'home.fetch.sildes.success'
+export const HOME_FETCH_SLIDES_FAILED = 'home.fetch.sildes.failed'
+
+export const HOME_FETCH_SECTIONS = 'home.fetch.sections'
+export const HOME_FETCH_SECTIONS_SUCCESS = 'home.fetch.sections.success'
+export const HOME_FETCH_SECTIONS_FAILED = 'home.fetch.sections.failed'
+
+//JOBS
+export const JOBS_FETCH_JOBS = 'jobs.fetch.jobs'
+export const JOBS_FETCH_JOBS_SUCCESS = 'jobs.fetch.jobs.success'
+export const JOBS_FETCH_JOBS_FAILED = 'jobs.fetch.jobs.failed'
+
+//USERS
+export const USERS_FETCH_USERS = 'users.fetch.users'
+export const USERS_FETCH_USERS_SUCCESS = 'users.fetch.users.success'
+export const USERS_FETCH_USERS_FAILED = 'users.fetch.users.failed'
+
+export const USERS_CONNEXION = 'users.connextion'
+export const USERS_CONNEXION_SUCCESS = 'users.connextion.success'
+export const USERS_CONNEXION_FAILED = 'users.connextion.failed'
+
+export const USERS_INSCRIPTION = 'users.inscription'
+export const USERS_INSCRIPTION_SUCCESS = 'users.inscription.success'
+export const USERS_INSCRIPTION_FAILED = 'users.inscription.failed'
+
+export const USERS_CLEAR_CONNEXION_STATUS = 'users.clear.connexion.status'
+
+//WRAPPER
+export const AVATAR_OPEN_CONNEXION_MODAL = 'wrapper.open.connexion.modal'
+export const AVATAR_CLOSE_CONNEXION_MODAL = 'wrapper.close.connexion.modal'

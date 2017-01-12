@@ -3,36 +3,12 @@ import kebabCase from 'lodash/kebabCase'
 
 import Filter from '../commons/Filter'
 
-const sliderItem = [
-  {
-    id: 1,
-    title: 'Lorem ipsum dolor sit amet.',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
-    src: 'assets/images/home/desktop-mac-2.jpg',
-    link: '/articles/lorem-ipsum'
-  },
-  {
-    id: 2,
-    title: 'Lorem ipsum.',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
-    src: 'assets/images/home/b6972e09ad5bf832a831ca2f6200e358.jpg',
-    link: '/articles/lorem-ipsum'
-  },
-  {
-    id: 3,
-    title: 'Lorem ipsum jygfhjyhj.',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
-    src: 'assets/images/home/02_b.jpg',
-    link: '/articles/lorem-ipsum'
-  }
-]
-
 class Slider extends Component{
 
   constructor(props) {
     super(props)
     this.state = {
-      currentId: sliderItem[0].id,
+      currentId: props.slides.length ? props.slides[0].id : null,
       hoverSliderId: null,
       hoverMenuId: null,
       pause: false
@@ -42,20 +18,22 @@ class Slider extends Component{
   /******************************** RENDER ********************************/
 
   render () {
-    const { currentId, hoverMenuId, pause } = this.state
+    const {currentId, hoverMenuId, pause} = this.state
+    const {slides} = this.props
+
     return (
       <div className="Slider_and_slider_menu">
         <div className="Slider_wrapper">
           <div className="Slider_prev fa fa-chevron-left" onClick={() => this.prev()}/>
           <div className={`Slider_pause fa fa-${pause ? 'pause' : 'play'}`} onClick={() => this.setState({ pause: !pause })}/>
           <ul className="Slider">
-            {sliderItem.map(item => this.displaySliderItem(item))}
+            {slides.map(item => this.displaySliderItem(item))}
           </ul>
           <div className="Slider_next fa fa-chevron-right" onClick={() => this.next()}/>
         </div>
         <div className="Slider_menu_wrapper">
           <ul className="Slider_menu">
-            {sliderItem.map((item, i, items) => this.displaySliderMenuItem(item, i, items, currentId === item.id, hoverMenuId === item.id))}
+            {slides.map((item, i, items) => this.displaySliderMenuItem(item, i, items, currentId === item.id, hoverMenuId === item.id))}
           </ul>
         </div>
       </div>
@@ -114,6 +92,10 @@ class Slider extends Component{
     clearInterval(this.interval)
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.slides.length) this.setState({slides: nextProps.slides, currentId: nextProps.slides[0].id})
+  }
+
   /******************************** LISTENERS ********************************/
 
   onMouseEnterSliderItem (id) {
@@ -133,23 +115,26 @@ class Slider extends Component{
   }
 
   prev () {
-    const { currentId } = this.state
-    const currentItemIndex = sliderItem.findIndex((item) => item.id === currentId)
-    const newId = sliderItem[currentItemIndex - 1] ? sliderItem[currentItemIndex - 1].id : sliderItem[sliderItem.length - 1].id
+    const {currentId} = this.state
+    const {slides} = this.props
+    const currentItemIndex = slides.findIndex((item) => item.id === currentId)
+    const newId = slides[currentItemIndex - 1] ? slides[currentItemIndex - 1].id : slides[slides.length - 1].id
     this.setState({ currentId: newId })
   }
 
   next () {
-    const { currentId } = this.state
-    const currentItemIndex = sliderItem.findIndex((item) => item.id === currentId)
-    const newId = sliderItem[currentItemIndex + 1] ? sliderItem[currentItemIndex + 1].id : sliderItem[0].id
+    const {currentId} = this.state
+    const {slides} = this.props
+    const currentItemIndex = slides.findIndex((item) => item.id === currentId)
+    const newId = slides[currentItemIndex + 1] ? slides[currentItemIndex + 1].id : slides[0].id
     this.setState({ currentId: newId })
   }
 
   /******************************** CUSTOM METHODS ********************************/
 
   getSliderItemStyle () {
-    const currentItemIndex = sliderItem.findIndex((item) => item.id === this.state.currentId)
+    const {slides} = this.props
+    const currentItemIndex = slides.findIndex((item) => item.id === this.state.currentId)
     return { right: `${ 100 * (currentItemIndex)}%` }
   }
 }

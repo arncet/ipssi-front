@@ -5,6 +5,7 @@ import gmail from './gmail'
 import calendar from './calendar'
 import cra from './cra'
 import conges from './conges'
+import users from './users'
 
 function* root () {
   yield [
@@ -12,7 +13,8 @@ function* root () {
     fork(gmail),
     fork(calendar),
     fork(cra),
-    fork(conges)
+    fork(conges),
+    fork(users)
   ]
 }
 
