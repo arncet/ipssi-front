@@ -7,6 +7,7 @@ import cra from './cra'
 import conges from './conges'
 import users from './users'
 import cv from './cv'
+import jobs from './jobs'
 
 function* root () {
   yield [
@@ -16,7 +17,8 @@ function* root () {
     fork(cra),
     fork(conges),
     fork(users),
-    fork(cv)
+    fork(cv),
+    fork(jobs)
   ]
 }
 

@@ -168,3 +168,28 @@ export const CV_VALID_FAILED = 'cv.valid.failed'
 export const CV_ASK_FOR_EDITION = 'cv.ask.for.edition'
 export const CV_ASK_FOR_EDITION_SUCCESS = 'cv.ask.for.edition.success'
 export const CV_ASK_FOR_EDITION_FAILED = 'cv.ask.for.edition.failed'
+
+//JOBS
+export const JOBS_LOAD = 'jobs.load'
+export const JOBS_LOAD_SUCCESS = 'jobs.load.success'
+export const JOBS_LOAD_FAILED = 'jobs.load.failed'
+
+export const JOBS_CREATE = 'jobs.create'
+export const JOBS_CREATE_SUCCESS = 'jobs.create.success'
+export const JOBS_CREATE_FAILED = 'jobs.create.failed'
+
+export const JOBS_EDIT = 'jobs.edit'
+export const JOBS_EDIT_SUCCESS = 'jobs.edit.success'
+export const JOBS_EDIT_FAILED = 'jobs.edit.failed'
+
+export const JOBS_DELETE_OPEN_MODAL = 'jobs.delete.open.modal'
+export const JOBS_DELETE_CLOSE_MODAL = 'jobs.delete.close.modal'
+export const JOBS_DELETE = 'jobs.delete'
+export const JOBS_DELETE_SUCCESS = 'jobs.delete.success'
+export const JOBS_DELETE_FAILED = 'jobs.delete.failed'
+
+export const JOBS_CLEAN_STATUS = 'jobs.clean.status'
+
+export const JOBS_SET_AVALIABLE = 'jobs.set.avaliable'
+export const JOBS_SET_AVALIABLE_SUCCESS = 'jobs.set.avaliable.success'
+export const JOBS_SET_AVALIABLE_FAILED = 'jobs.set.avaliable.failed'

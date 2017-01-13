@@ -2,6 +2,7 @@ import {CV_LOAD, CV_LOAD_SUCCESS, CV_LOAD_FAILED,
  CV_CREATE, CV_CREATE_SUCCESS, CV_CREATE_FAILED,
  CV_EDIT, CV_EDIT_SUCCESS, CV_EDIT_FAILED,
  CV_DELETE, CV_DELETE_SUCCESS, CV_DELETE_FAILED,
+ CV_VALID, CV_VALID_SUCCESS, CV_VALID_FAILED,
  CV_CLEAN_STATUS, CV_DELETE_OPEN_MODAL, CV_DELETE_CLOSE_MODAL} from '../actions'
 
 const initialState = {
@@ -292,6 +293,21 @@ export default function cv (state = initialState, {type, payload}) {
       return {
         ...state,
         cvIdToDelete: null
+      }
+    case CV_VALID:
+      return {
+        ...state,
+        validStatus: 'pending'
+      }
+    case CV_VALID_SUCCESS:
+      return {
+        ...state,
+        validStatus: 'success'
+      }
+    case CV_VALID_FAILED:
+      return {
+        ...state,
+        validStatus: 'failed'
       }
     case CV_CLEAN_STATUS: {
       return {

@@ -2,6 +2,7 @@ import {CONGES_LOAD, CONGES_LOAD_SUCCESS, CONGES_LOAD_FAILED,
  CONGES_CREATE, CONGES_CREATE_SUCCESS, CONGES_CREATE_FAILED,
  CONGES_EDIT, CONGES_EDIT_SUCCESS, CONGES_EDIT_FAILED,
  CONGES_DELETE, CONGES_DELETE_SUCCESS, CONGES_DELETE_FAILED,
+ CONGES_VALID, CONGES_VALID_SUCCESS, CONGES_VALID_FAILED,
  CONGES_CLEAN_STATUS, CONGES_DELETE_OPEN_MODAL, CONGES_DELETE_CLOSE_MODAL} from '../actions'
 
 const initialState = {
@@ -172,6 +173,21 @@ export default function conges (state = initialState, {type, payload}) {
         deletionStatus: ''
       }
     }
+    case CONGES_VALID:
+      return {
+        ...state,
+        validStatus: 'pending'
+      }
+    case CONGES_VALID_SUCCESS:
+      return {
+        ...state,
+        validStatus: 'success'
+      }
+    case CONGES_VALID_FAILED:
+      return {
+        ...state,
+        validStatus: 'failed'
+      }
     default:
       return state
   }

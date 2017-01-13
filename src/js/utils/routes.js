@@ -60,6 +60,15 @@ export const getPath = (routeName, params) => {
       return `#/intranet/cvtheque/${params.id}`
     case 'intranet-cvtheque-id-edit':
       return `#/intranet/cvtheque/${params.id}/editer`
+
+    case 'intranet-offres-de-poste':
+      return '#/intranet/offres-de-poste'
+    case 'intranet-offres-de-poste-create':
+      return '#/intranet/offres-de-poste/creer'
+    case 'intranet-offres-de-poste-id':
+      return `#/intranet/offres-de-poste/${params.id}`
+    case 'intranet-offres-de-poste-id-edit':
+      return `#/intranet/offres-de-poste/${params.id}/editer`
     case 'home':
     default:
       return '#/'
@@ -87,6 +96,7 @@ export const inRoute = (path, routeName) => {
     'intranet-cra': new RegExp('^\/intranet/comptes-rendus-d-activites'),
     'intranet-demandes-de-conges': new RegExp('^\/intranet/demandes-de-conges'),
     'intranet-cvtheque': new RegExp('^\/intranet/cvtheque'),
+    'intranet-offres-de-poste': new RegExp('^\/intranet/offres-de-poste'),
     'home': new RegExp('^\/$')
   }
 

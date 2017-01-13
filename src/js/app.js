@@ -28,6 +28,11 @@ import CVCreate from './containers/intranet/cv/CVCreate'
 import CVEdit from './containers/intranet/cv/CVEdit'
 import CV from './containers/intranet/cv/CV'
 
+import JobsList from './containers/intranet/jobs/JobsList'
+import JobsCreate from './containers/intranet/jobs/JobsCreate'
+import JobsEdit from './containers/intranet/jobs/JobsEdit'
+import Jobs from './containers/intranet/jobs/Jobs'
+
 const App = ({ history }) => (
   <Router history={history}>
     <Route path='/'>
@@ -54,6 +59,11 @@ const App = ({ history }) => (
         <Route path='cvtheque/creer' component={CVCreate}/>
         <Route path='cvtheque/:id' component={CV}/>
         <Route path='cvtheque/:id/editer' component={CVEdit}/>
+
+        <Route path='offres-de-poste' component={JobsList}/>
+        <Route path='offres-de-poste/creer' component={JobsCreate}/>
+        <Route path='offres-de-poste/:id' component={Jobs}/>
+        <Route path='offres-de-poste/:id/editer' component={JobsEdit}/>
       </Route>
     </Route>
   </Router>

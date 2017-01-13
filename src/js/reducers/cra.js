@@ -2,6 +2,7 @@ import {CRA_LOAD, CRA_LOAD_SUCCESS, CRA_LOAD_FAILED,
  CRA_CREATE, CRA_CREATE_SUCCESS, CRA_CREATE_FAILED,
  CRA_EDIT, CRA_EDIT_SUCCESS, CRA_EDIT_FAILED,
  CRA_DELETE, CRA_DELETE_SUCCESS, CRA_DELETE_FAILED,
+ CRA_VALID, CRA_VALID_SUCCESS, CRA_VALID_FAILED,
  CRA_CLEAN_STATUS, CRA_DELETE_OPEN_MODAL, CRA_DELETE_CLOSE_MODAL} from '../actions'
 
 const initialState = {
@@ -254,12 +255,28 @@ export default function cra (state = initialState, {type, payload}) {
         ...state,
         craIdToDelete: null
       }
+    case CRA_VALID:
+      return {
+        ...state,
+        validStatus: 'pending'
+      }
+    case CRA_VALID_SUCCESS:
+      return {
+        ...state,
+        validStatus: 'success'
+      }
+    case CRA_VALID_FAILED:
+      return {
+        ...state,
+        validStatus: 'failed'
+      }
     case CRA_CLEAN_STATUS: {
       return {
         ...state,
         creatationStatus: '',
         editionStatus: '',
-        deletionStatus: ''
+        deletionStatus: '',
+        validStatus: ''
       }
     }
     default:
