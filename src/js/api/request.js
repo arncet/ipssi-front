@@ -1,9 +1,29 @@
-import superagent from 'superagent'
-import promise from 'es6-promise'
-import superagentPromisePlugin from 'superagent-promise-plugin'
+import {apiURL} from './config'
+import superagent from './superagent'
 
-promise.polyfill()
+export const get = url => (
+  superagent.get(`${apiURL}/${url}`)
+    .set('Content-type', 'application/json')
+    .then(res => res.body)
+)
 
-const request = superagentPromisePlugin.patch(superagent)
+export const post = (url, data) => (
+  superagent.post(`${apiURL}/${url}`)
+    .send({...data})
+    .set('Content-type', 'application/json')
+    .then(res => res.body)
+)
 
-export default request
+export const put = (url, data) => (
+  superagent.get(`${apiURL}/${url}`)
+    .send({...data})
+    .set('Content-type', 'application/json')
+    .then(res => res.body)
+)
+
+export const del = url => (
+  superagent.get(`${apiURL}/${url}`)
+    .set('Content-type', 'application/json')
+    .then(res => res.body)
+)
+

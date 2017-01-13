@@ -1,2 +1,2 @@
-export const rootURL = 'http://localhost:8000'
-export const apiURL = `${rootURL}/api`
+export const rootURL = 'https://ipssi-back.herokuapp.com'
+export const apiURL = `${rootURL}/api/v1`

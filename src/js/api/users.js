@@ -1,10 +1,11 @@
 import {getRandomString} from '../utils/string'
+import {post} from '../api/request'
 
-export const userConnexionApi = user => {
-  return new Promise((resolve, reject) => {
-    resolve({user: {...user, id: getRandomString()}, token: getRandomString()})
-  })
-}
+export const userConnexionApi = user => post('user_token', {auth: {user}})
+  // return new Promise((resolve, reject) => {
+  //   resolve({user: {...user, id: getRandomString()}, token: getRandomString()})
+  // })
+//}
 
 export const userInscriptionApi = user => {
   return new Promise((resolve, reject) => {

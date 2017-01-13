@@ -24,7 +24,7 @@ class ConnexionModal extends Component{
             <div className='fa fa-times' onClick={() => close()}/>
           </div>
           <div className='Modal_body'>
-            {errors ? <ErrorMessage error={errors}/> : null}
+            {(errors || connexionStatus) ? <ErrorMessage error={errors || connexionStatus}/> : null}
             <InputLabel className='Connexion_email_input' label='E-mail' onChange={text => this.setState({email: text})} value={email} name='user_email' autofocus={true}/>
             <InputLabel className='Connexion_password_input' label='Mot de passe' onChange={text => this.setState({password: text})} value={password} name='user_password' type='password'/>
           </div>
