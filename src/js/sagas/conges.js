@@ -6,12 +6,14 @@ import {CONGES_CREATE, CONGES_CREATE_SUCCESS, CONGES_CREATE_FAILED,
  CONGES_VALID, CONGES_VALID_SUCCESS, CONGES_VALID_FAILED} from '../actions'
 import {createCongesApi, editCongesApi, deleteCongesApi, validCongesApi} from '../api/conges'
 import {getCongesIdToDelete} from '../selectors/conges'
+import {getPath} from '../utils/routes'
 
 //Create
 function* createConges ({payload: {conges}}) {
   try {
     const createdConges = yield call(createCongesApi, conges)
     yield put({type: CONGES_CREATE_SUCCESS, payload: {conges: createdConges}})
+    window.location.href = getPath('intranet-demandes-de-conges-id', {id: createdConges.id}) //Use history
   } catch(e) {
     yield put({type: CONGES_CREATE_FAILED})
     console.error('ERROR CREATE CONGES', e)

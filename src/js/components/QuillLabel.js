@@ -18,7 +18,7 @@ class QuillLabel extends Component {
         <div className='quill-label'>{label}</div>
         {
           disabled
-            ? <div className='quill-input-disabled'>{value}</div>
+            ? <div className='quill-input-disabled' dangerouslySetInnerHTML={{__html: value}}/>
             : <ReactQuill value={value} onChange={text => this.onChange(text)} theme='snow' toolbar={toolbar}/>
         }
       </div>

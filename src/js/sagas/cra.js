@@ -7,12 +7,14 @@ import {CRA_CREATE, CRA_CREATE_SUCCESS, CRA_CREATE_FAILED,
  CRA_ASK_FOR_EDITION, CRA_ASK_FOR_EDITION_SUCCESS, CRA_ASK_FOR_EDITION_FAILED} from '../actions'
 import {createCRAApi, editCRAApi, deleteCRAApi, validCRAApi, askForEditionCRAApi} from '../api/cra'
 import {getCRAIdToDelete} from '../selectors/cra'
+import {getPath} from '../utils/routes'
 
 //Create
 function* createCRA ({payload: {cra}}) {
   try {
     const createdCRA = yield call(createCRAApi, cra)
     yield put({type: CRA_CREATE_SUCCESS, payload: {cra: createdCRA}})
+    window.location.href = getPath('intranet-cra-id', {id: createCRA.id}) //Use history
   } catch(e) {
     yield put({type: CRA_CREATE_FAILED})
     console.error('ERROR CREATE CRA', e)

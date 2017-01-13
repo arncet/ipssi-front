@@ -6,12 +6,14 @@ import {JOBS_CREATE, JOBS_CREATE_SUCCESS, JOBS_CREATE_FAILED,
  JOBS_DELETE, JOBS_DELETE_SUCCESS, JOBS_DELETE_FAILED} from '../actions'
 import {createJobApi, editJobApi, deleteJobApi, setJobAvaliableApi} from '../api/jobs'
 import {getJobIdToDelete} from '../selectors/jobs'
+import {getPath} from '../utils/routes'
 
 //Create
 function* createJob ({payload: {job}}) {
   try {
-    const createdJobs = yield call(createJobApi, job)
-    yield put({type: JOBS_CREATE_SUCCESS, payload: {job: createdJobs}})
+    const createdJob = yield call(createJobApi, job)
+    yield put({type: JOBS_CREATE_SUCCESS, payload: {job: createdJob}})
+    window.location.href = getPath('intranet-offres-de-poste-id', {id: createdJob.id}) //Use history
   } catch(e) {
     yield put({type: JOBS_CREATE_FAILED})
     console.error('ERROR CREATE JOBS', e)
@@ -55,10 +57,10 @@ function* watchDeleteJob () {
 }
 
 //Avaliable
-function* setJobAvaliable ({payload: {jobId}}) {
+function* setJobAvaliable ({payload: {jobId, avaliable}}) {
   try {
-    yield call(setJobAvaliableApi, jobId)
-    yield put({type: JOBS_SET_AVALIABLE_SUCCESS, payload: {jobId}})
+    yield call(setJobAvaliableApi, jobId, avaliable)
+    yield put({type: JOBS_SET_AVALIABLE_SUCCESS, payload: {jobId, avaliable}})
   } catch(e) {
     yield put({type: JOBS_SET_AVALIABLE_FAILED})
     console.error('ERROR VALID CRA', e)

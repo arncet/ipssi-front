@@ -14,7 +14,7 @@ function* createCV ({payload: {cv}}) {
   try {
     const createdCV = yield call(createCVApi, cv)
     yield put({type: CV_CREATE_SUCCESS, payload: {cv: createdCV}})
-    window.location.href = getPath('intranet-cvtheque-id', {id: createdCV.id}) //Use hystory
+    window.location.href = getPath('intranet-cvtheque-id', {id: createdCV.id}) //Use history
   } catch(e) {
     yield put({type: CV_CREATE_FAILED})
     console.error('ERROR CREATE CV', e)

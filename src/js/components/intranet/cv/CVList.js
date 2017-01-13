@@ -1,16 +1,13 @@
 import React from 'react'
 import Table from '../../Table'
 import DeleteModal from './modals/DeleteModal'
-import moment from '../../../utils/moment'
 import {getPath} from '../../../utils/routes'
 
 const CVList = ({cvs, openDeleteCVModal, closeDeleteCVModal, deleteCV, cvToDelete}) => (
   <div className='CV_list'>
     {cvToDelete ? <DeleteModal close={closeDeleteCVModal} deleteCV={deleteCV} cv={cvToDelete}/> : null}
     <Table
-      elements={cvs.map(cv => {
-        return {...cv, periodeStart: moment(cv.periodeStart).format('LL'), periodeEnd: moment(cv.periodeEnd).format('LL')}
-      })}
+      elements={cvs}
       columns={[
         {name: 'author', value: 'Auteur'},
         {name: 'title', value: 'Titre'}

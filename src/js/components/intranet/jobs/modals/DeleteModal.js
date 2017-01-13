@@ -1,7 +1,7 @@
 import React from 'react'
 import Modal from '../../../Modal'
 
-const DeleteModal = ({job, close, deleteCRA}) => (
+const DeleteModal = ({job, close, deleteJob}) => (
   <Modal overWindow={false} onClickOverlay={close} display={true}>
     <div className='Modal_delete'>
       <div className='Modal_header'>
@@ -12,7 +12,7 @@ const DeleteModal = ({job, close, deleteCRA}) => (
         {`Voulez-vous vraiment supprimer l\'offre : ${job.title} ?`}
       </div>
       <div className='Modal_footer'>
-        <button className='button button-red' onClick={() => deleteCRA()}>Supprimer</button>
+        <button className='button button-red' onClick={() => deleteJob()}>Supprimer</button>
         <button className='button button-red' onClick={() => close()}>Annuler</button>
       </div>
     </div>

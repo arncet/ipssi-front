@@ -1,14 +1,14 @@
 import { connect } from 'react-redux'
 import {JOBS_VALID} from '../../../actions'
-import {getJob, getJobsValidationStatus} from '../../../selectors/jobs'
+import {getJob, getJobsAvaliableStatus} from '../../../selectors/jobs'
 
 import JobsForm from '../../../components/intranet/jobs/JobsForm'
 
 const mapStateToProps = (state, {params: {id}}) => {
   const job = getJob(state, id)
-  const validationStatus = getJobsValidationStatus(state)
+  const avaliableStatus = getJobsAvaliableStatus(state)
 
-  return {job, validationStatus, inputsDisabled: true}
+  return {job, avaliableStatus, inputsDisabled: true}
 }
 
 const mapDispatchToProps = dispatch => ({

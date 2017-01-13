@@ -10,33 +10,38 @@ const initialState = {
   jobs: {
     1: {
       id: 1,
-      title: 'Lorem ipsum Esse',
+      title: 'Dev front',
       description: 'Lorem ipsum Ut fugiat exercitation veniam elit Ut deserunt nostrud anim Excepteur ut exercitation occaecat in proident exercitation nisi ea Excepteur deserunt deserunt ullamco sed tempor dolore sed Ut proident Ut consectetur eiusmod aute magna labore elit irure incididunt.',
-      date: 1472215201483
+      date: 1472215201483,
+      avaliable: true
     },
     2: {
       id: 2,
-      title: 'Lorem ipsum Esse',
+      title: 'Dev back',
       description: 'Lorem ipsum Ut fugiat exercitation veniam elit Ut deserunt nostrud anim Excepteur ut exercitation occaecat in proident exercitation nisi ea Excepteur deserunt deserunt ullamco sed tempor dolore sed Ut proident Ut consectetur eiusmod aute magna labore elit irure incididunt.',
-      date: 1472215201483
+      date: 1472215201483,
+      avaliable: false
     },
     3: {
       id: 3,
-      title: 'Lorem ipsum Esse',
+      title: 'Dev full stack',
       description: 'Lorem ipsum Ut fugiat exercitation veniam elit Ut deserunt nostrud anim Excepteur ut exercitation occaecat in proident exercitation nisi ea Excepteur deserunt deserunt ullamco sed tempor dolore sed Ut proident Ut consectetur eiusmod aute magna labore elit irure incididunt.',
-      date: 1472215201483
+      date: 1472215201483,
+      avaliable: false
     },
     4: {
       id: 4,
-      title: 'Lorem ipsum Esse',
+      title: 'Graphiste',
       description: 'Lorem ipsum Ut fugiat exercitation veniam elit Ut deserunt nostrud anim Excepteur ut exercitation occaecat in proident exercitation nisi ea Excepteur deserunt deserunt ullamco sed tempor dolore sed Ut proident Ut consectetur eiusmod aute magna labore elit irure incididunt.',
-      date: 1472215201483
+      date: 1472215201483,
+      avaliable: true
     },
     5: {
       id: 4,
-      title: 'Lorem ipsum Esse',
+      title: 'Chef de projet',
       description: 'Lorem ipsum Ut fugiat exercitation veniam elit Ut deserunt nostrud anim Excepteur ut exercitation occaecat in proident exercitation nisi ea Excepteur deserunt deserunt ullamco sed tempor dolore sed Ut proident Ut consectetur eiusmod aute magna labore elit irure incididunt.',
-      date: 1472215201483
+      date: 1472215201483,
+      avaliable: false
     }
   },
   jobsStatus: '',
@@ -157,11 +162,16 @@ export default function jobs (state = initialState, {type, payload}) {
         ...state,
         jobAvaliableStatus: 'pending'
       }
-    case JOBS_SET_AVALIABLE_SUCCESS:
+    case JOBS_SET_AVALIABLE_SUCCESS: {
       return {
         ...state,
+        jobs: {
+          ...state.jobs,
+          [payload.jobId]: {...state.jobs[payload.jobId], avaliable: payload.avaliable}
+        },
         jobAvaliableStatus: 'success'
       }
+    }
     case JOBS_SET_AVALIABLE_FAILED:
       return {
         ...state,

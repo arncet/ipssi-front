@@ -4,23 +4,20 @@ import DeleteModal from './modals/DeleteModal'
 import moment from '../../../utils/moment'
 import {getPath} from '../../../utils/routes'
 
-const JobsList = ({jobs, openDeleteJobsModal, closeDeleteJobsModal, deleteJobs, jobToDelete}) => (
+const JobsList = ({jobs, openDeleteJobsModal, closeDeleteJobsModal, deleteJob, jobToDelete}) => (
   <div className='Jobs_list'>
-    {jobToDelete ? <DeleteModal close={closeDeleteJobsModal} deleteJobs={deleteJobs} job={jobToDelete}/> : null}
+    {jobToDelete ? <DeleteModal close={closeDeleteJobsModal} deleteJob={deleteJob} job={jobToDelete}/> : null}
     <Table
       elements={jobs.map(job => {
-        return {...job, periodeStart: moment(job.periodeStart).format('LL'), periodeEnd: moment(job.periodeEnd).format('LL')}
+        return {...job, date: moment(job.date).format('LL')}
       })}
       columns={[
-        {name: 'consultant', value: 'Consultant'},
-        {name: 'projet', value: 'Projet'},
-        {name: 'nomClient', value: 'Client'},
-        {name: 'periodeStart', value: 'Début de la période'},
-        {name: 'periodeEnd', value: 'Fin de la période'}
+        {name: 'title', value: 'Titre'},
+        {name: 'date', value: 'Date'}
       ]}
       defaultSortedValue='consultant'
       customColums={[
-        {name: 'Validé', content: JobsValid},
+        {name: 'Disponible', content: JobsAvaliable},
         {name: 'Actions', content: actionColums.bind(this, openDeleteJobsModal)}
       ]}
     />
@@ -29,17 +26,14 @@ const JobsList = ({jobs, openDeleteJobsModal, closeDeleteJobsModal, deleteJobs, 
 
 const actionColums = (openDeleteJobsModal, element) => (
   <div className='Jobs_actions'>
-    <a className='fa fa-eye button button-blue' href={getPath('intranet-job-id', {id: element.id})}/>
-    <a className='fa fa-pencil button button-green' href={getPath('intranet-job-id-edit', {id: element.id})}/>
+    <a className='fa fa-eye button button-blue' href={getPath('intranet-offres-de-poste-id', {id: element.id})}/>
+    <a className='fa fa-pencil button button-green' href={getPath('intranet-offres-de-poste-id-edit', {id: element.id})}/>
     <button className='fa fa-trash button button-red' onClick={() => openDeleteJobsModal(element.id)}/>
   </div>
 )
 
-const JobsValid = element => {
-  let icon = 'fa fa-'
-  if (element.validationStatus === 'pending') icon += 'spinner'
-  else if (element.validationStatus === 'valid') icon += 'check'
-  else icon += 'times'
+const JobsAvaliable = element => {
+  const icon = element.avaliable ? 'fa fa-check' : 'fa fa-times'
   return <span className={icon}/>
 }
 
