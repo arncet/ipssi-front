@@ -29,6 +29,7 @@ class KronosLabel extends Component {
   }
 
   onChange(date) {
+    console.log(date)
     this.setState({value: date})
     this.props.onChange(date)
   }

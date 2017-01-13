@@ -7,12 +7,14 @@ import {CV_CREATE, CV_CREATE_SUCCESS, CV_CREATE_FAILED,
  CV_ASK_FOR_EDITION, CV_ASK_FOR_EDITION_SUCCESS, CV_ASK_FOR_EDITION_FAILED} from '../actions'
 import {createCVApi, editCVApi, deleteCVApi, validCVApi, askForEditionCVApi} from '../api/cv'
 import {getCVIdToDelete} from '../selectors/cv'
+import {getPath} from '../utils/routes'
 
 //Create
 function* createCV ({payload: {cv}}) {
   try {
     const createdCV = yield call(createCVApi, cv)
     yield put({type: CV_CREATE_SUCCESS, payload: {cv: createdCV}})
+    window.location.href = getPath('intranet-cvtheque-id', {id: createdCV.id}) //Use hystory
   } catch(e) {
     yield put({type: CV_CREATE_FAILED})
     console.error('ERROR CREATE CV', e)

@@ -13,7 +13,7 @@ class InputLabel extends Component {
     return (
       <div className={`label-and-input ${className}`}>
         <label className='label'>{label}</label>
-        <input type={type} className='input-text input-text-black Create_event_title' value={value} onChange={e => this.onChange(e.target.value)} disabled={disabled} name={name} autoFocus={autofocus}/>
+        <input type={type} className='input-text input-text-black' value={value} onChange={e => this.onChange(e.target.value)} disabled={disabled} name={name} autoFocus={autofocus}/>
       </div>
     )
   }

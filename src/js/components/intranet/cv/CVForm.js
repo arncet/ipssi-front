@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import {getRandomString} from '../../../utils/string'
+import {getRandomString, validateEmail} from '../../../utils/string'
 
 //Components
 import InputLabel from '../../InputLabel'
 import QuillLabel from '../../QuillLabel'
-import KronosLabel from '../../KronosLabel'
+import Experience from './Experience'
+import Formation from './Formation'
+import Skill from './Skill'
 
 import ErrorMessage from '../../ErrorMessage'
 import WarningMessage from '../../WarningMessage'
@@ -33,7 +35,12 @@ class CVForm extends Component {
           {errors ? <ErrorMessage error={errors}/> : null}
         </div>
 
-        <div className='CV_section'>
+        <div className='CV_section CV_section_title'>
+          <div className='CV_section_title'>Titre du CV : </div>
+          <InputLabel value={title} onChange={text => this.setState({cv: {...this.state.cv, title: text}})} className='CV_title' disabled={inputsDisabled}/>
+        </div>
+
+        <div className='CV_section CV_section_infos'>
           <div className='CV_section_title'>Informations personnelles : </div>
           <InputLabel label={'Nom'} value={lastName} onChange={text => this.setState({cv: {...this.state.cv, lastName: text}})} className='CV_lastname' disabled={inputsDisabled}/>
           <InputLabel label={'Prénom'} value={firstName} onChange={text => this.setState({cv: {...this.state.cv, firstName: text}})} className='CV_firstname' disabled={inputsDisabled}/>
@@ -42,81 +49,85 @@ class CVForm extends Component {
           <InputLabel label={'Numéro de téléphone'} value={phone} onChange={text => this.setState({cv: {...this.state.cv, phone: text}})} className='CV_phone' disabled={inputsDisabled}/>
         </div>
 
-        <div className='CV_section'>
-          <div className='CV_section_title'>Experiences professionnelles : </div>
-          <button className='button button-green' onClick={() => this.addExperience()}>Ajouter</button>
-          {
-            Object.values(experiences).length
-              ? <ul className='CV_experiences'>
-                  {
-                    Object.values(experiences).map(exprerience => {
-                      return (
-                        <Experience
-                          exprerience={exprerience}
-                          key={exprerience.id}
-                          inputsDisabled={inputsDisabled}
-                          removeExperience={id => this.removeExperience(id)}
-                          onChange={(value, attribute, inputId) => this.setState({cv: {...this.state.cv, experiences: {...this.state.cv.experiences, [inputId]: {...this.state.cv.experiences[inputId], [attribute]: value}}}})}
-                        />
-                      )
-                    })
-                  }
-                </ul>
-              : null
-          }
+        <div className='CV_column'>
+          <div className='CV_section CV_section_experiences'>
+            <div className='CV_section_title'>Experiences professionnelles : </div>
+            <button className='button button-green' onClick={() => this.addExperience()}>Ajouter</button>
+            {
+              Object.values(experiences).length
+                ? <ul className='CV_experiences'>
+                    {
+                      Object.values(experiences).map(exprerience => {
+                        return (
+                          <Experience
+                            exprerience={exprerience}
+                            key={exprerience.id}
+                            inputsDisabled={inputsDisabled}
+                            removeExperience={id => this.removeExperience(id)}
+                            onChange={(value, attribute, inputId) => this.setState({cv: {...this.state.cv, experiences: {...this.state.cv.experiences, [inputId]: {...this.state.cv.experiences[inputId], [attribute]: value}}}})}
+                          />
+                        )
+                      })
+                    }
+                  </ul>
+                : null
+            }
+          </div>
+
+          <div className='CV_section CV_section_skills'>
+            <div className='CV_section_title'>Compétences : </div>
+            <button className='button button-green' onClick={() => this.addSkill()}>Ajouter</button>
+            {
+              Object.values(skills).length
+                ? <ul className='CV_skills'>
+                    {
+                      Object.values(skills).map(skill => {
+                        return (
+                          <Skill
+                            skill={skill}
+                            key={skill.id}
+                            inputsDisabled={inputsDisabled}
+                            removeSkill={id => this.removeSkill(id)}
+                            onChange={(value, attribute, inputId) => this.setState({cv: {...this.state.cv, skills: {...this.state.cv.skills, [inputId]: {...this.state.cv.skills[inputId], [attribute]: value}}}})}
+                          />
+                        )
+                      })
+                    }
+                  </ul>
+                : null
+            }
+          </div>
         </div>
 
-        <div className='CV_section'>
-          <div className='CV_section_title'>Formations : </div>
-          <button className='button button-green' onClick={() => this.addFormation()}>Ajouter</button>
-          {
-            Object.values(formations).length
-              ? <ul className='CV_formations'>
-                  {
-                    Object.values(formations).map(formation => {
-                      return (
-                        <Formation
-                          formation={formation}
-                          key={formation.id}
-                          inputsDisabled={inputsDisabled}
-                          removeFormation={id => this.removeFormation(id)}
-                          onChange={(value, attribute, inputId) => this.setState({cv: {...this.state.cv, formations: {...this.state.cv.formations, [inputId]: {...this.state.cv.formations[inputId], [attribute]: value}}}})}
-                        />
-                      )
-                    })
-                  }
-                </ul>
-              : null
-          }
-        </div>
+        <div className='CV_column'>
+          <div className='CV_section CV_section_formations'>
+            <div className='CV_section_title'>Formations : </div>
+            <button className='button button-green' onClick={() => this.addFormation()}>Ajouter</button>
+            {
+              Object.values(formations).length
+                ? <ul className='CV_formations'>
+                    {
+                      Object.values(formations).map(formation => {
+                        return (
+                          <Formation
+                            formation={formation}
+                            key={formation.id}
+                            inputsDisabled={inputsDisabled}
+                            removeFormation={id => this.removeFormation(id)}
+                            onChange={(value, attribute, inputId) => this.setState({cv: {...this.state.cv, formations: {...this.state.cv.formations, [inputId]: {...this.state.cv.formations[inputId], [attribute]: value}}}})}
+                          />
+                        )
+                      })
+                    }
+                  </ul>
+                : null
+            }
+          </div>
 
-        <div className='CV_section'>
-          <div className='CV_section_title'>Compétences : </div>
-          <button className='button button-green' onClick={() => this.addSkill()}>Ajouter</button>
-          {
-            Object.values(skills).length
-              ? <ul className='CV_skills'>
-                  {
-                    Object.values(skills).map(skill => {
-                      return (
-                        <Skill
-                          skill={skill}
-                          key={skill.id}
-                          inputsDisabled={inputsDisabled}
-                          removeSkill={id => this.removeSkill(id)}
-                          onChange={(value, attribute, inputId) => this.setState({cv: {...this.state.cv, skills: {...this.state.cv.skills, [inputId]: {...this.state.cv.skills[inputId], [attribute]: value}}}})}
-                        />
-                      )
-                    })
-                  }
-                </ul>
-              : null
-          }
-        </div>
-
-        <div className='CV_section'>
-          <div className='CV_section_title'>Information complémentaires : </div>
-          <QuillLabel value={moreInfos} onChange={text => this.setState({cv: {...this.state.cv, moreInfos: text}})} className='CV_more_informations'/>
+          <div className='CV_section CV_section_more_infos'>
+            <div className='CV_section_title'>Information complémentaires : </div>
+            <QuillLabel value={moreInfos} onChange={text => this.setState({cv: {...this.state.cv, moreInfos: text}})} className='CV_more_informations'/>
+          </div>
         </div>
 
         <div className='CV_create_footer'>
@@ -180,7 +191,7 @@ class CVForm extends Component {
     if(!title) errorsList += '<li>Il faut saisir un titre</li>'
     if(!firstName) errorsList += '<li>Il faut saisir votre prénom</li>'
     if(!lastName) errorsList += '<li>Il faut saisir votre nom de famille</li>'
-    if(!email) errorsList += '<li>Il faut saisir une adresse e-mail</li>'
+    if(!email || !validateEmail(email)) errorsList += '<li>Il faut saisir une adresse e-mail correcte</li>'
     if(!Object.values(formations).length) errorsList += '<li>Il faut saisir au moins une formation</li>'
     if(invalidFormations.length) {
       const formationsList = invalidFormations.map(formation => `<li>formation ${formation.name || '<i>n°'+(Object.values(formations).findIndex(f => f.id === formation.id)+1)+'</i>'}`)
@@ -224,42 +235,6 @@ class CVForm extends Component {
     )
   }
 }
-
-const Experience = ({exprerience: {id, startDate, endDate, location, name, description}, inputsDisabled, removeExperience, onChange}) => (
-  <li className='CV_experience'>
-    <InputLabel label={'Nom'} value={name} onChange={text => onChange(text, 'name', id)} className='CV_experience_name' disabled={inputsDisabled}/>
-    <InputLabel label={'Description'} value={description} onChange={text => onChange(text, 'description', id)} className='CV_experience_description' disabled={inputsDisabled}/>
-    <InputLabel label={'Établissement'} value={location} onChange={text => onChange(text, 'location', id)} className='CV_experience_location' disabled={inputsDisabled}/>
-
-    <KronosLabel label={'Date de début de période'} value={startDate} onChange={text => onChange(text, 'startDate', id)} className='CV_experience_startDate' disabled={inputsDisabled}/>
-    <KronosLabel label={'Date de début de période'} value={endDate} onChange={text => onChange(text, 'endDate', id)} className='CV_experience_endDate' disabled={inputsDisabled}/>
-
-    <button onClick={() => removeExperience(id)} className='fa fa-trash'/>
-  </li>
-)
-
-const Formation = ({formation: {id, startDate, endDate, location, name, description}, inputsDisabled, removeFormation, onChange}) => (
-  <li className='CV_experience'>
-    <InputLabel label={'Nom'} value={name} onChange={text => onChange(text, 'name', id)} className='CV_formation_name' disabled={inputsDisabled}/>
-    <InputLabel label={'Description'} value={description} onChange={text => onChange(text, 'description', id)} className='CV_formation_description' disabled={inputsDisabled}/>
-    <InputLabel label={'Établissement'} value={location} onChange={text => onChange(text, 'location', id)} className='CV_formation_location' disabled={inputsDisabled}/>
-
-    <KronosLabel label={'Date de début de période'} value={startDate} onChange={text => onChange(text, 'startDate', id)} className='CV_formation_startDate' disabled={inputsDisabled}/>
-    <KronosLabel label={'Date de début de période'} value={endDate} onChange={text => onChange(text, 'endDate', id)} className='CV_formation_endDate' disabled={inputsDisabled}/>
-
-    <button onClick={() => removeFormation(id)} className='fa fa-trash'/>
-  </li>
-)
-
-const Skill = ({skill: {id, title, level}, inputsDisabled, removeSkill, onChange}) => (
-  <li className='CV_experience'>
-    {id}
-    <InputLabel label={'Nom'} value={title} onChange={text => onChange(text, 'title', id)} className='CV_skill_title' disabled={inputsDisabled}/>
-    <InputLabel label={'Description'} value={level} onChange={text => onChange(text, 'level', id)} className='CV_skill_level' disabled={inputsDisabled}/>
-
-    <button onClick={() => removeSkill(id)} className='fa fa-trash'/>
-  </li>
-)
 
 const CVDefaultValues = {
   title: '',

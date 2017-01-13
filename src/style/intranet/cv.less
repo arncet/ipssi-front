@@ -15,5 +15,94 @@
 
 .CV_create{
 
+  .react-kronos input{
+    width: 100%;
+  }
 
+  .CV_section_title{
+    margin-bottom: 10px;
+    .openSansBold;
+  }
+
+  .CV_title{
+    width: 100%;
+  }
+
+  .CV_lastname, .CV_firstname, .CV_address, .CV_email, .CV_phone{
+    width: calc(20% - 10px);
+    margin-right: 12px;
+  }
+
+  .CV_phone{
+    margin-right: 0px;
+  }
+
+  .CV_experiences, .CV_formations, .CV_skills{
+    list-style: none;
+    padding: 0px;
+  }
+
+  .CV_experience, .CV_formation, .CV_skill{
+    border-bottom: 1px solid #E5E5E5;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+
+    &:last-child{
+      border-bottom: none;
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+    }
+  }
+
+  .CV_experience_name, .CV_experience_description, .CV_experience_location,
+  .CV_experience_startDate, .Kronos_label_and_checkbox,
+  .CV_formation_name, .CV_formation_description, .CV_formation_location,
+  .CV_formation_startDate, .Kronos_label_and_checkbox{
+    width: calc(20% - 10px - 20px);
+    margin-right: 12px;
+  }
+
+  .CV_experience .fa-trash, .CV_formation .fa-trash, .CV_skill .fa-trash{
+    margin-right: 0px;
+    width: 90px;
+    height: 29px;
+  }
+
+  .CV_skill_title, .CV_skill_level,{
+    width: calc(50% - 10px - 47px);
+    margin-right: 12px;
+  }
+
+  .CV_column{
+    display: inline-block;
+    vertical-align: top;
+    width: calc(50% - 10px);
+    margin-right: 20px;
+
+    &:nth-child(2n+1){
+      margin-right: 0px;
+    }
+  }
+
+  .Kronos_label_and_checkbox{
+    display: inline-block;
+    vertical-align: top;
+
+    .CV_experience_endDate, .CV_formation_endDate{
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .Kronos_label_and_checkbox_label{
+      display: inline-block;
+      vertical-align: top;
+      font-size: 11px;
+      padding-left: 20px;
+    }
+
+    .checkbox{
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
 }
