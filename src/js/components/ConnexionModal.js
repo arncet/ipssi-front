@@ -13,7 +13,7 @@ class ConnexionModal extends Component{
   }
 
   render() {
-    const {close, connexionStatus} = this.props
+    const {close, connexionStatus, connexionError} = this.props
     const {email, password, errors} = this.state
 
     return (
@@ -24,12 +24,12 @@ class ConnexionModal extends Component{
             <div className='fa fa-times' onClick={() => close()}/>
           </div>
           <div className='Modal_body'>
-            {(errors || connexionStatus) ? <ErrorMessage error={errors || connexionStatus}/> : null}
+            {(errors || connexionStatus === 'failed' || connexionError) ? <ErrorMessage error={errors || connexionError || 'Une erreur est surevenue, merci de réessayer.'}/> : null}
             <InputLabel className='Connexion_email_input' label='E-mail' onChange={text => this.setState({email: text})} value={email} name='user_email' autofocus={true}/>
             <InputLabel className='Connexion_password_input' label='Mot de passe' onChange={text => this.setState({password: text})} value={password} name='user_password' type='password'/>
           </div>
           <div className='Modal_footer'>
-            <button className='button' onClick={() => this.connexion()} disabled={connexionStatus === 'pending'}>Connexion</button>
+            <button className='button' onClick={() => this.connexion()} disabled={connexionStatus === 'pending'}>{connexionStatus === 'pending' ? 'Connexion en cours ...' : 'Connexion'}</button>
             <button className='button' onClick={() => close()}>Annuler</button>
           </div>
         </div>

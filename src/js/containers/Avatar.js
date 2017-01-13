@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {AVATAR_OPEN_CONNEXION_MODAL, AVATAR_CLOSE_CONNEXION_MODAL, USERS_CONNEXION} from '../actions'
-import {getMe, getConnextionStatus} from '../selectors/users'
+import {getMe, getConnextionStatus, getConnexionError} from '../selectors/users'
 import {getConnextionModalIsOpen} from '../selectors/avatar'
 
 import Avatar from '../components/Avatar'
@@ -9,8 +9,9 @@ const mapStateToProps = (state) => {
   const me = getMe(state)
   const connexionStatus = getConnextionStatus(state)
   const connexionModalIsOpen = getConnextionModalIsOpen(state)
+  const connexionError = getConnexionError(state)
 
-  return {me, connexionStatus, connexionModalIsOpen}
+  return {me, connexionStatus, connexionModalIsOpen, connexionError}
 }
 
 const mapDispatchToProps = dispatch => ({

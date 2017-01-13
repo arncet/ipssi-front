@@ -3,15 +3,16 @@ import {takeEvery} from 'redux-saga'
 import {USERS_CONNEXION, USERS_CONNEXION_SUCCESS, USERS_CONNEXION_FAILED,
  USERS_INSCRIPTION, USERS_INSCRIPTION_SUCCESS, USERS_INSCRIPTION_FAILED,
  USERS_FETCH_USERS, USERS_FETCH_USERS_SUCCESS, USERS_FETCH_USERS_FAILED} from '../actions'
-import {userConnexionApi, userInscriptionApi, fetchUsersApi} from '../api/users'
+import {userConnexionApi, userInscriptionApi, fetchUsersApi, getTokenApi} from '../api/users'
 import {setCookie} from '../utils/cookie'
 
 //Connexion
 function* userConnexion ({payload: {user}}) {
   try {
-    const result = yield call(userConnexionApi, user)
-    yield put({type: USERS_CONNEXION_SUCCESS, payload: result})
-    setCookie('ippsi-jwt', result.jwt, 7)
+    const {jwt} = yield call(getTokenApi, user)
+    //const result = yield call(userConnexionApi, user)
+    yield put({type: USERS_CONNEXION_SUCCESS})
+    setCookie('ippsi-jwt', jwt, 7)
   } catch(e) {
     yield put({type: USERS_CONNEXION_FAILED})
     console.error('ERROR USERS CONNEXION', e)

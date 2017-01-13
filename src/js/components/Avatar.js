@@ -5,7 +5,7 @@ import {getUserAvatar} from '../utils/users'
 //Components
 import ConnexionModal from './ConnexionModal'
 
-const Avatar = ({me, openConnexionModal, closeConnexionModal, connexionModalIsOpen, connexion, connexionStatus}) => {
+const Avatar = ({me, openConnexionModal, closeConnexionModal, connexionModalIsOpen, connexion, connexionStatus, connexionError}) => {
   const avatar = me
     ? <a className={`User_avatar_wrapper ${inRoute('profil') ? 'User_avatar_on_profile' : ''}`} href={getPath('profil')}>
         <div className='User_avatar' style={{backgroundImage: `url('${getUserAvatar(me)}')`}}/>
@@ -16,7 +16,7 @@ const Avatar = ({me, openConnexionModal, closeConnexionModal, connexionModalIsOp
 
   return (
     <div className='Avatar'>
-      {connexionModalIsOpen ? <ConnexionModal close={closeConnexionModal} connexion={connexion} connexionStatus={connexionStatus}/> : null}
+      {connexionModalIsOpen ? <ConnexionModal close={closeConnexionModal} connexion={connexion} connexionStatus={connexionStatus} connexionError={connexionError}/> : null}
       {avatar}
     </div>
   )

@@ -126,9 +126,9 @@ export const USERS_FETCH_USERS = 'users.fetch.users'
 export const USERS_FETCH_USERS_SUCCESS = 'users.fetch.users.success'
 export const USERS_FETCH_USERS_FAILED = 'users.fetch.users.failed'
 
-export const USERS_CONNEXION = 'users.connextion'
-export const USERS_CONNEXION_SUCCESS = 'users.connextion.success'
-export const USERS_CONNEXION_FAILED = 'users.connextion.failed'
+export const USERS_CONNEXION = 'users.connexion'
+export const USERS_CONNEXION_SUCCESS = 'users.connexion.success'
+export const USERS_CONNEXION_FAILED = 'users.connexion.failed'
 
 export const USERS_INSCRIPTION = 'users.inscription'
 export const USERS_INSCRIPTION_SUCCESS = 'users.inscription.success'

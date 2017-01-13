@@ -8,7 +8,9 @@ const initialState = {
 
   },
   connexionStatus: '',
+  connexionError: '',
   inscriptionStatus: '',
+  inscriptionError: '',
   fetchUsersStatus: '',
   me: null
 }
@@ -41,17 +43,18 @@ export default function users (state = initialState, {type, payload}) {
     case USERS_CONNEXION_SUCCESS:
       return {
         ...state,
-        me: payload.token,
-        users: {
-          ...state.users,
-          [payload.user.id]: payload.user
-        },
+        // me: payload.user.id,
+        // users: {
+        //   ...state.users,
+        //   [payload.user.id]: payload.user
+        // },
         connexionStatus: 'success'
       }
     case USERS_CONNEXION_FAILED:
       return {
         ...state,
-        connexionStatus: 'failed'
+        connexionStatus: 'failed',
+        connexionError: payload && payload.connexionError ? payload.connexionError : ''
       }
     case USERS_INSCRIPTION:
       return {
@@ -66,7 +69,8 @@ export default function users (state = initialState, {type, payload}) {
     case USERS_INSCRIPTION_FAILED:
       return {
         ...state,
-        inscriptionStatus: 'failed'
+        inscriptionStatus: 'failed',
+        inscriptionError: payload.inscriptionError || ''
       }
     case AVATAR_CLOSE_CONNEXION_MODAL:
     case USERS_CLEAR_CONNEXION_STATUS:
