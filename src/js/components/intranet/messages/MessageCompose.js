@@ -9,7 +9,7 @@ import Modal from '../../Modal'
 class MessageCompose extends Component{
   constructor(props) {
     super(props)
-    this.state = {message: 'OLOLOL', emails: ['arnaud.cetoute@hotmail.fr', 'arnaud.cetoute@yopmail.fr'], error: ''}
+    this.state = {message: '', emails: ['arnaud.cetoute@hotmail.fr'], error: ''}
   }
 
   render() {

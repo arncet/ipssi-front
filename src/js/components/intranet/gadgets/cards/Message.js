@@ -1,5 +1,6 @@
 import React from 'react'
 import {getPath} from '../../../../utils/routes'
+import Link from '../../../commons/Link'
 
 const messages = [
   {title: 'Le Lorem Ipsum est simplement du fau', author: 'Belenus Bence'},
@@ -10,7 +11,7 @@ const messages = [
 ]
 
 const MessageCard = () => (
-  <a className="Gadget_card Message_card" href={getPath('intranet-messages')}>
+  <Link className="Gadget_card Message_card" href={getPath('intranet-messages')}>
     <div className='Gadget_header'>
       <i className='fa fa-envelope-o'/>
       <h3 className='Gadget_title'>Messagerie</h3>
@@ -26,7 +27,7 @@ const MessageCard = () => (
         }
       </ul>
     </div>
-  </a>
+  </Link>
 )
 
 const Message = ({message: {author, title}}) => (

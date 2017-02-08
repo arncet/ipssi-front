@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import kebabCase from 'lodash/kebabCase'
+import {getPath} from '../../utils/routes'
 
+import Link from '../commons/Link'
 import Filter from '../commons/Filter'
 
 class Slider extends Component{
@@ -41,7 +43,7 @@ class Slider extends Component{
   }
 
   displaySliderItem (item) {
-    const { id, title, description, src, link } = item
+    const {id, title, description, header} = item
     return (
       <li
         className="Slider_item"
@@ -50,9 +52,9 @@ class Slider extends Component{
         onMouseEnter={() => this.onMouseEnterSliderItem(id)}
         onMouseLeave={() => this.onMouseLeaveSLiderItem()}
       >
-        <div className="Slider_item_picture" style={{backgroundImage:`url(${src})`}}/>
+        <div className="Slider_item_picture" style={{backgroundImage:`url(${header})`}}/>
         <div className="Slider_text">
-            <div className="Slider_item_title"><a href={link}>{title}</a></div>
+            <div className="Slider_item_title"><Link href={getPath('news-id', {id})}>{title}</Link></div>
             <p className="Slider_item_description">{description}</p>
         </div>
       </li>
@@ -60,20 +62,20 @@ class Slider extends Component{
   }
 
   displaySliderMenuItem (item, i, items, current, hover) {
-    const { id, title, src, link } = item
+    const {id, title, header, link} = item
     const width = `calc(${(100 / items.length).toString()}% - 5px)`
-    const sliderPictureStyle = { backgroundImage: `url(${src})`, width: width }
+    const sliderPictureStyle = {backgroundImage: `url(${header})`, width: width}
     return (
       <li
         className={`Slider_menu_item ${current ? 'Current_item' : ''}`}
         key={`home-slider-menu-item-${id}`}
         style={sliderPictureStyle}
-        onClick={() => this.setState({ currentId: id, pause: true })}
+        onClick={() => this.setState({currentId: id, pause: true})}
         onMouseEnter={() => this.onMouseEnterMenuItem(id, current)}
         onMouseLeave={() => this.onMouseLeaveMenuItem()}
       >
-        { !current && !hover ? <Filter/> : null }
-        <a href={link} className="Slider_menu_item_title">{title}</a>
+        {!current && !hover ? <Filter/> : null}
+        <Link href={link} className="Slider_menu_item_title">{title}</Link>
       </li>
     )
   }

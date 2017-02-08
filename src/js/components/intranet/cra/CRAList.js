@@ -3,6 +3,7 @@ import Table from '../../Table'
 import DeleteModal from './modals/DeleteModal'
 import moment from '../../../utils/moment'
 import {getPath} from '../../../utils/routes'
+import Link from '../../commons/Link'
 
 const CRAList = ({cras, openDeleteCRAModal, closeDeleteCRAModal, deleteCRA, craToDelete}) => (
   <div className='CRA_list'>
@@ -29,8 +30,8 @@ const CRAList = ({cras, openDeleteCRAModal, closeDeleteCRAModal, deleteCRA, craT
 
 const actionColums = (openDeleteCRAModal, element) => (
   <div className='CRA_actions'>
-    <a className='fa fa-eye button button-blue' href={getPath('intranet-cra-id', {id: element.id})}/>
-    <a className='fa fa-pencil button button-green' href={getPath('intranet-cra-id-edit', {id: element.id})}/>
+    <Link className='fa fa-eye button button-blue' href={getPath('intranet-cra-id', {id: element.id})}/>
+    <Link className='fa fa-pencil button button-green' href={getPath('intranet-cra-id-edit', {id: element.id})}/>
     <button className='fa fa-trash button button-red' onClick={() => openDeleteCRAModal(element.id)}/>
   </div>
 )

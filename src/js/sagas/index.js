@@ -8,6 +8,7 @@ import conges from './conges'
 import users from './users'
 import cv from './cv'
 import jobs from './jobs'
+import news from './news'
 
 function* root () {
   yield [
@@ -18,7 +19,8 @@ function* root () {
     fork(conges),
     fork(users),
     fork(cv),
-    fork(jobs)
+    fork(jobs),
+    fork(news)
   ]
 }
 

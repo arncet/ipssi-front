@@ -5,9 +5,9 @@ import Slider from './Slider'
 import Presentations from './Presentations'
 import LookingForAJob from './LookingForAJob'
 
-const Home = ({slides, sections, jobs}) => (
+const Home = ({allNews, sections, jobs}) => (
   <div className="Home">
-    <Slider slides={slides}/>
+    <Slider slides={allNews}/>
     <Presentations sections={sections}/>
     <LookingForAJob jobs={jobs}/>
   </div>

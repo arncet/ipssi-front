@@ -9,9 +9,13 @@ import Home from './containers/Home'
 import WrapperIntranet from './components/intranet/Wrapper'
 import HomeIntranet from './components/intranet/home/Home'
 
-import NewsIntranet from './components/intranet/news/News'
 import MessagesIntranet from './containers/intranet/Messages'
 import CalendarIntranet from './containers/intranet/Calendar'
+
+import NewsList from './containers/intranet/news/NewsList'
+import NewsCreate from './containers/intranet/news/NewsCreate'
+import NewsEdit from './containers/intranet/news/NewsEdit'
+import News from './containers/intranet/news/News'
 
 import CRAList from './containers/intranet/cra/CRAList'
 import CRACreate from './containers/intranet/cra/CRACreate'
@@ -41,9 +45,13 @@ const App = ({ history }) => (
       </Route>
       <Route path='intranet' component={WrapperIntranet}>
         <IndexRoute component={HomeIntranet}/>
-        <Route path='actualites' component={NewsIntranet}/>
         <Route path='messages' component={MessagesIntranet}/>
         <Route path='calendrier' component={CalendarIntranet}/>
+
+        <Route path='actualites' component={NewsList}/>
+        <Route path='actualites/creer' component={NewsCreate}/>
+        <Route path='actualites/:id' component={News}/>
+        <Route path='actualites/:id/editer' component={NewsEdit}/>
 
         <Route path='comptes-rendus-d-activites' component={CRAList}/>
         <Route path='comptes-rendus-d-activites/creer' component={CRACreate}/>

@@ -1,5 +1,6 @@
 import React from 'react'
 import {getPath} from '../../../../utils/routes'
+import Link from '../../../commons/Link'
 
 const events = [
   {title: 'Le Lorem Ipsum est simplement du fau', date: '27 octobre 2016'},
@@ -7,7 +8,7 @@ const events = [
 ]
 
 const CalendarCard = () => (
-  <a className="Gadget_card Calendar_card" href={getPath('intranet-calendar')}>
+  <Link className="Gadget_card Calendar_card" href={getPath('intranet-calendar')}>
     <div className='Gadget_header'>
       <i className='fa fa-calendar-o'/>
       <h3 className='Gadget_title'>Agenda</h3>
@@ -23,7 +24,7 @@ const CalendarCard = () => (
         }
       </ul>
     </div>
-  </a>
+  </Link>
 )
 
 const Event = ({event: {date, title}}) => (

@@ -1,30 +1,6 @@
-import {HOME_FETCH_SLIDES, HOME_FETCH_SLIDES_SUCCESS, HOME_FETCH_SLIDES_FAILED,
- HOME_FETCH_SECTIONS, HOME_FETCH_SECTIONS_SUCCESS, HOME_FETCH_SECTIONS_FAILED} from '../actions'
+import {HOME_FETCH_SECTIONS, HOME_FETCH_SECTIONS_SUCCESS, HOME_FETCH_SECTIONS_FAILED} from '../actions'
 
 const initialState = {
-  slides: {
-    1: {
-      id: 1,
-      title: 'Lorem ipsum dolor sit amet.',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
-      src: 'assets/images/home/desktop-mac-2.jpg',
-      link: '/articles/lorem-ipsum'
-    },
-    2: {
-      id: 2,
-      title: 'Lorem ipsum.',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
-      src: 'assets/images/home/b6972e09ad5bf832a831ca2f6200e358.jpg',
-      link: '/articles/lorem-ipsum'
-    },
-    3: {
-      id: 3,
-      title: 'Lorem ipsum jygfhjyhj.',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.',
-      src: 'assets/images/home/02_b.jpg',
-      link: '/articles/lorem-ipsum'
-    }
-  },
   sections: {
     1: {
       id: 1,
@@ -45,30 +21,11 @@ const initialState = {
       picture: 'assets/images/home/Productive-Work-Environments.jpg'
     }
   },
-  slideStatus: '',
   sectionStatus: ''
 }
 
 export default function home (state = initialState, {type, payload}) {
   switch (type) {
-    case HOME_FETCH_SLIDES:
-      return {
-        ...state,
-        slideStatus: 'pending'
-      }
-    case HOME_FETCH_SLIDES_SUCCESS:
-      return {
-        ...state,
-        slides: payload.slides.reduce((prev, slide) => {
-          return {...prev, [slide.id]: slide}
-        }, {}),
-        slideStatus: ''
-      }
-    case HOME_FETCH_SLIDES_FAILED:
-      return {
-        ...state,
-        slideStatus: 'failed'
-      }
     case HOME_FETCH_SECTIONS:
       return {
         ...state,

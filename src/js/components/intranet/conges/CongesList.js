@@ -3,6 +3,7 @@ import Table from '../../Table'
 import DeleteModal from './modals/DeleteModal'
 import moment from '../../../utils/moment'
 import {getPath} from '../../../utils/routes'
+import Link from '../../commons/Link'
 
 const CongesList = ({conges, openDeleteCongesModal, closeDeleteCongesModal, deleteConges, congesToDelete}) => (
   <div className='Conges_list'>
@@ -27,8 +28,8 @@ const CongesList = ({conges, openDeleteCongesModal, closeDeleteCongesModal, dele
 
 const actionColums = (openDeleteCongesModal, element) => (
   <div className='Conges_actions'>
-    <a className='fa fa-eye button button-blue' href={getPath('intranet-demandes-de-conges-id', {id: element.id})}/>
-    <a className='fa fa-pencil button button-green' href={getPath('intranet-demandes-de-conges-id-edit', {id: element.id})}/>
+    <Link className='fa fa-eye button button-blue' href={getPath('intranet-demandes-de-conges-id', {id: element.id})}/>
+    <Link className='fa fa-pencil button button-green' href={getPath('intranet-demandes-de-conges-id-edit', {id: element.id})}/>
     <button className='fa fa-trash button button-red' onClick={() => openDeleteCongesModal(element.id)}/>
   </div>
 )

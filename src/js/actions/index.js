@@ -108,10 +108,6 @@ export const CONGES_VALID_SUCCESS = 'conges.valid.success'
 export const CONGES_VALID_FAILED = 'conges.valid.failed'
 
 //HOME
-export const HOME_FETCH_SLIDES = 'home.fetch.sildes'
-export const HOME_FETCH_SLIDES_SUCCESS = 'home.fetch.sildes.success'
-export const HOME_FETCH_SLIDES_FAILED = 'home.fetch.sildes.failed'
-
 export const HOME_FETCH_SECTIONS = 'home.fetch.sections'
 export const HOME_FETCH_SECTIONS_SUCCESS = 'home.fetch.sections.success'
 export const HOME_FETCH_SECTIONS_FAILED = 'home.fetch.sections.failed'
@@ -193,3 +189,24 @@ export const JOBS_CLEAN_STATUS = 'jobs.clean.status'
 export const JOBS_SET_AVALIABLE = 'jobs.set.avaliable'
 export const JOBS_SET_AVALIABLE_SUCCESS = 'jobs.set.avaliable.success'
 export const JOBS_SET_AVALIABLE_FAILED = 'jobs.set.avaliable.failed'
+
+//CRA
+export const NEWS_LOAD = 'news.load'
+export const NEWS_LOAD_SUCCESS = 'news.load.success'
+export const NEWS_LOAD_FAILED = 'news.load.failed'
+
+export const NEWS_CREATE = 'news.create'
+export const NEWS_CREATE_SUCCESS = 'news.create.success'
+export const NEWS_CREATE_FAILED = 'news.create.failed'
+
+export const NEWS_EDIT = 'news.edit'
+export const NEWS_EDIT_SUCCESS = 'news.edit.success'
+export const NEWS_EDIT_FAILED = 'news.edit.failed'
+
+export const NEWS_DELETE_OPEN_MODAL = 'news.delete.open.modal'
+export const NEWS_DELETE_CLOSE_MODAL = 'news.delete.close.modal'
+export const NEWS_DELETE = 'news.delete'
+export const NEWS_DELETE_SUCCESS = 'news.delete.success'
+export const NEWS_DELETE_FAILED = 'news.delete.failed'
+
+export const NEWS_CLEAN_STATUS = 'news.clean.status'

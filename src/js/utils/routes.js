@@ -7,71 +7,78 @@ export const getPath = (routeName, params) => {
     case 'contact':
     case 'connexion':
     case 'profil':
-      return `#/${routeName}`
+      return `${routeName}`
 
     case 'presentation':
-      return '#/le-groupe/presentation'
+      return 'le-groupe/presentation'
     case 'chiffres-cles':
-      return '#/le-groupe/chiffres-cles'
+      return 'le-groupe/chiffres-cles'
     case 'notre-expertise':
-      return '#/le-groupe/notre-expertise'
+      return 'le-groupe/notre-expertise'
     case 'la-valeur-du-groupe':
-      return '#/le-groupe/la-valeur-du-groupe'
+      return 'le-groupe/la-valeur-du-groupe'
     case 'nos-metiers':
-      return '#/l-activite/nos-metiers'
+      return 'l-activite/nos-metiers'
     case 'nos-secteurs-d-activites':
-      return '#/l-activite/nos-secteurs-d-activites'
+      return 'l-activite/nos-secteurs-d-activites'
     case 'ils-nous-font-confiance':
-      return '#/l-activite/ils-nous-font-confiance'
+      return 'l-activite/ils-nous-font-confiance'
     case 'les-postes-a-pourvoir':
-      return '#/nous-rejoindre/les-postes-a-pourvoir'
+      return 'nous-rejoindre/les-postes-a-pourvoir'
     case 'postuler':
-      return '#/nous-rejoindre/postuler'
+      return 'nous-rejoindre/postuler'
     case 'intranet-messages':
-      return '#/intranet/messages'
+      return 'intranet/messages'
     case 'intranet-calendar':
-      return '#/intranet/calendrier'
+      return 'intranet/calendrier'
+
     case 'intranet-news':
-      return '#/intranet/actualites'
+      return 'intranet/actualites'
+    case 'intranet-news-create':
+      return 'intranet/actualites/creer'
+    case 'intranet-news-id':
+      return `intranet/actualites/${params.id}`
+    case 'intranet-news-id-edit':
+      return `intranet/actualites/${params.id}/editer`
 
     case 'intranet-cra':
-      return '#/intranet/comptes-rendus-d-activites'
+      return 'intranet/comptes-rendus-d-activites'
     case 'intranet-cra-create':
-      return '#/intranet/comptes-rendus-d-activites/creer'
+      return 'intranet/comptes-rendus-d-activites/creer'
     case 'intranet-cra-id':
-      return `#/intranet/comptes-rendus-d-activites/${params.id}`
+      return `intranet/comptes-rendus-d-activites/${params.id}`
     case 'intranet-cra-id-edit':
-      return `#/intranet/comptes-rendus-d-activites/${params.id}/editer`
+      return `intranet/comptes-rendus-d-activites/${params.id}/editer`
 
     case 'intranet-demandes-de-conges':
-      return '#/intranet/demandes-de-conges'
+      return 'intranet/demandes-de-conges'
     case 'intranet-demandes-de-conges-create':
-      return '#/intranet/demandes-de-conges/creer'
+      return 'intranet/demandes-de-conges/creer'
     case 'intranet-demandes-de-conges-id':
-      return `#/intranet/demandes-de-conges/${params.id}`
+      return `intranet/demandes-de-conges/${params.id}`
     case 'intranet-demandes-de-conges-id-edit':
-      return `#/intranet/demandes-de-conges/${params.id}/editer`
+      return `intranet/demandes-de-conges/${params.id}/editer`
 
     case 'intranet-cvtheque':
-      return '#/intranet/cvtheque'
+      return 'intranet/cvtheque'
     case 'intranet-cvtheque-create':
-      return '#/intranet/cvtheque/creer'
+      return 'intranet/cvtheque/creer'
     case 'intranet-cvtheque-id':
-      return `#/intranet/cvtheque/${params.id}`
+      return `intranet/cvtheque/${params.id}`
     case 'intranet-cvtheque-id-edit':
-      return `#/intranet/cvtheque/${params.id}/editer`
+      return `intranet/cvtheque/${params.id}/editer`
 
     case 'intranet-offres-de-poste':
-      return '#/intranet/offres-de-poste'
+      return 'intranet/offres-de-poste'
     case 'intranet-offres-de-poste-create':
-      return '#/intranet/offres-de-poste/creer'
+      return 'intranet/offres-de-poste/creer'
     case 'intranet-offres-de-poste-id':
-      return `#/intranet/offres-de-poste/${params.id}`
+      return `intranet/offres-de-poste/${params.id}`
     case 'intranet-offres-de-poste-id-edit':
-      return `#/intranet/offres-de-poste/${params.id}/editer`
+      return `intranet/offres-de-poste/${params.id}/editer`
     case 'home':
     default:
-      return '#/'
+      return ''
   }
 }
 

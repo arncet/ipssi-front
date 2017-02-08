@@ -1,15 +1,16 @@
 import React from 'react'
 import {getPath, inRoute} from '../utils/routes'
 import {getUserAvatar} from '../utils/users'
+import Link from './commons/Link'
 
 //Components
 import ConnexionModal from './ConnexionModal'
 
 const Avatar = ({me, openConnexionModal, closeConnexionModal, connexionModalIsOpen, connexion, connexionStatus, connexionError}) => {
   const avatar = me
-    ? <a className={`User_avatar_wrapper ${inRoute('profil') ? 'User_avatar_on_profile' : ''}`} href={getPath('profil')}>
+    ? <Link className={`User_avatar_wrapper ${inRoute('profil') ? 'User_avatar_on_profile' : ''}`} href={getPath('profil')}>
         <div className='User_avatar' style={{backgroundImage: `url('${getUserAvatar(me)}')`}}/>
-      </a>
+      </Link>
     : <div className='Connexion_button' onClick={() => openConnexionModal()}>
         <span className='fa fa-user'/>
       </div>

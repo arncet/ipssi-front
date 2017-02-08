@@ -2,6 +2,7 @@ import React from 'react'
 import Table from '../../Table'
 import DeleteModal from './modals/DeleteModal'
 import {getPath} from '../../../utils/routes'
+import Link from '../../commons/Link'
 
 const CVList = ({cvs, openDeleteCVModal, closeDeleteCVModal, deleteCV, cvToDelete}) => (
   <div className='CV_list'>
@@ -23,8 +24,8 @@ const CVList = ({cvs, openDeleteCVModal, closeDeleteCVModal, deleteCV, cvToDelet
 
 const actionColums = (openDeleteCVModal, element) => (
   <div className='CV_actions'>
-    <a className='fa fa-eye button button-blue' href={getPath('intranet-cvtheque-id', {id: element.id})}/>
-    <a className='fa fa-pencil button button-green' href={getPath('intranet-cvtheque-id-edit', {id: element.id})}/>
+    <Link className='fa fa-eye button button-blue' href={getPath('intranet-cvtheque-id', {id: element.id})}/>
+    <Link className='fa fa-pencil button button-green' href={getPath('intranet-cvtheque-id-edit', {id: element.id})}/>
     <button className='fa fa-trash button button-red' onClick={() => openDeleteCVModal(element.id)}/>
   </div>
 )

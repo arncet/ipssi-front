@@ -1,22 +1,28 @@
 import {googleConfig} from '../config'
 import moment from '../utils/moment'
 
-export const sendEmailApi = ({message, email, obj}) => {
+export const sendEmailApi = ({message, email, obj, replyTo = '', messageId = ''}) => {
+  const replyHeader = replyTo
+    ? {'Reply-To': replyTo, 'In-Reply-To': messageId, 'References': messageId}
+    : {}
+
   const headers = {
     'To': email,
-    'Subject': obj
+    'Subject': obj,
+    'Content-Type': 'text/html; charset=utf-8',
+    ...replyHeader
   }
 
   const headerInline = Object.keys(headers).reduce((prev, header) => {
     return `${prev}${header}: ${headers[header]}\r\n`
   }, '')
 
-  const fullMessage = headerInline + message
+  const fullMessage = `\r\n${headerInline}${message}`
 
   const request = gapi.client.gmail.users.messages.send({
     'userId': 'me',
     'resource': {
-      'raw': window.btoa(`${fullMessage}:`).replace(/\+/g, '-').replace(/\//g, '_')
+      'raw': window.btoa(fullMessage).replace(/\+/g, '-').replace(/\//g, '_')
     }
   })
 
@@ -25,37 +31,6 @@ export const sendEmailApi = ({message, email, obj}) => {
     else reject(resp)
   }))
 }
-
-// export const sendEmailApi = ({message, email, obj, replyTo = '', messageId = ''}) => {
-//   const replyHeader = replyTo
-//     ? {'Reply-To': replyTo, 'In-Reply-To': messageId, 'References': messageId}
-//     : {}
-
-//   const headers = {
-//     'To': email,
-//     'Subject': obj,
-//     'Content-Type': 'text/html; charset=utf-8',
-//     ...replyHeader
-//   }
-
-//   const headerInline = Object.keys(headers).reduce((prev, header) => {
-//     return `${prev}${header}: ${headers[header]}\r\n`
-//   }, '')
-
-//   const fullMessage = headerInline + message
-
-//   const request = gapi.client.gmail.users.messages.send({
-//     'userId': 'me',
-//     'resource': {
-//       'raw': window.btoa(fullMessage).replace(/\+/g, '-').replace(/\//g, '_')
-//     }
-//   })
-
-//   return new Promise((resolve, reject) => request.execute(resp => {
-//     if (resp.labelIds && resp.labelIds[0] === "SENT") resolve(resp)
-//     else reject(resp)
-//   }))
-// }
 
 export const googleAuthApi = () => {
   return new Promise((resolve, reject) => {

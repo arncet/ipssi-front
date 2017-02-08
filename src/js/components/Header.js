@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { kebabCase } from 'lodash'
 import {getPath, inRoute} from '../utils/routes'
+import Link from './commons/Link'
 
 //Containers
 import Avatar from '../containers/Avatar'
@@ -128,7 +129,7 @@ const NavItem = ({ item: { name, routeName, content }, current, onClick = () => 
     key={"navbar-item-"+kebabCase(name)}
     onClick={() => onClick(routeName)}
   >
-    <a href={content ? null : getPath(routeName)}>{name}</a>
+    <Link href={content ? null : getPath(routeName)}>{name}</Link>
   </li>
 )
 

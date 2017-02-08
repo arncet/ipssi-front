@@ -1,7 +1,8 @@
 import {GOOGLE_LOAD_GMAIL_SUCCESS, GOOGLE_FETCH_EMAILS,
  GOOGLE_FETCH_EMAILS_SUCCESS, GOOGLE_FETCH_EMAILS_FAILED,
  GOOGLE_LOAD_GMAIL, GOOGLE_LOAD_GMAIL_FAILED,
- GOOGLE_OPEN_COMPOSE_EMAIL_MODAL, GOOGLE_CLOSE_COMPOSE_EMAIL_MODAL} from '../actions'
+ GOOGLE_OPEN_COMPOSE_EMAIL_MODAL, GOOGLE_CLOSE_COMPOSE_EMAIL_MODAL,
+ GOOGLE_SEND_EMAIL_SUCCESS} from '../actions'
 
 const initialState = {emails: [], labels: [], loaded: false, status: '', composeModalIsOpen: false}
 
@@ -46,6 +47,7 @@ export default function layer (state = initialState, {type, payload}) {
         composeModalIsOpen: true
       }
     case GOOGLE_CLOSE_COMPOSE_EMAIL_MODAL:
+    case GOOGLE_SEND_EMAIL_SUCCESS:
       return {
         ...state,
         composeModalIsOpen: false
