@@ -48,7 +48,6 @@ const initialState = {
       responsableEntrepriseSignature: 'N. Veselko',
       responsableClientSignatureLieuDate: '10 decembre 2017, Lyon',
       responsableClientSignature: 'O. Serge',
-      consultant: 'Asip Serge',
       userId: 2,
       validationStatus: 'valid'
     },
@@ -85,7 +84,6 @@ const initialState = {
       responsableEntrepriseSignature: 'N. Veselko',
       responsableClientSignatureLieuDate: '10 decembre 2017, Lyon',
       responsableClientSignature: 'O. Serge',
-      consultant: 'Bosip Serge',
       validationStatus: 'rejected',
       userId: 1,
       askForEditionComment: 'Demande de modification :)'
@@ -123,7 +121,6 @@ const initialState = {
       responsableEntrepriseSignature: 'N. Veselko',
       responsableClientSignatureLieuDate: '10 decembre 2017, Lyon',
       responsableClientSignature: 'O. Serge',
-      consultant: 'Cosip Serge',
       userId: 5,
       validationStatus: 'pending'
     },
@@ -160,7 +157,6 @@ const initialState = {
       responsableEntrepriseSignature: 'N. Veselko',
       responsableClientSignatureLieuDate: '10 decembre 2017, Lyon',
       responsableClientSignature: 'O. Serge',
-      consultant: 'Dosip Serge',
       userId: 1,
       validationStatus: 'pending'
     }

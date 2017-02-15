@@ -29,8 +29,13 @@ class CongesCreate extends Component {
       <div className='Intranet_page_Conges Conges_create'>
         <div className='Intranet_page_header'>
           <h1 className='Intranet_page_title'>{id ? `Demande de congés : ${user.lastName} ${user.firstName}` : 'Création d\'une demande de congés'}</h1>
-          {id ? this.props.conge.validationStatus !== 'valid' ? inputsDisabled ? this.validationButtons() : this.getCongesFormButton() : null : null}
-          {id ? this.props.conge.validationStatus !== 'valid' ? this.props.conge.rejectedComment ? <WarningMessage message={`Demande refusé pour casue : <br/> ${this.props.conge.rejectedComment}`}/> : null : null : null}
+          {id && this.props.conge.validationStatus === 'valid'
+            ? null
+            : inputsDisabled
+              ? this.validationButtons()
+              : this.getCongesFormButton()
+          }
+          {id && this.props.conge.validationStatus !== 'valid' ? this.props.conge.rejectedComment ? <WarningMessage message={`Demande refusé pour casue : <br/> ${this.props.conge.rejectedComment}`}/> : null : null}
           {errors ? <ErrorMessage error={errors}/> : null}
         </div>
 
@@ -57,7 +62,7 @@ class CongesCreate extends Component {
 
         <div className='Conges_section'>
           {
-            this.props.conge.validationStatus && this.props.conge.validationStatus !== 'pending'
+            id && this.props.conge.validationStatus && this.props.conge.validationStatus !== 'pending'
               ? <div className='Conges_validation_status'>
                   <span className={`fa fa-${this.props.conge.validationStatus === 'valid' ? 'check' : 'times'}`}/>
                   <span className='Conges_validation_status_text'>{this.props.conge.validationStatus === 'valid' ? 'Demande accepté' : 'Demande refusé'}</span>

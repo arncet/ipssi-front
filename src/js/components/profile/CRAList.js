@@ -11,7 +11,6 @@ const CRAList = ({cras}) => (
         return {...cra, periodeStart: moment(cra.periodeStart).format('LL'), periodeEnd: moment(cra.periodeEnd).format('LL')}
       })}
       columns={[
-        {name: 'consultant', value: 'Consultant'},
         {name: 'projet', value: 'Projet'},
         {name: 'nomClient', value: 'Client'},
         {name: 'periodeStart', value: 'Début de la période'},

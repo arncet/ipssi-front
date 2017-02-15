@@ -1,8 +1,8 @@
 import {getRandomString} from '../utils/string'
 
-export const createNDFApi = ndf => {
+export const createNDFApi = (ndf, userId) => {
   return new Promise((resolve, reject) => {
-    resolve({...ndf, id: getRandomString()})
+    resolve({...ndf, id: getRandomString(), userId})
   })
 }
 
