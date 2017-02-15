@@ -45,7 +45,9 @@ class Profile extends Component {
               <InputLabel value={email} label='E-mail' onChange={text => this.setState({user: {...this.state.user, email: text}})} className='Profile_user_email' disabled={!editable} displayInputWhenDisabled={true}/>
               <InputLabel value={phone || '/'} label='Téléphone' onChange={text => this.setState({user: {...this.state.user, phone: text}})} className='Profile_user_phone' disabled={!editable} type='number' displayInputWhenDisabled={true}/>
               {editable ? <InputLabel label='Mot de passe' onChange={text => this.setState({user: {...this.state.user, password: text}})} className='Profile_user_password' disabled={!editable} type='password' displayInputWhenDisabled={true}/> : null}
-              {cv ? <Link className='Profile_user_cv' href={getPath('intranet-cvtheque-id', {id: cv.id})}><button className='button button-green'>Voir le CV</button></Link> : null}
+              {cv
+                ? <Link className='Profile_user_cv' href={getPath('intranet-cvtheque-id', {id: cv.id})}><button className='button button-green'>Voir le CV</button></Link>
+                : <Link className='button button-green' href={getPath('intranet-cvtheque-create')}>Créer mon CV</Link>}
             </div>
             {editable ? <div className='Profile_section Profile_section_avatar'><ImagePreview label='Image de profil' src={getUserAvatar(this.state.user)} onChange={image => this.setState({user: {...this.state.user, avatar: image}})}/></div> : null}
           </div>

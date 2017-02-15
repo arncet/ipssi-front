@@ -21,14 +21,11 @@ class CRAForm extends Component {
   render () {
     const {nomClient, periodeStart ,periodeEnd, projet, responsableClient,
       responsableClientContact, responsableClientFonction, responsableEntreprise,
-      responsableEntrepriseContact, responsableEntrepriseFonction, collaborateurEntreprise,
-      collaborateurEntrepriseContact, collaborateurEntrepriseFonction, rapport,
+      responsableEntrepriseContact, responsableEntrepriseFonction, rapport,
       nbAccidentsAvecArretsHorsAccidentTrajet, nbAccidentsSansArret, nbAccidentsTrajet,
       nbJourArretMaladie, detailCongesAbsences, totalJourPresense,
       satisfactionConsultant, satisfactionClient, pointAmelioration, activitesRestantes,
-      commentaire, consultantSignatureLieuDate, consultantSignature, responsableEntrepriseSignatureLieuDate,
-      responsableEntrepriseSignature, responsableClientSignatureLieuDate, responsableClientSignature,
-      id} = this.state.cra
+      commentaire, id} = this.state.cra
 
     const {errors} = this.state
     const {inputsDisabled, user} = this.props
@@ -58,9 +55,9 @@ class CRAForm extends Component {
           <InputLabel label={'Fonction'} value={responsableEntrepriseFonction} onChange={text => this.setState({cra: {...this.state.cra, responsableEntrepriseFonction: text}})} className='Responsable_entreprise_fonction' disabled={inputsDisabled}/>
           <InputLabel label={'Contact (n° et/ou e-mail)'} value={responsableEntrepriseContact} onChange={text => this.setState({cra: {...this.state.cra, responsableEntrepriseContact: text}})} className='Responsable_entreprise_contact' disabled={inputsDisabled}/>
 
-          <InputLabel label={'Collaborateur'} value={collaborateurEntreprise} onChange={text => this.setState({cra: {...this.state.cra, collaborateurEntreprise: text}})} className='Collaborateur_entreprise' disabled={inputsDisabled}/>
-          <InputLabel label={'Fonction'} value={collaborateurEntrepriseFonction} onChange={text => this.setState({cra: {...this.state.cra, collaborateurEntrepriseFonction: text}})} className='Collaborateur_entreprise_fonction' disabled={inputsDisabled}/>
-          <InputLabel label={'Contact (n° et/ou e-mail)'} value={collaborateurEntrepriseContact} onChange={text => this.setState({cra: {...this.state.cra, collaborateurEntrepriseContact: text}})} className='Collaborateur_entreprise_contact' disabled={inputsDisabled}/>
+          {id ? <InputLabel label={'Collaborateur'} value={`${user.firstName} ${user.lastName}`} className='Collaborateur_entreprise' disabled={true}/> : null}
+          {id ? <InputLabel label={'Fonction'} value={user.function} className='Collaborateur_entreprise_fonction' disabled={true}/> : null}
+          {id ? <InputLabel label={'Contact (n° et/ou e-mail)'} value={user.email} className='Collaborateur_entreprise_contact' disabled={true}/> : null}
         </div>
 
         <div className='CRA_section'>
@@ -108,17 +105,6 @@ class CRAForm extends Component {
           <QuillLabel label={'Commentaire'} value={commentaire} onChange={text => this.setState({cra: {...this.state.cra, commentaire: text}})} className='CRA_commentaire' disabled={inputsDisabled}/>
         </div>
 
-        <div className='CRA_section'>
-          <InputLabel label={'Singature consultant'} value={consultantSignature} onChange={text => this.setState({cra: {...this.state.cra, consultantSignature: text}})} className='CRA_signature_consultant' disabled={inputsDisabled}/>
-          <InputLabel label={'Lieu et date'} value={consultantSignatureLieuDate} onChange={text => this.setState({cra: {...this.state.cra, consultantSignatureLieuDate: text}})} className='CRA_signature_consultant_lieu_date' disabled={inputsDisabled}/>
-
-          <InputLabel label={'Singature responsable entreprise'} value={responsableEntrepriseSignature} onChange={text => this.setState({cra: {...this.state.cra, responsableEntrepriseSignature: text}})} className='CRA_signature_responsable_entreprise' disabled={inputsDisabled}/>
-          <InputLabel label={'Lieu et date'} value={responsableEntrepriseSignatureLieuDate} onChange={text => this.setState({cra: {...this.state.cra, responsableEntrepriseSignatureLieuDate: text}})} className='CRA_signature_responsable_entreprise_lieu_date' disabled={inputsDisabled}/>
-
-          <InputLabel label={'Singature responsable client'} value={responsableClientSignature} onChange={text => this.setState({cra: {...this.state.cra, responsableClientSignature: text}})} className='CRA_signature_responsable_client' disabled={inputsDisabled}/>
-          <InputLabel label={'Lieu et date'} value={responsableClientSignatureLieuDate} onChange={text => this.setState({cra: {...this.state.cra, responsableClientSignatureLieuDate: text}})} className='CRA_signature_responsable_client_lieu_date' disabled={inputsDisabled}/>
-        </div>
-
         <div className='CRA_create_footer'>
           {errors ? <ErrorMessage error={errors}/> : null}
           {inputsDisabled ? null : this.getCRAFormButton()}
@@ -130,8 +116,7 @@ class CRAForm extends Component {
   validCRA(action) {
     const {nomClient, projet, responsableClient,
       responsableClientContact, responsableClientFonction, responsableEntreprise,
-      responsableEntrepriseContact, responsableEntrepriseFonction, collaborateurEntreprise,
-      collaborateurEntrepriseContact, collaborateurEntrepriseFonction, rapport,
+      responsableEntrepriseContact, responsableEntrepriseFonction, rapport,
       nbAccidentsAvecArretsHorsAccidentTrajet, nbAccidentsSansArret, nbAccidentsTrajet,
       nbJourArretMaladie} = this.state.cra
 
@@ -147,10 +132,6 @@ class CRAForm extends Component {
     if(!responsableEntreprise) errorsList += '<li>Il faut saisir un nom de responsable entreprise</li>'
     if(!responsableEntrepriseContact) errorsList += '<li>Il faut numéro de phone ou une adresse email pour le responsable entreprise</li>'
     if(!responsableEntrepriseFonction) errorsList += '<li>Il faut saisir la fonction du responsable entreprise</li>'
-
-    if(!collaborateurEntreprise) errorsList += '<li>Il faut saisir un nom de collaborateur entreprise</li>'
-    if(!collaborateurEntrepriseContact) errorsList += '<li>Il faut numéro de phone ou une adresse email pour le collaborateur entreprise</li>'
-    if(!collaborateurEntrepriseFonction) errorsList += '<li>Il faut saisir la fonction du collaborateur entreprise</li>'
 
     if(!rapport) errorsList += '<li>Il faut saisir le contenu du rapport</li>'
 
@@ -201,9 +182,6 @@ const CRADefaultValues = {
   responsableEntreprise: '',
   responsableEntrepriseFonction: '',
   responsableEntrepriseContact: '',
-  collaborateurEntreprise: '',
-  collaborateurEntrepriseFonction: '',
-  collaborateurEntrepriseContact: '',
   rapport: '',
   nbAccidentsAvecArretsHorsAccidentTrajet: 0,
   nbAccidentsSansArret: 0,
@@ -216,12 +194,6 @@ const CRADefaultValues = {
   pointAmelioration: '',
   activitesRestantes: '',
   commentaire: '',
-  consultantSignatureLieuDate: '',
-  consultantSignature: '',
-  responsableEntrepriseSignatureLieuDate: '',
-  responsableEntrepriseSignature: '',
-  responsableClientSignatureLieuDate: '',
-  responsableClientSignature: '',
   askForEditionComment: '',
   validationStatus: 'pending'
 }

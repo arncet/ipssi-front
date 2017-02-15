@@ -110,7 +110,7 @@ const initialState = {
       },
       skills: {},
       moreInfos: '',
-      userId: 1,
+      userId: 4,
       validationStatus: 'pending',
       askForEditionComment: 'Demande de modification :)'
     },

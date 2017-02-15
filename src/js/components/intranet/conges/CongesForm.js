@@ -18,7 +18,7 @@ class CongesCreate extends Component {
 
   render () {
     const {fonction, interventionLocation, responsable, congesStartDate,
-     congesEndDate, congesTotalDays, congesType, location, signature,
+     congesEndDate, congesTotalDays, congesType, location,
      responsableSignatureAndDate, dirigentSignatureAndDate, id} = this.state.conge
     const {user} = this.props
 
@@ -49,7 +49,7 @@ class CongesCreate extends Component {
 
         <div className='Conges_section'>
           <KronosLabel label={'Date de début de congés'} value={congesStartDate} onChange={date => this.setState({conge: {...this.state.conge, congesStartDate: date, congesTotalDays: moment(congesEndDate).diff(moment(date), 'days')}})} className='Conges_start_date' disabled={inputsDisabled}/>
-          <KronosLabel label={'Date de début de congés'} value={congesEndDate} onChange={date => this.setState({conge: {...this.state.conge, congesEndDate: date, congesTotalDays: moment(date).diff(moment(congesStartDate), 'days')}})} className='Conges_end_date' disabled={inputsDisabled}/>
+          <KronosLabel label={'Date de fin de congés'} value={congesEndDate} onChange={date => this.setState({conge: {...this.state.conge, congesEndDate: date, congesTotalDays: moment(date).diff(moment(congesStartDate), 'days')}})} className='Conges_end_date' disabled={inputsDisabled}/>
           <div className='Conges_total_days'>{`Nombre total de jours : ${congesTotalDays + 1}`}</div>
           <InputLabel label={'Type de congés'} value={congesType} className='Conges_type' onChange={text => this.setState({conge: {...this.state.conge, congesType: text}})} disabled={inputsDisabled}/>
         </div>
@@ -57,7 +57,6 @@ class CongesCreate extends Component {
         <div className='Conges_section'>
           <InputLabel label={'Fait à'} value={location} onChange={text => this.setState({conge: {...this.state.conge, location: text}})} className='Conges_location' disabled={inputsDisabled}/>
           <div className='Conges_created_at'>{`Fait le ${moment().format('LL')}`}</div>
-          <InputLabel label={'Signature'} value={signature} onChange={text => this.setState({conge: {...this.state.conge, signature: text}})} className='Conges_signature' disabled={inputsDisabled}/>
         </div>
 
         <div className='Conges_section'>
@@ -70,8 +69,6 @@ class CongesCreate extends Component {
               : null
           }
           {id ? this.props.conge.rejectedComment ? <WarningMessage message={`Demande refusé pour casue : <br/> ${this.props.conge.rejectedComment}`}/> : null : null}
-          <InputLabel label={'Date et signature du responsable hiérarchique'} value={responsableSignatureAndDate} onChange={text => this.setState({conge: {...this.state.conge, responsableSignatureAndDate: text}})} className='Conges_responsable_signature' disabled={inputsDisabled}/>
-          <InputLabel label={'Date et signature du dirigent'} value={dirigentSignatureAndDate} onChange={text => this.setState({conge: {...this.state.conge, dirigentSignatureAndDate: text}})} className='Conges_dirigent_signature' disabled={inputsDisabled}/>
         </div>
       </div>
     )
@@ -79,7 +76,7 @@ class CongesCreate extends Component {
 
   validConges(action) {
     const {fonction, interventionLocation, responsable, congesStartDate,
-     congesEndDate, congesType, location, signature} = this.state.conge
+     congesEndDate, congesType, location} = this.state.conge
 
     let errorsList = ''
     if(!fonction) errorsList += '<li>Il faut saisir votre fonction</li>'
@@ -89,7 +86,6 @@ class CongesCreate extends Component {
     if(!congesEndDate) errorsList += '<li>Il faut saisir une date de fin de congés</li>'
     if(!congesType) errorsList += '<li>Il faut saisir un type de congés (CP, CSS ...)</li>'
     if(!location) errorsList += '<li>Il faut saisir le lieu ou la demande est faite</li>'
-    if(!signature) errorsList += '<li>Il faut saisir votre signature</li>'
 
     const errors = errorsList ? `Il y a des erreurs : <ul>${errorsList}<ul>` : ''
 
@@ -130,7 +126,6 @@ const CongesDefaultValues = {
   congesTotalDays: 0,
   congesType: '',
   location: '',
-  signature: '',
   validationStatus: 'pending',
   responsableSignatureAndDate: '',
   dirigentSignatureAndDate: '',

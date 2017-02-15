@@ -24,10 +24,7 @@ const initialState = {
       congesType: 'Vacances',
       createdAt: new Date(1484067983302).toISOString(),
       location: 'Lyon',
-      signature: 'signature',
       validationStatus: 'pending',
-      responsableSignatureAndDate: 'Lance Mitchell, 10 janvier 2017',
-      dirigentSignatureAndDate: 'Susie  Burgess',
       rejectedComment: '',
       userId: 2
     },
@@ -42,10 +39,7 @@ const initialState = {
       congesType: 'Vacances',
       createdAt: new Date(1484067983302).toISOString(),
       location: 'Lyon',
-      signature: 'signature',
       validationStatus: 'reject',
-      responsableSignatureAndDate: 'Alyssa  Washington, 10 janvier 2017',
-      dirigentSignatureAndDate: 'Virginia Vargas',
       rejectedComment: 'Nope nope nope nope',
       userId: 2
     },
@@ -60,10 +54,7 @@ const initialState = {
       congesType: 'Vacances',
       createdAt: new Date(1484067983302).toISOString(),
       location: 'Lyon',
-      signature: 'signature',
       validationStatus: 'valid',
-      responsableSignatureAndDate: 'Santos  Abbott, 10 janvier 2017',
-      dirigentSignatureAndDate: 'Carole James',
       rejectedComment: '',
       userId: 5
     }
