@@ -8,8 +8,8 @@ import Avatar from '../../containers/Avatar'
 
 const navBarItems = [
   {
-    name: "Actualité",
-    routeName: 'intranet-actualite'
+    name: "Actualités",
+    routeName: 'intranet-news'
   },
   {
     name: "Ressouces Humaines",
@@ -44,10 +44,14 @@ const navBarItems = [
     name: "Administration",
     routeName: 'intranet-administration',
     content: [
-      {name: 'Gestion des utilisateurs', routeName: 'intranet-gestion-des-utilisateurs'},
+      {name: 'Gestion des utilisateurs', routeName: 'intranet-users'},
       {name: 'Application', routeName: 'intranet-application'}
     ]
   },
+  {
+    name: "Mon IPSSI",
+    routeName: 'intranet'
+  }
 ]
 
 class Header extends Component{

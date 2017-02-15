@@ -8,13 +8,14 @@ import KronosLabel from '../../KronosLabel'
 
 import ErrorMessage from '../../ErrorMessage'
 import WarningMessage from '../../WarningMessage'
+import CustomMessage from '../../CustomMessage'
 
 class CRAForm extends Component {
   constructor(props) {
     super(props)
 
     const cra = props.cra ? props.cra : CRADefaultValues
-    this.state = {cra, errors: ''}
+    this.state = {cra, errors: '', askForEditionComment: ''}
   }
 
   render () {
@@ -23,22 +24,23 @@ class CRAForm extends Component {
       responsableEntrepriseContact, responsableEntrepriseFonction, collaborateurEntreprise,
       collaborateurEntrepriseContact, collaborateurEntrepriseFonction, rapport,
       nbAccidentsAvecArretsHorsAccidentTrajet, nbAccidentsSansArret, nbAccidentsTrajet,
-      nbPresqueAccident, nbJourArretMaladie, detailCongesAbsences, totalJourPresense,
+      nbJourArretMaladie, detailCongesAbsences, totalJourPresense,
       satisfactionConsultant, satisfactionClient, pointAmelioration, activitesRestantes,
       commentaire, consultantSignatureLieuDate, consultantSignature, responsableEntrepriseSignatureLieuDate,
       responsableEntrepriseSignature, responsableClientSignatureLieuDate, responsableClientSignature,
-      askForEditionComment, id} = this.state.cra
+      id} = this.state.cra
 
     const {errors} = this.state
-    const {inputsDisabled} = this.props
+    const {inputsDisabled, user} = this.props
 
     return (
       <div className='Intranet_page_CRA CRA_create'>
         <div className='Intranet_page_header'>
           <h1 className='Intranet_page_title'>{id ? `Compte rendu d\'activité : ${projet}` : 'Création de compte rendu d\'activité'}</h1>
-          <div className='CRA_author'>par A. Lol</div>
-          {inputsDisabled ? this.validationButtons() : this.getCRAFormButton()}
-          {askForEditionComment ? <WarningMessage message={`Une demande de modification à été demandé : <br/> ${askForEditionComment}`}/> : null}
+          {id ? <div className='CRA_author'>{`par ${user.lastName} ${user.firstName}`}</div> : null}
+          {id ? this.props.cra.validationStatus !== 'valid' ? inputsDisabled ? this.validationButtons() : this.getCRAFormButton() : null : null}
+          {id ? this.props.cra.askForEditionComment && this.props.cra.validationStatus !== 'valid' ? <WarningMessage message={`Une demande de modification à été demandé : <br/> ${this.props.cra.askForEditionComment}`}/> : null : null}
+          {id ? this.props.cra.validationStatus === 'valid' ? <CustomMessage message='Compte rendu validé' backgroundColor='#2daa66' borderColor='#1d6e42'/> : null : null}
           {errors ? <ErrorMessage error={errors}/> : null}
         </div>
         <div className='CRA_section'>
@@ -66,7 +68,6 @@ class CRAForm extends Component {
           <InputLabel label={'Nombre d\'accidents avec arrets hors accidents de trajet'} type='number' value={nbAccidentsAvecArretsHorsAccidentTrajet} onChange={text => this.setState({cra: {...this.state.cra, nbAccidentsAvecArretsHorsAccidentTrajet: text}})} className='CRA_nb_accident_arret_hors_trajet' disabled={inputsDisabled}/>
           <InputLabel label={'Nombre d\'accidents sans arret'} type='number' value={nbAccidentsSansArret} onChange={text => this.setState({cra: {...this.state.cra, nbAccidentsSansArret: text}})} className='CRA_nb_accident_sans_arret' disabled={inputsDisabled}/>
           <InputLabel label={'Nombre d\'accidents de trajet'} type='number' value={nbAccidentsTrajet} onChange={text => this.setState({cra: {...this.state.cra, nbAccidentsTrajet: text}})} className='CRA_nb_accident_trajet' disabled={inputsDisabled}/>
-          <InputLabel label={'Nombre de presque accident'} type='number' value={nbPresqueAccident} onChange={text => this.setState({cra: {...this.state.cra, nbPresqueAccident: text}})} className='CRA_nb_presque_accident' disabled={inputsDisabled}/>
           <InputLabel label={'Nombre de jours d\'arret maladie'} type='number' value={nbJourArretMaladie} onChange={text => this.setState({cra: {...this.state.cra, nbJourArretMaladie: text}})} className='CRA_nb_jour_arret_maladie' disabled={inputsDisabled}/>
         </div>
 
@@ -132,7 +133,7 @@ class CRAForm extends Component {
       responsableEntrepriseContact, responsableEntrepriseFonction, collaborateurEntreprise,
       collaborateurEntrepriseContact, collaborateurEntrepriseFonction, rapport,
       nbAccidentsAvecArretsHorsAccidentTrajet, nbAccidentsSansArret, nbAccidentsTrajet,
-      nbPresqueAccident, nbJourArretMaladie} = this.state.cra
+      nbJourArretMaladie} = this.state.cra
 
     let errorsList = ''
 
@@ -140,15 +141,15 @@ class CRAForm extends Component {
     if(!projet) errorsList += '<li>Il faut saisir un nom de projet</li>'
 
     if(!responsableClient) errorsList += '<li>Il faut saisir un nom de responsable client</li>'
-    if(!responsableClientContact) errorsList += '<li>Il faut numéro de telephone ou une adresse email pour le responsable client</li>'
+    if(!responsableClientContact) errorsList += '<li>Il faut numéro de phone ou une adresse email pour le responsable client</li>'
     if(!responsableClientFonction) errorsList += '<li>Il faut saisir la fonction du responsable client</li>'
 
     if(!responsableEntreprise) errorsList += '<li>Il faut saisir un nom de responsable entreprise</li>'
-    if(!responsableEntrepriseContact) errorsList += '<li>Il faut numéro de telephone ou une adresse email pour le responsable entreprise</li>'
+    if(!responsableEntrepriseContact) errorsList += '<li>Il faut numéro de phone ou une adresse email pour le responsable entreprise</li>'
     if(!responsableEntrepriseFonction) errorsList += '<li>Il faut saisir la fonction du responsable entreprise</li>'
 
     if(!collaborateurEntreprise) errorsList += '<li>Il faut saisir un nom de collaborateur entreprise</li>'
-    if(!collaborateurEntrepriseContact) errorsList += '<li>Il faut numéro de telephone ou une adresse email pour le collaborateur entreprise</li>'
+    if(!collaborateurEntrepriseContact) errorsList += '<li>Il faut numéro de phone ou une adresse email pour le collaborateur entreprise</li>'
     if(!collaborateurEntrepriseFonction) errorsList += '<li>Il faut saisir la fonction du collaborateur entreprise</li>'
 
     if(!rapport) errorsList += '<li>Il faut saisir le contenu du rapport</li>'
@@ -156,7 +157,6 @@ class CRAForm extends Component {
     if(nbAccidentsAvecArretsHorsAccidentTrajet === '') errorsList += '<li>Il faut saisir le nombre d\'accident hors accident de trajet</li>'
     if(nbAccidentsSansArret === '') errorsList += '<li>Il faut saisir le nombre d\'accident sans arret</li>'
     if(nbAccidentsTrajet === '') errorsList += '<li>Il faut saisir le nombre d\'accident de trajet</li>'
-    if(nbPresqueAccident === '') errorsList += '<li>Il faut saisir le nombre de presque accident</li>'
     if(nbJourArretMaladie === '') errorsList += '<li>Il faut saisir le nombre de jour d\'arret maladie</li>'
 
     const errors = errorsList ? `Il y a des erreurs : <ul>${errorsList}<ul>` : ''
@@ -175,12 +175,13 @@ class CRAForm extends Component {
   }
 
   validationButtons() {
-    const {id, askForEditionComment} = this.state.cra
+    const {id} = this.state.cra
+    const {askForEditionComment} = this.state
     const {validCRA, askForEditionCRA} = this.props
 
     return (
       <div>
-        <QuillLabel label={'Demander une modification'} value={askForEditionComment} onChange={text => this.setState({cra: {...this.state.cra, askForEditionComment: text}})} className='CRA_ask_for_edition'/>
+        <QuillLabel label={'Demander une modification'} value={askForEditionComment} onChange={text => this.setState({askForEditionComment: text})} className='CRA_ask_for_edition'/>
         <br/>
         <button className='button button-red Ask_for_edition_CRA_button' onClick={() => askForEditionCRA(id, askForEditionComment)}>Envoyer la demande de modification</button>
         <button className='button button-green Valid_CRA_button' onClick={() => validCRA(id)}>Valider</button>
@@ -207,7 +208,6 @@ const CRADefaultValues = {
   nbAccidentsAvecArretsHorsAccidentTrajet: 0,
   nbAccidentsSansArret: 0,
   nbAccidentsTrajet: 0,
-  nbPresqueAccident: 0,
   nbJourArretMaladie: 0,
   detailCongesAbsences: '',
   totalJourPresense: 0,
@@ -222,7 +222,8 @@ const CRADefaultValues = {
   responsableEntrepriseSignature: '',
   responsableClientSignatureLieuDate: '',
   responsableClientSignature: '',
-  askForEditionComment: ''
+  askForEditionComment: '',
+  validationStatus: 'pending'
 }
 
 CRAForm.defaultProps = {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ErrorMessage = ({message, backgroundColor, borderColor}) => {
+const CustomMessage = ({message, backgroundColor, borderColor}) => {
   return message
     ? <div
         className='custom-message'
@@ -10,4 +10,4 @@ const ErrorMessage = ({message, backgroundColor, borderColor}) => {
     : <noscript/>
 }
 
-export default ErrorMessage
+export default CustomMessage

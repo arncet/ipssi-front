@@ -27,8 +27,8 @@ const JobsList = ({jobs, openDeleteJobsModal, closeDeleteJobsModal, deleteJob, j
 
 const actionColums = (openDeleteJobsModal, element) => (
   <div className='Jobs_actions'>
-    <Link className='fa fa-eye button button-blue' href={getPath('intranet-offres-de-poste-id', {id: element.id})}/>
-    <Link className='fa fa-pencil button button-green' href={getPath('intranet-offres-de-poste-id-edit', {id: element.id})}/>
+    <Link href={getPath('intranet-offres-de-poste-id', {id: element.id})}><div className='fa fa-eye button button-blue'/></Link>
+    <Link href={getPath('intranet-offres-de-poste-id-edit', {id: element.id})}><div className='fa fa-pencil button button-green'/></Link>
     <button className='fa fa-trash button button-red' onClick={() => openDeleteJobsModal(element.id)}/>
   </div>
 )

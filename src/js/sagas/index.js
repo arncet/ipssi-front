@@ -9,6 +9,8 @@ import users from './users'
 import cv from './cv'
 import jobs from './jobs'
 import news from './news'
+import candidatures from './candidatures'
+import ndf from './ndf'
 
 function* root () {
   yield [
@@ -20,7 +22,9 @@ function* root () {
     fork(users),
     fork(cv),
     fork(jobs),
-    fork(news)
+    fork(news),
+    fork(candidatures),
+    fork(ndf)
   ]
 }
 

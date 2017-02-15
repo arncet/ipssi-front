@@ -1,8 +1,8 @@
 import {getRandomString} from '../utils/string'
 
-export const createCongesApi = conges => {
+export const createCongesApi = (conges, userId) => {
   return new Promise((resolve, reject) => {
-    resolve({...conges, id: getRandomString()})
+    resolve({...conges, id: getRandomString(), userId})
   })
 }
 

@@ -15,63 +15,57 @@ const initialState = {
   conges: {
     1: {
       id: 1,
-      firstName: 'Arnaud',
-      lastName: 'CETOUTE',
       fonction: 'Dev. front',
       interventionLocation: 'Lyon, Lelivrescolaire.fr',
-      responsable: 'J. BANON',
-      congesStartDate: 1484067983302,
-      congesEndDate: 1484067983302,
+      responsable: 'Lance Mitchell',
+      congesStartDate: new Date(1484067983302).toISOString(),
+      congesEndDate: new Date(1484067983302).toISOString(),
       congesTotalDays: 4,
-      congesType: ':)',
-      createdAt: 1484067983302,
+      congesType: 'Vacances',
+      createdAt: new Date(1484067983302).toISOString(),
       location: 'Lyon',
-      signature: 'A. CETOUTE',
+      signature: 'signature',
       validationStatus: 'pending',
-      responsableSignatureAndDate: 'J. BANON, 10 janvier 2017',
-      dirigentSignatureAndDate: 'R. TAIEB',
+      responsableSignatureAndDate: 'Lance Mitchell, 10 janvier 2017',
+      dirigentSignatureAndDate: 'Susie  Burgess',
       rejectedComment: '',
-      author: 'Arnaud CETOUTE'
+      userId: 2
     },
     2: {
       id: 2,
-      firstName: 'ArnCet',
-      lastName: 'CETOUTE',
       fonction: 'Dev. front',
       interventionLocation: 'Lyon, Lelivrescolaire.fr',
-      responsable: 'J. BANON',
-      congesStartDate: 1484067983302,
-      congesEndDate: 1484067983302,
+      responsable: 'Alyssa  Washington',
+      congesStartDate: new Date(1484067983302).toISOString(),
+      congesEndDate: new Date(1484067983302).toISOString(),
       congesTotalDays: 4,
-      congesType: ':)',
-      createdAt: 1484067983302,
+      congesType: 'Vacances',
+      createdAt: new Date(1484067983302).toISOString(),
       location: 'Lyon',
-      signature: 'A. CETOUTE',
+      signature: 'signature',
       validationStatus: 'reject',
-      responsableSignatureAndDate: 'J. BANON, 10 janvier 2017',
-      dirigentSignatureAndDate: 'R. TAIEB',
+      responsableSignatureAndDate: 'Alyssa  Washington, 10 janvier 2017',
+      dirigentSignatureAndDate: 'Virginia Vargas',
       rejectedComment: 'Nope nope nope nope',
-      author: 'Arnaud CETOUTE'
+      userId: 2
     },
     3: {
       id: 3,
-      firstName: 'Moi',
-      lastName: 'CETOUTE',
       fonction: 'Dev. front',
       interventionLocation: 'Lyon, Lelivrescolaire.fr',
-      responsable: 'J. BANON',
-      congesStartDate: 1484067983302,
-      congesEndDate: 1484067983302,
+      responsable: 'Santos  Abbott',
+      congesStartDate: new Date(1484067983302).toISOString(),
+      congesEndDate: new Date(1484067983302).toISOString(),
       congesTotalDays: 4,
-      congesType: ':)',
-      createdAt: 1484067983302,
+      congesType: 'Vacances',
+      createdAt: new Date(1484067983302).toISOString(),
       location: 'Lyon',
-      signature: 'A. CETOUTE',
+      signature: 'signature',
       validationStatus: 'valid',
-      responsableSignatureAndDate: 'J. BANON, 10 janvier 2017',
-      dirigentSignatureAndDate: 'R. TAIEB',
+      responsableSignatureAndDate: 'Santos  Abbott, 10 janvier 2017',
+      dirigentSignatureAndDate: 'Carole James',
       rejectedComment: '',
-      author: 'Arnaud CETOUTE'
+      userId: 5
     }
   }
 }
@@ -181,7 +175,15 @@ export default function conges (state = initialState, {type, payload}) {
     case CONGES_VALID_SUCCESS:
       return {
         ...state,
-        validStatus: 'success'
+        validStatus: 'success',
+        conges: {
+          ...state.conges,
+          [payload.congesId]: {
+            ...state.conges[payload.congesId],
+            validationStatus: payload.valid ? 'valid' : 'reject',
+            rejectedComment: payload.comment ? payload.comment : ''
+          }
+        }
       }
     case CONGES_VALID_FAILED:
       return {

@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
 import {getHomeSections, getHomeSectionsStatus} from '../selectors/home'
 import {getJobs, getJobsStatus} from '../selectors/jobs'
-import {getAllNews, getNewsStatus} from '../selectors/news'
+import {getAllVisibleNews, getNewsStatus} from '../selectors/news'
 
 import Home from '../components/home/Home'
 
 const mapStateToProps = (state) => {
-  const allNews = getAllNews(state)
+  const allNews = getAllVisibleNews(state)
   const slidesStatus = getNewsStatus(state)
   const sections = getHomeSections(state)
   const sectionStatus = getHomeSectionsStatus(state)

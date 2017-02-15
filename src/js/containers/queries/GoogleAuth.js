@@ -20,23 +20,17 @@ class QueryGoogleAuth extends Component {
     if (!props.authentified) {
       const googleApiScript = document.querySelector('#google-api-script')
       if (googleApiScript) props.auth()
-      else {
-        window.addEventListener('load', addGoogleAPiScript.bind(this, props.auth))
-      }
+      else this.addGoogleAPiScript(props.auth)
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('load', addGoogleAPiScript.bind(this, this.props.auth))
+  addGoogleAPiScript(callback) {
+    const scriptElement = document.createElement('script')
+    scriptElement.src = 'https://apis.google.com/js/client.js?onload=onLoadCallback'
+    scriptElement.id = 'google-api-script'
+    window.onLoadCallback = callback
+    document.head.appendChild(scriptElement)
   }
-}
-
-const addGoogleAPiScript = callback => {
-  const scriptElement = document.createElement('script')
-  scriptElement.src = 'https://apis.google.com/js/client.js?onload=onLoadCallback'
-  scriptElement.id = 'google-api-script'
-  window.onLoadCallback = callback
-  document.head.appendChild(scriptElement)
 }
 
 const mapStateToProps = state => {

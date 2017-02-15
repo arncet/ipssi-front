@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 //Components
 import InputLabel from '../../InputLabel'
 import QuillLabel from '../../QuillLabel'
+import SelectLabel from '../../SelectLabel'
 import ImagePreview from '../../ImagePreview'
 
 import ErrorMessage from '../../ErrorMessage'
@@ -17,7 +18,8 @@ class NewsForm extends Component {
   }
 
   render () {
-    const {title, description, content, author, header, id, hidden} = this.state.news
+    const {title, description, content, header, id, hidden} = this.state.news
+    const {user} = this.props
 
     const {errors} = this.state
     const {inputsDisabled} = this.props
@@ -26,7 +28,7 @@ class NewsForm extends Component {
       <div className='Intranet_page_News News_create'>
         <div className='Intranet_page_header'>
           <h1 className='Intranet_page_title'>{id ? `Actualité : ${title}` : 'Création d\'une actualité de poste'}</h1>
-          <div className='News_author'>par {author}</div>
+          {id ? <div className='News_author'>par {`${user.lastName[0]}. ${user.firstName}`}</div> : null}
           {inputsDisabled ? null : this.getNewsFormButton()}
           {errors ? <ErrorMessage error={errors}/> : null}
           {
@@ -44,6 +46,17 @@ class NewsForm extends Component {
           <InputLabel label={'Description'} value={description} onChange={text => this.setState({news: {...this.state.news, description: text}})} className='News_description' disabled={inputsDisabled}/>
           <ImagePreview src={header} label='Image de couverture' onChange={image => this.setState({news: {...this.state.news, header: image}})} disabled={inputsDisabled}/>
           <QuillLabel label={'Contenu'} value={content} onChange={text => this.setState({news: {...this.state.news, content: text}})} className='News_content' disabled={inputsDisabled}/>
+          <SelectLabel
+            label={'Visible'}
+            onChange={text => this.setState({news: {...this.state.news, hidden: text === 'true' ? true : false}})}
+            className='CRA_satisfaction_consultant'
+            value={hidden}
+            options={[
+              {content: 'Oui', value: false},
+              {content: 'Non', value: true}
+            ]}
+            disabled={inputsDisabled}
+          />
         </div>
 
         <div className='News_create_footer'>
@@ -75,7 +88,7 @@ class NewsForm extends Component {
 
   getNewsFormButton() {
     const {id, hidden} = this.state.news
-    const {createNews, editNews} = this.props
+    const {createNews, editNews, setNewsVisible} = this.props
 
     const saveOrCreateButton =  id
       ? <button className='button button-blue Save_News_button' onClick={() => this.validNews(editNews)}>Sauvegarder</button>
@@ -83,8 +96,8 @@ class NewsForm extends Component {
 
     const setAvaliableOrUnsetAvaliableButton = id
       ? hidden
-        ? <button className='button button-grey Unset_avaliavle_News_button' onClick={() => this.setState({news: {...this.state.news, hidden: true}})}>Cahcher</button>
-        : <button className='button button-green Set_avaliavle_News_button' onClick={() => this.setState({news: {...this.state.news, hidden: false}})}>Afficher</button>
+        ? <button className='button button-green Set_avaliavle_News_button' onClick={() => setNewsVisible(id, true)}>Afficher</button>
+        : <button className='button button-grey Unset_avaliavle_News_button'onClick={() => setNewsVisible(id, false)}>Cacher</button>
       : null
 
     return (
@@ -102,8 +115,7 @@ const NewsDefaultValues = {
   content: '',
   date: new Date().getTime(),
   header: '',
-  hidden: true,
-  author: 'ME'
+  hidden: false
 }
 
 NewsForm.defaultProps = {

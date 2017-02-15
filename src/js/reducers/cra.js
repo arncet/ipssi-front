@@ -3,7 +3,8 @@ import {CRA_LOAD, CRA_LOAD_SUCCESS, CRA_LOAD_FAILED,
  CRA_EDIT, CRA_EDIT_SUCCESS, CRA_EDIT_FAILED,
  CRA_DELETE, CRA_DELETE_SUCCESS, CRA_DELETE_FAILED,
  CRA_VALID, CRA_VALID_SUCCESS, CRA_VALID_FAILED,
- CRA_CLEAN_STATUS, CRA_DELETE_OPEN_MODAL, CRA_DELETE_CLOSE_MODAL} from '../actions'
+ CRA_CLEAN_STATUS, CRA_DELETE_OPEN_MODAL, CRA_DELETE_CLOSE_MODAL,
+ CRA_ASK_FOR_EDITION, CRA_ASK_FOR_EDITION_SUCCESS, CRA_ASK_FOR_EDITION_FAILED} from '../actions'
 
 const initialState = {
   isLoading: false,
@@ -19,10 +20,10 @@ const initialState = {
       nomClient: 'Panagiotakis Wallis',
       periodeStart: 1483810607349,
       periodeEnd: 1483810607349,
-      projet: 'Le nom du projet',
+      projet: 'Projet 1',
       responsableClient: 'Balbus Ilari',
       responsableClientContact: '0686 35 78 44',
-      responsableClientFonction: 'Fait un truc',
+      responsableClientFonction: 'CTO',
       responsableEntreprise: 'Veselko Nadeem',
       responsableEntrepriseFonction: 'Veselko Nadeem',
       responsableEntrepriseContact: '0663 66 85 45',
@@ -33,9 +34,8 @@ const initialState = {
       nbAccidentsAvecArretsHorsAccidentTrajet: 0,
       nbAccidentsSansArret: 1,
       nbAccidentsTrajet: 2,
-      nbPresqueAccident: 0,
       nbJourArretMaladie: 1,
-      detailCongesAbsences: 'Nothing',
+      detailCongesAbsences: 'Rien à signaler',
       totalJourPresense: 19,
       satisfactionConsultant: 2,
       satisfactionClient: 1,
@@ -49,6 +49,7 @@ const initialState = {
       responsableClientSignatureLieuDate: '10 decembre 2017, Lyon',
       responsableClientSignature: 'O. Serge',
       consultant: 'Asip Serge',
+      userId: 2,
       validationStatus: 'valid'
     },
     2: {
@@ -56,10 +57,10 @@ const initialState = {
       nomClient: 'Anagiotakis Wallis',
       periodeStart: 1483810607349,
       periodeEnd: 1483810607349,
-      projet: 'The best project',
+      projet: 'Projet 2',
       responsableClient: 'Balbus Ilari',
       responsableClientContact: '0686 35 78 44',
-      responsableClientFonction: 'Fait un truc',
+      responsableClientFonction: 'CTO',
       responsableEntreprise: 'Veselko Nadeem',
       responsableEntrepriseFonction: 'Veselko Nadeem',
       responsableEntrepriseContact: '0663 66 85 45',
@@ -70,9 +71,8 @@ const initialState = {
       nbAccidentsAvecArretsHorsAccidentTrajet: 0,
       nbAccidentsSansArret: 1,
       nbAccidentsTrajet: 2,
-      nbPresqueAccident: 0,
       nbJourArretMaladie: 1,
-      detailCongesAbsences: 'Nothing',
+      detailCongesAbsences: 'Rien à signaler',
       totalJourPresense: 19,
       satisfactionConsultant: 2,
       satisfactionClient: 1,
@@ -87,6 +87,7 @@ const initialState = {
       responsableClientSignature: 'O. Serge',
       consultant: 'Bosip Serge',
       validationStatus: 'rejected',
+      userId: 1,
       askForEditionComment: 'Demande de modification :)'
     },
     3: {
@@ -94,10 +95,10 @@ const initialState = {
       nomClient: 'Nagiotakis Wallis',
       periodeStart: 1483810607349,
       periodeEnd: 1483810607349,
-      projet: 'Nothing',
+      projet: 'Projet 3',
       responsableClient: 'Balbus Ilari',
       responsableClientContact: '0686 35 78 44',
-      responsableClientFonction: 'Fait un truc',
+      responsableClientFonction: 'CTO',
       responsableEntreprise: 'Veselko Nadeem',
       responsableEntrepriseFonction: 'Veselko Nadeem',
       responsableEntrepriseContact: '0663 66 85 45',
@@ -108,9 +109,8 @@ const initialState = {
       nbAccidentsAvecArretsHorsAccidentTrajet: 0,
       nbAccidentsSansArret: 1,
       nbAccidentsTrajet: 2,
-      nbPresqueAccident: 0,
       nbJourArretMaladie: 1,
-      detailCongesAbsences: 'Nothing',
+      detailCongesAbsences: 'Rien à signaler',
       totalJourPresense: 19,
       satisfactionConsultant: 2,
       satisfactionClient: 1,
@@ -124,6 +124,7 @@ const initialState = {
       responsableClientSignatureLieuDate: '10 decembre 2017, Lyon',
       responsableClientSignature: 'O. Serge',
       consultant: 'Cosip Serge',
+      userId: 5,
       validationStatus: 'pending'
     },
     4: {
@@ -131,10 +132,10 @@ const initialState = {
       nomClient: 'Agiotakis Wallis',
       periodeStart: 1483810607349,
       periodeEnd: 1483810607349,
-      projet: 'Un projet',
+      projet: 'Projet 4',
       responsableClient: 'Balbus Ilari',
       responsableClientContact: '0686 35 78 44',
-      responsableClientFonction: 'Fait un truc',
+      responsableClientFonction: 'CTO',
       responsableEntreprise: 'Veselko Nadeem',
       responsableEntrepriseFonction: 'Veselko Nadeem',
       responsableEntrepriseContact: '0663 66 85 45',
@@ -145,9 +146,8 @@ const initialState = {
       nbAccidentsAvecArretsHorsAccidentTrajet: 0,
       nbAccidentsSansArret: 1,
       nbAccidentsTrajet: 2,
-      nbPresqueAccident: 0,
       nbJourArretMaladie: 1,
-      detailCongesAbsences: 'Nothing',
+      detailCongesAbsences: 'Rien à signaler',
       totalJourPresense: 19,
       satisfactionConsultant: 2,
       satisfactionClient: 1,
@@ -161,8 +161,9 @@ const initialState = {
       responsableClientSignatureLieuDate: '10 decembre 2017, Lyon',
       responsableClientSignature: 'O. Serge',
       consultant: 'Dosip Serge',
+      userId: 1,
       validationStatus: 'pending'
-    },
+    }
   }
 }
 
@@ -263,6 +264,10 @@ export default function cra (state = initialState, {type, payload}) {
     case CRA_VALID_SUCCESS:
       return {
         ...state,
+        cras: {
+          ...state.cras,
+          [payload.craId]: {...state.cras[payload.craId], validationStatus: 'valid'}
+        },
         validStatus: 'success'
       }
     case CRA_VALID_FAILED:
@@ -270,13 +275,33 @@ export default function cra (state = initialState, {type, payload}) {
         ...state,
         validStatus: 'failed'
       }
+    case CRA_ASK_FOR_EDITION:
+      return {
+        ...state,
+        askForEditionStatus: 'pending'
+      }
+    case CRA_ASK_FOR_EDITION_SUCCESS:
+      return {
+        ...state,
+        cras: {
+          ...state.cras,
+          [payload.craId]: {...state.cras[payload.craId], askForEditionComment: payload.comment}
+        },
+        askForEditionStatus: 'success'
+      }
+    case CRA_ASK_FOR_EDITION_FAILED:
+      return {
+        ...state,
+        askForEditionStatus: 'failed'
+      }
     case CRA_CLEAN_STATUS: {
       return {
         ...state,
         creatationStatus: '',
         editionStatus: '',
         deletionStatus: '',
-        validStatus: ''
+        validStatus: '',
+        askForEditionStatus: ''
       }
     }
     default:

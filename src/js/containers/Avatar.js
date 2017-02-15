@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   openConnexionModal: () => dispatch({type: AVATAR_OPEN_CONNEXION_MODAL}),
   closeConnexionModal: () => dispatch({type: AVATAR_CLOSE_CONNEXION_MODAL}),
-  connexion: user => dispatch({type: USERS_CONNEXION, payload: {user}}),
+  connexion: user => dispatch({type: USERS_CONNEXION, payload: {user}})
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Avatar)

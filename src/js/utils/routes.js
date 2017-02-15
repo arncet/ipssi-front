@@ -27,6 +27,9 @@ export const getPath = (routeName, params) => {
       return 'nous-rejoindre/les-postes-a-pourvoir'
     case 'postuler':
       return 'nous-rejoindre/postuler'
+
+    case 'intranet':
+      return 'intranet'
     case 'intranet-messages':
       return 'intranet/messages'
     case 'intranet-calendar':
@@ -40,6 +43,10 @@ export const getPath = (routeName, params) => {
       return `intranet/actualites/${params.id}`
     case 'intranet-news-id-edit':
       return `intranet/actualites/${params.id}/editer`
+    case 'news':
+      return `actualites`
+    case 'news-id':
+      return `actualites/${params.id}`
 
     case 'intranet-cra':
       return 'intranet/comptes-rendus-d-activites'
@@ -76,6 +83,58 @@ export const getPath = (routeName, params) => {
       return `intranet/offres-de-poste/${params.id}`
     case 'intranet-offres-de-poste-id-edit':
       return `intranet/offres-de-poste/${params.id}/editer`
+    case 'offres-de-poste':
+      return `offres-de-poste`
+    case 'offres-de-poste-id':
+      return `offres-de-poste/${params.id}`
+
+    case 'intranet-candidatures':
+      return 'intranet/candidatures'
+    case 'intranet-candidatures-create':
+      return 'intranet/candidatures/creer'
+    case 'intranet-candidatures-id':
+      return `intranet/candidatures/${params.id}`
+    case 'intranet-candidatures-id-edit':
+      return `intranet/candidatures/${params.id}/editer`
+    case 'candidatures':
+      return `candidatures`
+    case 'candidatures-id':
+      return `candidatures/${params.id}`
+
+    case 'intranet-users':
+      return 'intranet/utilisateurs'
+    case 'intranet-users-create':
+      return 'intranet/utilisateurs/creer'
+    case 'intranet-users-id':
+      return `intranet/utilisateurs/${params.id}`
+    case 'intranet-users-id-edit':
+      return `intranet/utilisateurs/${params.id}/editer`
+    case 'users-id':
+      return `utilisateurs/${params.id}`
+
+    case 'intranet-collaborateurs':
+      return 'intranet/collaborateurs'
+    case 'intranet-collaborateurs-create':
+      return 'intranet/collaborateurs/creer'
+    case 'intranet-collaborateurs-id':
+      return `intranet/collaborateurs/${params.id}`
+    case 'intranet-collaborateurs-id-edit':
+      return `intranet/collaborateurs/${params.id}/editer`
+
+    case 'intranet-notes-de-frais':
+      return 'intranet/notes-de-frais'
+    case 'intranet-notes-de-frais-create':
+      return 'intranet/notes-de-frais/creer'
+    case 'intranet-notes-de-frais-id':
+      return `intranet/notes-de-frais/${params.id}`
+    case 'intranet-notes-de-frais-id-edit':
+      return `intranet/notes-de-frais/${params.id}/editer`
+
+    case 'cv-id':
+      return `cv/${params.id}`
+    case 'profile-id':
+      return `profil/${params.id}`
+
     case 'home':
     default:
       return ''

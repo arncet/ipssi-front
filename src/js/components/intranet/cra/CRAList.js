@@ -5,7 +5,7 @@ import moment from '../../../utils/moment'
 import {getPath} from '../../../utils/routes'
 import Link from '../../commons/Link'
 
-const CRAList = ({cras, openDeleteCRAModal, closeDeleteCRAModal, deleteCRA, craToDelete}) => (
+const CRAList = ({cras, users, openDeleteCRAModal, closeDeleteCRAModal, deleteCRA, craToDelete}) => (
   <div className='CRA_list'>
     {craToDelete ? <DeleteModal close={closeDeleteCRAModal} deleteCRA={deleteCRA} cra={craToDelete}/> : null}
     <Table
@@ -21,6 +21,7 @@ const CRAList = ({cras, openDeleteCRAModal, closeDeleteCRAModal, deleteCRA, craT
       ]}
       defaultSortedValue='consultant'
       customColums={[
+        {name: 'Utilisateur', content: UserColums.bind(this, users), order: 1},
         {name: 'Validé', content: CRAValid},
         {name: 'Actions', content: actionColums.bind(this, openDeleteCRAModal)}
       ]}
@@ -28,10 +29,21 @@ const CRAList = ({cras, openDeleteCRAModal, closeDeleteCRAModal, deleteCRA, craT
   </div>
 )
 
+const UserColums = (users, element) => {
+  const user = users[element.userId]
+  return (
+    <div className='Link_list'>
+      <Link href={getPath('intranet-users-id', {id: user.id})}>
+        {`${user.lastName[0]}. ${user.firstName}`}
+      </Link>
+    </div>
+  )
+}
+
 const actionColums = (openDeleteCRAModal, element) => (
   <div className='CRA_actions'>
-    <Link className='fa fa-eye button button-blue' href={getPath('intranet-cra-id', {id: element.id})}/>
-    <Link className='fa fa-pencil button button-green' href={getPath('intranet-cra-id-edit', {id: element.id})}/>
+    <Link href={getPath('intranet-cra-id', {id: element.id})}><div className='fa fa-eye button button-blue'/></Link>
+    {element.validationStatus === 'valid' ? null : <Link href={getPath('intranet-cra-id-edit', {id: element.id})}><div className='fa fa-pencil button button-green'/></Link>}
     <button className='fa fa-trash button button-red' onClick={() => openDeleteCRAModal(element.id)}/>
   </div>
 )

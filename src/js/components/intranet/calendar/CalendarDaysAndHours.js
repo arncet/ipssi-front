@@ -66,10 +66,11 @@ const decomposeDate = date => {
 
 const Event = ({event, onCurrentEventChange, openEditModal}) => {
   const {start, end, summary} = event
-  const DAY_HEIGHT = 45
   const {hours: startHours, day: startDay, minutes: startMinutes} = decomposeDate(start.dateTime, summary)
   const {hours: endHours, day: endDay, minutes: endMinutes} = decomposeDate(end.dateTime, summary)
   const element = document.querySelector(`.Day_item_${startDay}_${startHours}`)
+  if (!element) return null
+  const DAY_HEIGHT = 45
   const {top, left} = absolutePositionFromTop(element)
   const offsetTopMinutes = startMinutes * DAY_HEIGHT
   const daysDiff = moment(endDay).diff(moment(startDay), 'days')

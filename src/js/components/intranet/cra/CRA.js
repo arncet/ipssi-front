@@ -4,11 +4,12 @@ import React from 'react'
 import Header from './Header'
 import CRAList from './CRAList'
 
-const CRA = ({cras, openDeleteCRAModal, closeDeleteCRAModal, craToDelete, deleteCRA}) => (
+const CRA = ({cras, users, openDeleteCRAModal, closeDeleteCRAModal, craToDelete, deleteCRA}) => (
   <div className='Intranet_page Intranet_page_CRA'>
     <Header/>
     <CRAList
       cras={cras}
+      users={users}
       openDeleteCRAModal={openDeleteCRAModal}
       closeDeleteCRAModal={closeDeleteCRAModal}
       craToDelete={craToDelete}

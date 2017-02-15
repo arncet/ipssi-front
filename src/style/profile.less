@@ -1,0 +1,102 @@
+.Profile{
+  padding: 0px 20px 20px 20px;
+
+  .Profile_header{
+    padding: 10px 0px;
+
+    .Profile_delete_button{
+      margin-left: 10px;
+    }
+
+    .Profile_user_role{
+      font-size: 13px;
+      padding: 5px 10px;
+      background-color: #b5b5b5;
+      border-radius: 3px;
+      text-transform: uppercase;
+      color: #FFF;
+      margin-left: 10px;
+      .openSansBold;
+    }
+
+    .Profile_avatar, .Profile_title, .Profile_user_role{
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .Profile_avatar{
+      margin-right: 20px;
+      width: 60px;
+    }
+
+    .error-message{
+      margin-top: 10px;
+    }
+  }
+
+  .Profile_body{
+
+    .Profile_user_infos_wrapper{
+
+      .Profile_user_lastName, .Profile_user_firstName, .Profile_user_email,
+      .Profile_user_phone, .Profile_user_password{
+        width: calc(50% - 20px);
+        margin-right: 20px;
+        margin-bottom: 10px;
+      }
+
+      .Profile_user_firstName, .Profile_user_phone{
+        margin-right: 0px;
+      }
+
+      .Profile_section_infos, .Profile_section_avatar{
+        display: inline-block;
+        vertical-align: top;
+        width: calc(50% - 10px);
+        margin-right: 20px;
+        .boxSizing;
+      }
+
+      .Profile_section_avatar{
+        margin-right: 0px;
+        text-align: center;
+
+        .Preview{
+          margin: 10px auto 5px auto;
+        }
+      }
+    }
+
+    .table-sorted{
+      width: 100%;
+
+      .fa-spinner{
+        color: @color_1;
+      }
+
+      .fa-check{
+        color: @green;
+      }
+
+      .fa-times{
+        color: @red;
+      }
+    }
+  }
+
+  .Profile_footer{
+
+  }
+
+  .Profile_section{
+    margin-bottom: 20px;
+    padding: 10px 20px 20px 20px;
+    border: 1px solid @color_5;
+    border-left: 10px solid @color_5;
+
+    .Profile_section_title{
+      margin-bottom: 10px;
+      .openSansBold;
+    }
+  }
+}

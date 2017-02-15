@@ -47,7 +47,8 @@ const navBarItems = [
     routeName: 'contact'
   },
   {
-    name: "Mon ipssi"
+    name: "Mon ipssi",
+    routeName: 'intranet'
   }
 ]
 

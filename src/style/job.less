@@ -1,0 +1,70 @@
+.Job_page{
+  padding: 20px;
+
+  &.Job{
+    .Job_title{
+
+    }
+
+    .Job_description{
+      margin-bottom: 20px;
+    }
+
+    .Job_date{
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .Button_postulate{
+
+    }
+
+    .Button_postulate_disabled{
+
+    }
+  }
+
+  &.Job_list{
+
+    .Jobs{
+      padding: 0px;
+
+      .Job{
+        padding: 10px 20px;
+        margin-bottom: 15px;
+        background-color: #ECECEC;
+
+        &.Job_avaliable{
+          border-left: 5px solid @green;
+        }
+
+        &.Job_unAvaliable{
+          border-left: 5px solid @red;
+
+          .Job_title{
+            text-decoration: line-through;
+          }
+        }
+
+        .Job_title{
+          font-size: 20px;
+          .clickable;
+
+          &:hover{
+            text-decoration: underline;
+          }
+
+          .Job_date{
+            display: inline-block;
+            font-size: 15px;
+            margin-left: 10px;
+          }
+        }
+
+        .Job_description{
+
+        }
+      }
+    }
+  }
+}

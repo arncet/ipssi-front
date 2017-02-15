@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import {JOBS_VALID} from '../../../actions'
+import {JOBS_SET_AVALIABLE} from '../../../actions'
 import {getJob, getJobsAvaliableStatus} from '../../../selectors/jobs'
 
 import JobsForm from '../../../components/intranet/jobs/JobsForm'
@@ -12,7 +12,7 @@ const mapStateToProps = (state, {params: {id}}) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  validJobs: jobId => dispatch({type: JOBS_VALID, payload: {jobId}})
+  validJobs: jobId => dispatch({type: JOBS_SET_AVALIABLE, payload: {jobId}})
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(JobsForm)

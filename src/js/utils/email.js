@@ -3,7 +3,7 @@ export const getHeader = (headers, headerName) => {
   return header ? header.value : ''
 }
 
-export const getBody = message => {
+export const getBody = (message = {}) => {
   const body = typeof message.parts === 'undefined'
     ? message.body.data
     : getHTMLPart(message.parts)

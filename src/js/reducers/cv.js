@@ -13,14 +13,11 @@ const initialState = {
   cvIdToDelete: null,
   validStatus: '',
   askForEditionStatus: '',
+  status: '',
   cvs: {
     1: {
       id: 1,
-      title: 'Le meilleur CV du monde :)',
-      firstName: 'Arnaud',
-      lastName: 'MOUHAHAHAHA',
-      phone: '0000 00 00 00',
-      email: 'arnaud.mouhahahaha@lol.yolo',
+      title: 'Graphiste',
       address: 'Rue des avenues de l\'impasse, Lyon 69009',
       experiences: {
         1: {
@@ -51,17 +48,13 @@ const initialState = {
       formations: {},
       skills: {},
       moreInfos: '',
-      author: 'A. MOUHAHAHAHA',
+      userId: 2,
       validationStatus: 'reject',
       askForEditionComment: 'Demande de modification :)'
     },
     2: {
       id: 2,
-      title: '404 not found :)',
-      firstName: 'Arnaud',
-      lastName: '132456267',
-      phone: '0000 00 00 00',
-      email: 'arnaud.mouhahahaha@lol.yolo',
+      title: 'Dev. back',
       address: 'Rue des avenues de l\'impasse, Lyon 69009',
       experiences: {
         1: {
@@ -117,17 +110,13 @@ const initialState = {
       },
       skills: {},
       moreInfos: '',
-      author: 'A. MOUHAHAHAHA',
+      userId: 1,
       validationStatus: 'pending',
       askForEditionComment: 'Demande de modification :)'
     },
     3: {
       id: 3,
-      title: 'YOLO',
-      firstName: 'OArnaud',
-      lastName: 'MOUHAHAHAHA',
-      phone: '0000 00 00 00',
-      email: 'arnaud.mouhahahaha@lol.yolo',
+      title: 'Dev. front',
       address: 'Rue des avenues de l\'impasse, Lyon 69009',
       experiences: {
         1: {
@@ -199,7 +188,7 @@ const initialState = {
         }
       },
       moreInfos: '',
-      author: 'A. MOUHAHAHAHA',
+      userId: 4,
       validationStatus: 'valid'
     }
   }

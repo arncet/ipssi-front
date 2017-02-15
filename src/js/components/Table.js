@@ -20,14 +20,15 @@ class Table extends Component {
         <thead>
           <tr>
             {
-              columns.map((column, i) => {
+              sortBy([...columns, ...customColums], 'order').map((column, i) => {
                 const isSorted = sortedValue === column.name
                 const newSortedOrder = sortedOrder === 1 ? -1 : 1
                 const icon = isSorted ? sortedOrder > 0 ? 'fa fa-caret-up' : 'fa fa-caret-down' : ''
-                return <th key={i} onClick={() => this.setState({sortedValue: column.name, sortedOrder: newSortedOrder})}>{column.value} <span className={icon}/></th>
+                return column.content
+                  ? <th key={i}>{column.name}</th>
+                  : <th key={i} onClick={() => this.setState({sortedValue: column.name, sortedOrder: newSortedOrder})}>{column.value} <span className={icon}/></th>
               })
             }
-            {customColums.map((column, i) => <th key={i}>{column.name}</th>)}
           </tr>
         </thead>
         <tbody>
@@ -35,8 +36,11 @@ class Table extends Component {
             this.sortElements(elements).map((element, i) => {
               return (
                 <tr key={i}>
-                 {columns.map((column, j) => <td key={j}>{element[column.name]}</td>)}
-                 {customColums.map((column, j) => <td key={j}>{column.content(element)}</td>)}
+                  {sortBy([...columns, ...customColums], 'order').map((column, j) => {
+                    return column.content
+                      ? <td key={j}>{column.content(element)}</td>
+                      : <td key={j}>{element[column.name]}</td>
+                  })}
                 </tr>
               )
             })

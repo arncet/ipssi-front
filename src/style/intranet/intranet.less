@@ -9,7 +9,8 @@
   }
 }
 
-.Intranet_page_CRA, .Intranet_page_Conges, .Intranet_page_CV, .Intranet_page_Jobs, .Intranet_page_News{
+.Intranet_page_CRA, .Intranet_page_Conges, .Intranet_page_CV, .Intranet_page_Jobs,
+.Intranet_page_News, .Intranet_page_User, .Intranet_page_Candidatures, .Intranet_page_NDF{
   padding: 10px 30px 30px 30px;
 
   .Intranet_page_header{
@@ -26,6 +27,14 @@
 
   .table-sorted{
     width: 100%;
+
+    .Link_list:hover{
+      cursor: pointer;
+
+      a{
+        text-decoration: underline;
+      }
+    }
   }
 
   .fa-spinner{
@@ -61,7 +70,12 @@
     .boxSizing;
   }
 
-  .CRA_section, .Conges_section, .CV_section, .Jobs_section, .News_section{
+  .label-and-input{
+    vertical-align: top;
+  }
+
+  .CRA_section, .Conges_section, .CV_section, .Jobs_section, .News_section, .Users_section,
+  .Candidatures_section, .NDF_section{
     margin-bottom: 20px;
     padding: 10px 20px 20px 20px;
     border: 1px solid @color_5;

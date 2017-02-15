@@ -6,3 +6,4 @@ export const getCongesEditionStatus = state => state.conges.editionStatus
 export const getCongesDeletionStatus = state => state.conges.deletionStatus
 export const getCongesIdToDelete = state => state.conges.congesIdToDelete
 export const getCongesValidationStatus = state => state.conges.validStatus
+export const getCongesByUserId = (state, userId) => getConges(state).filter(conge => conge.userId === userId)

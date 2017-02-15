@@ -4,11 +4,12 @@ import React from 'react'
 import Header from './Header'
 import CongesList from './CongesList'
 
-const Conges = ({conges, openDeleteCongesModal, closeDeleteCongesModal, congesToDelete, deleteConges}) => (
+const Conges = ({conges, users, openDeleteCongesModal, closeDeleteCongesModal, congesToDelete, deleteConges}) => (
   <div className='Intranet_page Intranet_page_Conges'>
     <Header/>
     <CongesList
       conges={conges}
+      users={users}
       openDeleteCongesModal={openDeleteCongesModal}
       closeDeleteCongesModal={closeDeleteCongesModal}
       congesToDelete={congesToDelete}

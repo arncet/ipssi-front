@@ -1,8 +1,8 @@
 import {getRandomString} from '../utils/string'
 
-export const createCVApi = cv => {
+export const createCVApi = (cv, userId) => {
   return new Promise((resolve, reject) => {
-    resolve({...cv, id: getRandomString()})
+    resolve({...cv, id: getRandomString(), userId})
   })
 }
 

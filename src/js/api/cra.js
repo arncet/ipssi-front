@@ -1,8 +1,8 @@
 import {getRandomString} from '../utils/string'
 
-export const createCRAApi = cra => {
+export const createCRAApi = (cra, userId) => {
   return new Promise((resolve, reject) => {
-    resolve({...cra, id: getRandomString()})
+    resolve({...cra, id: getRandomString(), userId})
   })
 }
 

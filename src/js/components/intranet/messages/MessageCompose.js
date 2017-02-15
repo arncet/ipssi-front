@@ -9,7 +9,7 @@ import Modal from '../../Modal'
 class MessageCompose extends Component{
   constructor(props) {
     super(props)
-    this.state = {message: '', emails: ['arnaud.cetoute@hotmail.fr'], error: ''}
+    this.state = {message: '', emails: [], error: ''}
   }
 
   render() {
@@ -25,7 +25,7 @@ class MessageCompose extends Component{
           </div>
           <div className='Pre_input'>
             <div className='Label'>Objet : </div>
-            <input type='text' className='input-text Message_compose_object' defaultValue='lol'/>
+            <input type='text' className='input-text Message_compose_object' defaultValue=''/>
           </div>
           <ReactQuill value={message} onChange={text => this.setState({message: text})} theme='snow' toolbar={toolbar}/>
           <div className='Message_compose_footer'>

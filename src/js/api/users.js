@@ -21,3 +21,22 @@ export const fetchUsersApi = usersId => {
   })
 }
 
+export const createUserApi = user => {
+  return new Promise((resolve, reject) => {
+    resolve({...user, id: getRandomString()})
+  })
+}
+
+export const editUserApi = user => {
+  return new Promise((resolve, reject) => {
+    resolve(user)
+  })
+}
+
+export const deleteUserApi = userId => {
+  return new Promise((resolve, reject) => {
+    resolve()
+  })
+}
+
+

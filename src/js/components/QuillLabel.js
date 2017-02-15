@@ -9,7 +9,7 @@ class QuillLabel extends Component {
   }
 
   render () {
-    const {label, className, disabled} = this.props
+    const {label, className, disabled, displayInputWhenDisabled} = this.props
     const {value} = this.state
 
 
@@ -17,9 +17,9 @@ class QuillLabel extends Component {
       <div className={`quill-label-wrapper ${className}`}>
         <div className='quill-label'>{label}</div>
         {
-          disabled
+          disabled && !displayInputWhenDisabled
             ? <div className='quill-input-disabled' dangerouslySetInnerHTML={{__html: value}}/>
-            : <ReactQuill value={value} onChange={text => this.onChange(text)} theme='snow' toolbar={toolbar}/>
+            : <ReactQuill value={value} onChange={text => this.onChange(text)} theme='snow' toolbar={toolbar} readOnly={disabled}/>
         }
       </div>
     )
@@ -34,7 +34,8 @@ class QuillLabel extends Component {
 QuillLabel.defaultProps = {
   label: '',
   className: '',
-  disabled: false
+  disabled: false,
+  displayInputWhenDisabled: true
 }
 
 export default QuillLabel

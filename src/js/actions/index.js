@@ -112,11 +112,6 @@ export const HOME_FETCH_SECTIONS = 'home.fetch.sections'
 export const HOME_FETCH_SECTIONS_SUCCESS = 'home.fetch.sections.success'
 export const HOME_FETCH_SECTIONS_FAILED = 'home.fetch.sections.failed'
 
-//JOBS
-export const JOBS_FETCH_JOBS = 'jobs.fetch.jobs'
-export const JOBS_FETCH_JOBS_SUCCESS = 'jobs.fetch.jobs.success'
-export const JOBS_FETCH_JOBS_FAILED = 'jobs.fetch.jobs.failed'
-
 //USERS
 export const USERS_FETCH_USERS = 'users.fetch.users'
 export const USERS_FETCH_USERS_SUCCESS = 'users.fetch.users.success'
@@ -131,6 +126,28 @@ export const USERS_INSCRIPTION_SUCCESS = 'users.inscription.success'
 export const USERS_INSCRIPTION_FAILED = 'users.inscription.failed'
 
 export const USERS_CLEAR_CONNEXION_STATUS = 'users.clear.connexion.status'
+
+export const USERS_CREATE = 'users.create'
+export const USERS_CREATE_SUCCESS = 'users.create.success'
+export const USERS_CREATE_FAILED = 'users.create.failed'
+
+export const USERS_EDIT = 'users.edit'
+export const USERS_EDIT_SUCCESS = 'users.edit.success'
+export const USERS_EDIT_FAILED = 'users.edit.failed'
+
+export const USERS_DELETE_OPEN_MODAL = 'users.delete.open.modal'
+export const USERS_DELETE_CLOSE_MODAL = 'users.delete.close.modal'
+export const USERS_DELETE = 'users.delete'
+export const USERS_DELETE_SUCCESS = 'users.delete.success'
+export const USERS_DELETE_FAILED = 'users.delete.failed'
+
+export const USERS_SAVE_PROFILE = 'users.save.profile'
+export const USERS_SAVE_PROFILE_SUCCESS = 'users.save.profile.success'
+export const USERS_SAVE_PROFILE_FAILED = 'users.save.profile.failed'
+
+export const USERS_DELETE_ACCOUNT = 'users.delete.account'
+export const USERS_DELETE_ACCOUNT_SUCCESS = 'users.delete.account.success'
+export const USERS_DELETE_ACCOUNT_FAILED = 'users.delete.account.failed'
 
 //AVATAR
 export const AVATAR_OPEN_CONNEXION_MODAL = 'wrapper.open.connexion.modal'
@@ -190,7 +207,11 @@ export const JOBS_SET_AVALIABLE = 'jobs.set.avaliable'
 export const JOBS_SET_AVALIABLE_SUCCESS = 'jobs.set.avaliable.success'
 export const JOBS_SET_AVALIABLE_FAILED = 'jobs.set.avaliable.failed'
 
-//CRA
+export const JOBS_POSTULATE = 'jobs.postulate'
+export const JOBS_POSTULATE_SUCCESS = 'jobs.postulate.success'
+export const JOBS_POSTULATE_FAILED = 'jobs.postulate.failed'
+
+//NEWS
 export const NEWS_LOAD = 'news.load'
 export const NEWS_LOAD_SUCCESS = 'news.load.success'
 export const NEWS_LOAD_FAILED = 'news.load.failed'
@@ -210,3 +231,53 @@ export const NEWS_DELETE_SUCCESS = 'news.delete.success'
 export const NEWS_DELETE_FAILED = 'news.delete.failed'
 
 export const NEWS_CLEAN_STATUS = 'news.clean.status'
+
+export const NEWS_SET_VISIBLE = 'candidatures.set.visible'
+export const NEWS_SET_VISIBLE_SUCCESS = 'candidatures.set.visible.success'
+export const NEWS_SET_VISIBLE_FAILED = 'candidatures.set.visible.failed'
+
+//CANDIDATURES
+export const CANDIDATURES_LOAD = 'candidatures.load'
+export const CANDIDATURES_LOAD_SUCCESS = 'candidatures.load.success'
+export const CANDIDATURES_LOAD_FAILED = 'candidatures.load.failed'
+
+export const CANDIDATURES_CREATE = 'candidatures.create'
+export const CANDIDATURES_CREATE_SUCCESS = 'candidatures.create.success'
+export const CANDIDATURES_CREATE_FAILED = 'candidatures.create.failed'
+
+export const CANDIDATURES_EDIT = 'candidatures.edit'
+export const CANDIDATURES_EDIT_SUCCESS = 'candidatures.edit.success'
+export const CANDIDATURES_EDIT_FAILED = 'candidatures.edit.failed'
+
+export const CANDIDATURES_DELETE_OPEN_MODAL = 'candidatures.delete.open.modal'
+export const CANDIDATURES_DELETE_CLOSE_MODAL = 'candidatures.delete.close.modal'
+export const CANDIDATURES_DELETE = 'candidatures.delete'
+export const CANDIDATURES_DELETE_SUCCESS = 'candidatures.delete.success'
+export const CANDIDATURES_DELETE_FAILED = 'candidatures.delete.failed'
+
+export const CANDIDATURES_CLEAN_STATUS = 'candidatures.clean.status'
+
+export const CANDIDATURES_SET_VALID = 'candidatures.set.valid'
+export const CANDIDATURES_SET_VALID_SUCCESS = 'candidatures.set.valid.success'
+export const CANDIDATURES_SET_VALID_FAILED = 'candidatures.set.valid.failed'
+
+//NOTE DE FRAIS
+export const NDF_LOAD = 'note.de.frais.load'
+export const NDF_LOAD_SUCCESS = 'note.de.frais.load.success'
+export const NDF_LOAD_FAILED = 'note.de.frais.load.failed'
+
+export const NDF_CREATE = 'note.de.frais.create'
+export const NDF_CREATE_SUCCESS = 'note.de.frais.create.success'
+export const NDF_CREATE_FAILED = 'note.de.frais.create.failed'
+
+export const NDF_EDIT = 'note.de.frais.edit'
+export const NDF_EDIT_SUCCESS = 'note.de.frais.edit.success'
+export const NDF_EDIT_FAILED = 'note.de.frais.edit.failed'
+
+export const NDF_DELETE_OPEN_MODAL = 'note.de.frais.delete.open.modal'
+export const NDF_DELETE_CLOSE_MODAL = 'note.de.frais.delete.close.modal'
+export const NDF_DELETE = 'note.de.frais.delete'
+export const NDF_DELETE_SUCCESS = 'note.de.frais.delete.success'
+export const NDF_DELETE_FAILED = 'note.de.frais.delete.failed'
+
+export const NDF_CLEAN_STATUS = 'note.de.frais.clean.status'
